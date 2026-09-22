@@ -98,6 +98,17 @@ Elle gère aujourd'hui plusieurs tournois par site, dans trois formats, avec ou 
 2. Dans WordPress : **Extensions → Ajouter → Téléverser une extension**.
 3. Activez. Un menu **Tournois** apparaît.
 
+> [!IMPORTANT]
+> **Deux archives sont publiées, ne les confondez pas.**
+>
+> | Archive | Pour quoi |
+> |---|---|
+> | `wegame-tournoi-2.5.0.zip` | **Installation sur un site.** Contient les mises à jour automatiques par manifeste. |
+> | `wegame-tournoi-2.5.0-POUR-WORDPRESS-ORG.zip` | **Uniquement pour soumettre au répertoire WordPress.org.** Le module de mise à jour en est retiré, car le règlement l'interdit. |
+>
+> L'outil *Plugin Check* signalera toujours un `plugin_updater_detected` sur la première : c'est normal et sans conséquence tant que vous ne soumettez pas au répertoire. C'est la seconde qu'il faut installer pour vérifier le paquet de soumission.
+
+
 ### Depuis les sources
 
 ```bash
