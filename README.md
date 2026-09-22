@@ -108,6 +108,12 @@ Elle gère aujourd'hui plusieurs tournois par site, dans trois formats, avec ou 
 >
 > L'outil *Plugin Check* signalera toujours un `plugin_updater_detected` sur la première : c'est normal et sans conséquence tant que vous ne soumettez pas au répertoire. C'est la seconde qu'il faut installer pour vérifier le paquet de soumission.
 
+> [!WARNING]
+> **Le dossier de l'extension doit s'appeler exactement `wegame-tournoi`.**
+>
+> WordPress.org déduit le domaine de traduction du nom du dossier. Un dossier renommé, par exemple `we-game-tournoi`, fait échouer l'analyse avec des centaines d'erreurs `TextDomainMismatch`, alors que le code est correct. Les archives publiées créent le bon dossier : ne le renommez pas.
+
+
 
 ### Depuis les sources
 
