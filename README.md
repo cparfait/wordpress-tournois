@@ -108,6 +108,14 @@ Elle gère aujourd'hui plusieurs tournois par site, dans trois formats, avec ou 
 > | `brackethive-2.6.0-POUR-WORDPRESS-ORG.zip` | **Uniquement pour soumettre au répertoire WordPress.org.** Le module de mise à jour en est retiré, car le règlement l'interdit. |
 >
 > L'outil *Plugin Check* signalera toujours un `plugin_updater_detected` sur la première : c'est normal et sans conséquence tant que vous ne soumettez pas au répertoire. C'est la seconde qu'il faut installer pour vérifier le paquet de soumission.
+>
+> Les deux se construisent d'une seule commande, qui met aussi le manifeste à jour :
+>
+> ```bash
+> php tools/build-org-package.php
+> ```
+>
+> Les archives sont reproductibles : reconstruire le même code redonne la même empreinte, donc republier un paquet n'invalide pas le `sha256` annoncé aux sites.
 
 > [!WARNING]
 > **Le dossier de l'extension doit s'appeler exactement `brackethive`.**
