@@ -236,7 +236,7 @@ class WGT_Admin {
 		wp_nonce_field( 'wgt_create_tournament' );
 		echo '<input type="hidden" name="action" value="wgt_create_tournament" />';
 		echo '<h2>' . esc_html__( 'New tournament', 'wegame-tournoi' ) . '</h2>';
-		echo '<p><label>' . esc_html__( 'Name', 'wegame-tournoi' ) . ' *<br /><input type="text" class="regular-text" name="title" required placeholder="' . esc_attr__( 'We Game 2027 — Call of Duty', 'wegame-tournoi' ) . '" /></label></p>';
+		echo '<p><label>' . esc_html__( 'Name', 'wegame-tournoi' ) . ' *<br /><input type="text" class="regular-text" name="title" required placeholder="' . esc_attr__( 'Spring Esports Cup 2027', 'wegame-tournoi' ) . '" /></label></p>';
 		echo '<p><label>' . esc_html__( 'Game', 'wegame-tournoi' ) . '<br /><input type="text" class="regular-text" name="game_name" /></label></p>';
 		echo '<p><label>' . esc_html__( 'Date', 'wegame-tournoi' ) . '<br /><input type="date" name="event_date" /></label></p>';
 		echo '<p><button class="button button-primary">' . esc_html__( 'Create', 'wegame-tournoi' ) . '</button></p>';
@@ -367,8 +367,8 @@ class WGT_Admin {
 		echo '<h2>' . esc_html__( '1. The tournament', 'wegame-tournoi' ) . '</h2>';
 		echo '<p class="description">' . esc_html__( 'This information appears at the top of the public page. Only the name is required; everything can be changed later in Tournament settings.', 'wegame-tournoi' ) . '</p>';
 		echo '<div class="wgt-wizard__grid">';
-		echo '<p class="wgt-wizard__full"><label for="wgt-w-title">' . esc_html__( 'Tournament name', 'wegame-tournoi' ) . ' *</label><input type="text" id="wgt-w-title" class="regular-text" name="title" required placeholder="' . esc_attr__( 'We Game 2027 — Call of Duty', 'wegame-tournoi' ) . '" /><span class="description">' . esc_html__( 'It also becomes the title and the address of the tournament page.', 'wegame-tournoi' ) . '</span></p>';
-		echo '<p><label for="wgt-w-game">' . esc_html__( 'Game', 'wegame-tournoi' ) . '</label><input type="text" id="wgt-w-game" class="regular-text" name="game_name" placeholder="' . esc_attr__( 'Call of Duty', 'wegame-tournoi' ) . '" /></p>';
+		echo '<p class="wgt-wizard__full"><label for="wgt-w-title">' . esc_html__( 'Tournament name', 'wegame-tournoi' ) . ' *</label><input type="text" id="wgt-w-title" class="regular-text" name="title" required placeholder="' . esc_attr__( 'Spring Esports Cup 2027', 'wegame-tournoi' ) . '" /><span class="description">' . esc_html__( 'It also becomes the title and the address of the tournament page.', 'wegame-tournoi' ) . '</span></p>';
+		echo '<p><label for="wgt-w-game">' . esc_html__( 'Game', 'wegame-tournoi' ) . '</label><input type="text" id="wgt-w-game" class="regular-text" name="game_name" placeholder="' . esc_attr__( 'Arena League', 'wegame-tournoi' ) . '" /></p>';
 		echo '<p><label for="wgt-w-venue">' . esc_html__( 'Venue', 'wegame-tournoi' ) . '</label><input type="text" id="wgt-w-venue" class="regular-text" name="venue" placeholder="' . esc_attr__( 'Community hall', 'wegame-tournoi' ) . '" /></p>';
 		echo '<p><label for="wgt-w-date">' . esc_html__( 'Date', 'wegame-tournoi' ) . '</label><input type="date" id="wgt-w-date" name="event_date" /></p>';
 		echo '<p><label for="wgt-w-start">' . esc_html__( 'First match time', 'wegame-tournoi' ) . '</label><input type="time" id="wgt-w-start" name="start_time" value="' . esc_attr( $d['start_time'] ) . '" /></p>';

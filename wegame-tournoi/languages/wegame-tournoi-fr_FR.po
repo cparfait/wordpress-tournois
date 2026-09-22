@@ -162,7 +162,7 @@ msgstr "Nom"
 
 #: includes/class-wgt-admin.php:239
 #: includes/class-wgt-admin.php:370
-msgid "We Game 2027 — Call of Duty"
+msgid "Spring Esports Cup 2027"
 msgstr "We Game 2027 — Call of Duty"
 
 #: includes/class-wgt-admin.php:240
@@ -271,7 +271,7 @@ msgid "It also becomes the title and the address of the tournament page."
 msgstr "Il devient aussi le titre et l’adresse de la page du tournoi."
 
 #: includes/class-wgt-admin.php:371
-msgid "Call of Duty"
+msgid "Arena League"
 msgstr "Call of Duty"
 
 #: includes/class-wgt-admin.php:372

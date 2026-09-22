@@ -236,7 +236,15 @@ L'extension n'étant pas publiée sur l'annuaire WordPress.org, les mises à jou
 }
 ```
 
-Voir [`wegame-tournoi-manifest.json`](wegame-tournoi-manifest.json) pour un exemple complet.
+**Un manifeste prêt à l'emploi est déjà publié** pour ce dépôt. Collez cette adresse dans Tournois → Extension → URL du manifeste :
+
+```
+https://cparfait.github.io/wordpress-tournois/manifest.json
+```
+
+Il est servi en HTTPS par GitHub Pages, pointe vers la dernière archive publiée en release et porte l'empreinte SHA-256 du paquet. WordPress proposera alors chaque nouvelle version depuis la page Extensions, sans aucun hébergement à prévoir.
+
+Voir [`wegame-tournoi-manifest.json`](wegame-tournoi-manifest.json) pour le fichier source.
 
 > [!IMPORTANT]
 > Le manifeste **et** l'archive doivent être servis en HTTPS ; l'extension refuse toute autre adresse. Il s'agit de code PHP installé automatiquement sur votre site.

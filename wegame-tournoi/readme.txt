@@ -14,7 +14,7 @@ Run an esports tournament from WordPress: 2 to 64 teams, brackets, schedule, sig
 
 We Game Tournoi turns a WordPress site into the scoreboard of an esports event. It generates the bracket, propagates the results you enter, and publishes everything on a page that players follow from their phones.
 
-The plugin was written for a 16-team Call of Duty tournament played on 8 stations. It now handles several tournaments per site, in three formats, with or without public sign-ups.
+The plugin was written for a 16-team tournament played on 8 gaming stations. It now handles several tournaments per site, in three formats, with or without public sign-ups.
 
 **Available in English and French**, and translatable into any language. A setting lets you pick the language of the plugin independently from the site language.
 
@@ -127,10 +127,11 @@ Uninstalling the plugin keeps all data by default. A setting under Tournaments >
 
 == Screenshots ==
 
-1. The bracket of a 16-team tournament in progress, on the public page.
-2. The dashboard, with the public links and their QR codes.
-3. The computed schedule.
-4. The result sheet.
+1. The bracket of a 16-team tournament in progress, on the public page. It refreshes on its own during the event.
+2. The four-step wizard that creates a tournament, with a summary and an estimated finish time.
+3. The dashboard: public links, downloadable QR codes and a preview of the bracket.
+4. The schedule, computed from the number of stations, simultaneous matches and breaks.
+5. The result sheet, ready to print.
 
 == Changelog ==
 
