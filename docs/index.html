@@ -1,0 +1,1116 @@
+<title>We Game Tournoi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+
+<style>
+:root {
+	--ground: #faf7f7;
+	--surface: #ffffff;
+	--surface-2: #f3eeef;
+	--line: #e4dcde;
+	--line-strong: #cfc4c7;
+	--ink: #1b1618;
+	--body: #413a3c;
+	--muted: #7b7175;
+	--accent: #d62839;
+	--accent-ink: #a81d2c;
+	--accent-soft: #fdecee;
+	--caution: #9a5b06;
+	--caution-soft: #fdf3e2;
+	--caution-line: #e8c98d;
+	--good: #1c7049;
+	--good-soft: #e9f5ee;
+	--good-line: #a9d5bd;
+	--code-bg: #f4eff0;
+	--shadow: 0 1px 2px rgba(27, 22, 24, .05), 0 8px 24px -16px rgba(27, 22, 24, .3);
+
+	--display: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+	--text: "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+	--mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) {
+		--ground: #161314;
+		--surface: #1e1a1b;
+		--surface-2: #262021;
+		--line: #322a2c;
+		--line-strong: #473c3f;
+		--ink: #f3eef0;
+		--body: #cac2c4;
+		--muted: #918789;
+		--accent: #ff5f6d;
+		--accent-ink: #ff8a93;
+		--accent-soft: #2c1a1d;
+		--caution: #e8b56a;
+		--caution-soft: #2a2015;
+		--caution-line: #5a441f;
+		--good: #63c395;
+		--good-soft: #16241d;
+		--good-line: #2d4a3b;
+		--code-bg: #241e20;
+		--shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -16px rgba(0, 0, 0, .8);
+	}
+}
+
+:root[data-theme="dark"] {
+	--ground: #161314;
+	--surface: #1e1a1b;
+	--surface-2: #262021;
+	--line: #322a2c;
+	--line-strong: #473c3f;
+	--ink: #f3eef0;
+	--body: #cac2c4;
+	--muted: #918789;
+	--accent: #ff5f6d;
+	--accent-ink: #ff8a93;
+	--accent-soft: #2c1a1d;
+	--caution: #e8b56a;
+	--caution-soft: #2a2015;
+	--caution-line: #5a441f;
+	--good: #63c395;
+	--good-soft: #16241d;
+	--good-line: #2d4a3b;
+	--code-bg: #241e20;
+	--shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -16px rgba(0, 0, 0, .8);
+}
+
+* { box-sizing: border-box; }
+
+body {
+	margin: 0;
+	background: var(--ground);
+	color: var(--body);
+	font-family: var(--text);
+	font-size: 17px;
+	line-height: 1.62;
+	-webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent-ink); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+/* ---------- En-tête ---------- */
+
+.masthead {
+	border-bottom: 1px solid var(--line);
+	background: var(--surface);
+}
+
+.masthead__inner {
+	max-width: 1180px;
+	margin: 0 auto;
+	padding-inline: 20px;
+	padding-block: 38px 30px;
+	display: grid;
+	gap: 22px;
+}
+
+.eyebrow {
+	font-family: var(--display);
+	font-size: 15px;
+	font-weight: 600;
+	letter-spacing: .16em;
+	text-transform: uppercase;
+	color: var(--accent);
+	margin: 0;
+}
+
+.masthead h1 {
+	font-family: var(--display);
+	font-weight: 700;
+	font-size: clamp(42px, 8vw, 70px);
+	line-height: .96;
+	letter-spacing: -.005em;
+	color: var(--ink);
+	margin: 0;
+	text-wrap: balance;
+}
+
+.masthead p.lede {
+	margin: 0;
+	max-width: 62ch;
+	font-size: 19px;
+	color: var(--body);
+}
+
+.facts {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px 10px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.facts li {
+	font-family: var(--display);
+	font-size: 15px;
+	font-weight: 600;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+	color: var(--muted);
+	border: 1px solid var(--line-strong);
+	border-radius: 2px;
+	padding: 3px 10px 2px;
+}
+
+.facts li.is-version {
+	color: var(--surface);
+	background: var(--accent);
+	border-color: var(--accent);
+}
+
+/* ---------- Structure ---------- */
+
+.layout {
+	max-width: 1180px;
+	margin: 0 auto;
+	padding-inline: 20px;
+	padding-block: 0 72px;
+	display: grid;
+	grid-template-columns: 216px minmax(0, 1fr);
+	gap: 56px;
+	align-items: start;
+}
+
+.toc {
+	position: sticky;
+	top: calc(env(safe-area-inset-top, 0px) + 24px);
+	padding-block: 34px;
+	max-height: calc(100vh - 60px);
+	overflow-y: auto;
+}
+
+.toc h2 {
+	font-family: var(--display);
+	font-size: 14px;
+	font-weight: 600;
+	letter-spacing: .16em;
+	text-transform: uppercase;
+	color: var(--muted);
+	margin: 0 0 12px;
+}
+
+.toc ol {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	gap: 1px;
+}
+
+.toc a {
+	display: block;
+	padding: 5px 10px;
+	font-size: 15px;
+	color: var(--body);
+	text-decoration: none;
+	border-left: 2px solid var(--line);
+	line-height: 1.35;
+}
+
+.toc a:hover { background: var(--surface-2); color: var(--ink); }
+
+.toc a.is-active {
+	border-left-color: var(--accent);
+	color: var(--ink);
+	font-weight: 600;
+}
+
+.toc .toc__break {
+	margin-top: 14px;
+	padding-top: 12px;
+	border-top: 1px solid var(--line);
+}
+
+main { padding-block: 34px; min-width: 0; }
+
+section { scroll-margin-top: 24px; }
+section + section { margin-top: 56px; }
+
+h2.h {
+	font-family: var(--display);
+	font-size: clamp(28px, 4.4vw, 38px);
+	font-weight: 700;
+	line-height: 1.05;
+	color: var(--ink);
+	margin: 0 0 6px;
+	text-wrap: balance;
+	display: flex;
+	align-items: baseline;
+	gap: 12px;
+}
+
+h2.h .num {
+	font-size: 17px;
+	font-weight: 600;
+	letter-spacing: .1em;
+	color: var(--accent);
+	font-variant-numeric: tabular-nums;
+}
+
+h3 {
+	font-family: var(--display);
+	font-size: 24px;
+	font-weight: 600;
+	letter-spacing: .01em;
+	color: var(--ink);
+	margin: 34px 0 8px;
+	text-wrap: balance;
+}
+
+h4 {
+	font-family: var(--display);
+	font-size: 19px;
+	font-weight: 600;
+	letter-spacing: .04em;
+	text-transform: uppercase;
+	color: var(--ink);
+	margin: 24px 0 6px;
+}
+
+p, ul, ol { max-width: 68ch; }
+p { margin: 0 0 14px; }
+.intro { font-size: 19px; color: var(--body); }
+
+main ul, main ol { margin: 0 0 16px; padding-left: 20px; }
+main li { margin-bottom: 6px; }
+main li::marker { color: var(--accent); }
+
+strong { color: var(--ink); font-weight: 600; }
+
+code {
+	font-family: var(--mono);
+	font-size: .86em;
+	background: var(--code-bg);
+	border: 1px solid var(--line);
+	border-radius: 3px;
+	padding: 1px 5px;
+	color: var(--ink);
+	overflow-wrap: break-word;
+}
+
+pre {
+	font-family: var(--mono);
+	font-size: 14px;
+	line-height: 1.6;
+	background: var(--code-bg);
+	border: 1px solid var(--line);
+	border-left: 3px solid var(--accent);
+	border-radius: 3px;
+	padding: 14px 16px;
+	overflow-x: auto;
+	margin: 0 0 16px;
+	color: var(--ink);
+}
+
+pre code { background: none; border: 0; padding: 0; font-size: inherit; }
+
+/* ---------- Étapes ---------- */
+
+.steps { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 2px; max-width: 72ch; }
+
+.steps > li {
+	display: grid;
+	grid-template-columns: 38px minmax(0, 1fr);
+	gap: 0 16px;
+	padding: 16px 0;
+	border-top: 1px solid var(--line);
+	margin: 0;
+}
+
+.steps > li:last-child { border-bottom: 1px solid var(--line); }
+
+.steps .step__n {
+	font-family: var(--display);
+	font-size: 26px;
+	font-weight: 700;
+	color: var(--accent);
+	line-height: 1.1;
+	font-variant-numeric: tabular-nums;
+	grid-row: span 2;
+}
+
+.steps h4 { margin: 0 0 2px; font-size: 20px; text-transform: none; letter-spacing: .01em; }
+.steps p { margin: 0; }
+.steps p + p { margin-top: 8px; }
+
+/* ---------- Encadrés ---------- */
+
+.note {
+	border: 1px solid var(--line);
+	border-left: 3px solid var(--line-strong);
+	border-radius: 3px;
+	background: var(--surface);
+	padding: 14px 16px;
+	margin: 18px 0;
+	max-width: 70ch;
+}
+
+.note > :last-child { margin-bottom: 0; }
+
+.note__label {
+	font-family: var(--display);
+	font-size: 14px;
+	font-weight: 600;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--muted);
+	display: block;
+	margin-bottom: 4px;
+}
+
+.note--caution { border-left-color: var(--caution); background: var(--caution-soft); border-color: var(--caution-line); }
+.note--caution .note__label { color: var(--caution); }
+.note--good { border-left-color: var(--good); background: var(--good-soft); border-color: var(--good-line); }
+.note--good .note__label { color: var(--good); }
+
+/* ---------- Cartes de format ---------- */
+
+.formats {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 14px;
+	margin: 22px 0 8px;
+}
+
+.format {
+	background: var(--surface);
+	border: 1px solid var(--line);
+	border-top: 3px solid var(--accent);
+	border-radius: 3px;
+	padding: 16px 18px 18px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	box-shadow: var(--shadow);
+}
+
+.format h4 { margin: 0; font-size: 21px; letter-spacing: .02em; }
+.format p { margin: 0; font-size: 16px; }
+
+.format dl {
+	margin: auto 0 0;
+	padding-top: 12px;
+	border-top: 1px solid var(--line);
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: 3px 10px;
+	font-size: 15px;
+}
+
+.format dt { color: var(--muted); }
+.format dd { margin: 0; color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; }
+
+/* ---------- Tableaux ---------- */
+
+.table-wrap { overflow-x: auto; margin: 18px 0; border: 1px solid var(--line); border-radius: 3px; background: var(--surface); }
+
+table { border-collapse: collapse; width: 100%; font-size: 15.5px; }
+
+th, td { text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+
+thead th {
+	font-family: var(--display);
+	font-size: 15px;
+	font-weight: 600;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+	color: var(--muted);
+	background: var(--surface-2);
+	white-space: nowrap;
+}
+
+tbody tr:last-child td { border-bottom: 0; }
+td code { white-space: nowrap; }
+td.wrap code { white-space: normal; }
+
+/* ---------- Grille de placement ---------- */
+
+.seeding {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+	gap: 6px;
+	margin: 16px 0 18px;
+	max-width: 72ch;
+	list-style: none;
+	padding: 0;
+}
+
+.seeding li {
+	margin: 0;
+	background: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: 2px;
+	padding: 7px 10px;
+	font-family: var(--mono);
+	font-size: 14px;
+	color: var(--ink);
+	display: flex;
+	justify-content: space-between;
+	gap: 8px;
+	font-variant-numeric: tabular-nums;
+}
+
+.seeding li span { color: var(--accent); font-weight: 500; }
+
+/* ---------- Carte des écrans ---------- */
+
+.screens { list-style: none; margin: 18px 0; padding: 0; display: grid; gap: 0; max-width: 72ch; }
+
+.screens li {
+	margin: 0;
+	display: grid;
+	grid-template-columns: minmax(130px, 168px) minmax(0, 1fr);
+	gap: 4px 18px;
+	padding: 11px 0;
+	border-bottom: 1px solid var(--line);
+}
+
+.screens li:first-child { border-top: 1px solid var(--line); }
+
+.screens b {
+	font-family: var(--display);
+	font-size: 18px;
+	font-weight: 600;
+	letter-spacing: .03em;
+	color: var(--ink);
+}
+
+.screens span { font-size: 16px; }
+
+/* ---------- Questions ---------- */
+
+.faq { margin: 20px 0; max-width: 70ch; border-top: 1px solid var(--line); }
+
+.faq details { border-bottom: 1px solid var(--line); }
+
+.faq summary {
+	cursor: pointer;
+	padding: 13px 28px 13px 0;
+	font-family: var(--display);
+	font-size: 20px;
+	font-weight: 600;
+	letter-spacing: .01em;
+	color: var(--ink);
+	list-style: none;
+	position: relative;
+}
+
+.faq summary::-webkit-details-marker { display: none; }
+
+.faq summary::after {
+	content: "+";
+	position: absolute;
+	right: 4px;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 22px;
+	font-weight: 500;
+	color: var(--accent);
+	line-height: 1;
+}
+
+.faq details[open] summary::after { content: "–"; }
+.faq summary:hover { color: var(--accent-ink); }
+.faq .faq__body { padding: 0 0 14px; }
+.faq .faq__body > :last-child { margin-bottom: 0; }
+
+/* ---------- Pied ---------- */
+
+footer.page-foot {
+	border-top: 1px solid var(--line);
+	background: var(--surface);
+	margin-top: 8px;
+}
+
+.page-foot__inner {
+	max-width: 1180px;
+	margin: 0 auto;
+	padding-inline: 20px;
+	padding-block: 26px 34px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px 28px;
+	align-items: baseline;
+	font-size: 15px;
+	color: var(--muted);
+}
+
+.page-foot__inner strong { font-family: var(--display); font-size: 18px; letter-spacing: .04em; }
+
+/* ---------- Adaptation mobile ---------- */
+
+@media (max-width: 880px) {
+	.layout { grid-template-columns: minmax(0, 1fr); gap: 0; }
+
+	.toc {
+		position: static;
+		max-height: none;
+		padding-block: 20px 4px;
+		border-bottom: 1px solid var(--line);
+		margin-bottom: 12px;
+	}
+
+	.toc ol {
+		grid-auto-flow: column;
+		grid-auto-columns: max-content;
+		overflow-x: auto;
+		gap: 6px;
+		padding-bottom: 10px;
+	}
+
+	.toc a { border-left: 0; border-bottom: 2px solid var(--line); white-space: nowrap; padding: 4px 4px 6px; }
+	.toc a.is-active { border-left: 0; border-bottom-color: var(--accent); }
+	.toc .toc__break { margin-top: 0; padding-top: 0; border-top: 0; }
+
+	.steps > li { grid-template-columns: 30px minmax(0, 1fr); gap: 0 12px; }
+	.screens li { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	* { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+html { scroll-behavior: smooth; }
+
+@media print {
+	.toc { display: none; }
+	.layout { grid-template-columns: 1fr; }
+	body { background: #fff; color: #000; font-size: 11pt; }
+	.faq details { border-bottom: 1px solid #ccc; }
+}
+</style>
+
+<header class="masthead">
+	<div class="masthead__inner">
+		<p class="eyebrow">Extension WordPress · Documentation</p>
+		<h1>We&nbsp;Game Tournoi</h1>
+		<p class="lede">Organiser et diffuser un tournoi e-sport depuis WordPress : de 2 à 64 équipes, en élimination directe, double élimination ou phase de poules. Le tableau, le planning et les résultats s'affichent sur une page publique qui se met à jour toute seule pendant la soirée.</p>
+		<ul class="facts">
+			<li class="is-version">Version 2.4.3</li>
+			<li>WordPress 5.6 +</li>
+			<li>PHP 7.0 +</li>
+			<li>GPL v2</li>
+		</ul>
+	</div>
+</header>
+
+<div class="layout">
+
+	<nav class="toc" aria-label="Sommaire">
+		<h2>Sommaire</h2>
+		<ol>
+			<li><a href="#presentation">Présentation</a></li>
+			<li><a href="#installation">1. Installation</a></li>
+			<li><a href="#creer">2. Créer un tournoi</a></li>
+			<li><a href="#formats">3. Choisir le format</a></li>
+			<li><a href="#equipes">4. Les équipes</a></li>
+			<li><a href="#partager">5. Partager le tournoi</a></li>
+			<li><a href="#jour-j">6. Le jour J</a></li>
+			<li class="toc__break"><a href="#codes-courts">Codes courts</a></li>
+			<li><a href="#ecrans">Les écrans</a></li>
+			<li><a href="#reglages">Réglages de l'extension</a></li>
+			<li><a href="#sauvegarde">Sauvegarde</a></li>
+			<li><a href="#maj">Mises à jour</a></li>
+			<li><a href="#api">API REST</a></li>
+			<li><a href="#depannage">Dépannage</a></li>
+			<li><a href="#donnees">Données et vie privée</a></li>
+		</ol>
+	</nav>
+
+	<main>
+
+		<section id="presentation">
+			<h2 class="h">Présentation</h2>
+			<p class="intro">We Game Tournoi a été développé pour <strong>We Game 2026</strong>, un tournoi Call of Duty à 16 équipes sur 8 postes de jeu. Il gère aujourd'hui plusieurs tournois par site, dans trois formats, avec ou sans inscriptions publiques.</p>
+
+			<p>L'extension fait trois choses : elle <strong>génère le tableau des matchs</strong> à partir du format et du nombre d'équipes, elle <strong>propage les résultats</strong> que vous saisissez, et elle <strong>publie tout cela</strong> sur une page que les joueurs et le public consultent depuis leur téléphone.</p>
+
+			<h3>Ce dont vous avez besoin</h3>
+			<ul>
+				<li>Un site WordPress 5.6 ou plus récent, en PHP 7.0 ou plus récent.</li>
+				<li>Un compte administrateur sur ce site.</li>
+				<li>Rien d'autre : aucun service extérieur, aucune clé d'interface de programmation, aucun compte à créer.</li>
+			</ul>
+
+			<div class="note note--good">
+				<span class="note__label">Bon à savoir</span>
+				<p>Tout est modifiable après coup. Le format, le nombre d'équipes, les horaires et les manches se changent tant que les matchs ne sont pas joués, et le tableau se régénère automatiquement.</p>
+			</div>
+		</section>
+
+		<section id="installation">
+			<h2 class="h"><span class="num">01</span> Installation</h2>
+			<p>L'extension se livre sous forme d'une archive ZIP. Comptez deux minutes.</p>
+
+			<ol class="steps">
+				<li>
+					<span class="step__n">1</span>
+					<div>
+						<h4>Téléverser l'archive</h4>
+						<p>Dans l'administration WordPress : <strong>Extensions</strong>, puis <strong>Ajouter</strong>, puis <strong>Téléverser une extension</strong>. Choisissez le fichier <code>wegame-tournoi-2.4.3.zip</code> et installez.</p>
+						<p>Vous pouvez aussi décompresser l'archive et déposer le dossier <code>wegame-tournoi</code> dans <code>wp-content/plugins/</code> par FTP.</p>
+					</div>
+				</li>
+				<li>
+					<span class="step__n">2</span>
+					<div>
+						<h4>Activer</h4>
+						<p>L'activation crée les tables de la base de données et les permaliens des pages de tournoi. Un menu <strong>Tournois</strong> apparaît dans la colonne de gauche.</p>
+					</div>
+				</li>
+				<li>
+					<span class="step__n">3</span>
+					<div>
+						<h4>Vérifier l'envoi des e-mails</h4>
+						<p>Si vous comptez ouvrir les inscriptions, allez dans <strong>Tournois › Extension</strong> et utilisez le bouton <strong>Envoyer un e-mail de test</strong>. Beaucoup d'hébergements n'expédient pas les e-mails sans configuration ; mieux vaut le savoir avant la soirée.</p>
+					</div>
+				</li>
+			</ol>
+
+			<div class="note note--caution">
+				<span class="note__label">Si les pages de tournoi renvoient une erreur 404</span>
+				<p>Ouvrez <strong>Réglages › Permaliens</strong> et cliquez sur Enregistrer, sans rien changer. WordPress régénère ses règles de réécriture et les adresses fonctionnent.</p>
+			</div>
+		</section>
+
+		<section id="creer">
+			<h2 class="h"><span class="num">02</span> Créer un tournoi</h2>
+			<p>Le menu <strong>Tournois › Nouveau tournoi</strong> ouvre un assistant en quatre étapes. Chaque réglage est expliqué sous son champ, et un récapitulatif calcule le nombre de matchs et l'heure de fin estimée avant que vous ne validiez.</p>
+
+			<ol class="steps">
+				<li>
+					<span class="step__n">1</span>
+					<div>
+						<h4>Le tournoi</h4>
+						<p>Nom, jeu, lieu, date, heure du premier match, couleur d'accent. Seul le nom est obligatoire ; il devient aussi le titre et l'adresse de la page publique.</p>
+					</div>
+				</li>
+				<li>
+					<span class="step__n">2</span>
+					<div>
+						<h4>Le format</h4>
+						<p>Trois cartes décrivent les formats avec leur nombre de matchs pour 16 équipes. Vous indiquez le nombre d'équipes, et selon le format, le nombre de poules ou l'option de seconde grande finale.</p>
+					</div>
+				</li>
+				<li>
+					<span class="step__n">3</span>
+					<div>
+						<h4>Matchs et horaires</h4>
+						<p>Nombre de manches par tour, postes de jeu disponibles, matchs joués en même temps, durée d'une manche, temps d'accueil et pauses. Le planning en découle.</p>
+					</div>
+				</li>
+				<li>
+					<span class="step__n">4</span>
+					<div>
+						<h4>Inscriptions et publication</h4>
+						<p>Vous ouvrez ou non le formulaire public, puis vous choisissez ce qu'il advient de la page du tournoi : <strong>publiée tout de suite</strong>, <strong>gardée en brouillon</strong>, ou <strong>pas de page dédiée</strong> si vous préférez composer vos propres pages avec les codes courts.</p>
+						<p>Une case permet de créer en même temps une <strong>page d'inscription dédiée</strong>, qui ne contient que le formulaire réduit et donne une adresse courte à partager.</p>
+					</div>
+				</li>
+			</ol>
+
+			<p>Après la création, le tableau de bord affiche un panneau <strong>Prochaines étapes</strong> qui vous guide jusqu'au jour J, et coche les étapes à mesure qu'elles sont faites.</p>
+		</section>
+
+		<section id="formats">
+			<h2 class="h"><span class="num">03</span> Choisir le format</h2>
+			<p>Le format détermine la durée de la soirée bien plus que le nombre d'équipes. Les chiffres ci-dessous valent pour 16 équipes.</p>
+
+			<div class="formats">
+				<article class="format">
+					<h4>Élimination directe</h4>
+					<p>Une défaite et l'équipe est éliminée. Le plus simple et le plus rapide.</p>
+					<dl>
+						<dt>Matchs</dt><dd>15</dd>
+						<dt>Tours</dt><dd>4</dd>
+						<dt>Matchs par équipe</dt><dd>1 à 4</dd>
+					</dl>
+				</article>
+				<article class="format">
+					<h4>Double élimination</h4>
+					<p>Une équipe n'est éliminée qu'après deux défaites, grâce à un tableau de repêchage. Plus long, plus juste.</p>
+					<dl>
+						<dt>Matchs</dt><dd>30 ou 31</dd>
+						<dt>Tours</dt><dd>4 + repêchage</dd>
+						<dt>Matchs par équipe</dt><dd>2 à 8</dd>
+					</dl>
+				</article>
+				<article class="format">
+					<h4>Poules puis tableau</h4>
+					<p>Chaque équipe joue toutes celles de sa poule, puis les meilleures s'affrontent en tableau. Le plus long, mais personne ne repart après un seul match.</p>
+					<dl>
+						<dt>Matchs</dt><dd>24 + 7</dd>
+						<dt>Poules</dt><dd>4 de 4</dd>
+						<dt>Matchs par équipe</dt><dd>3 à 5</dd>
+					</dl>
+				</article>
+			</div>
+
+			<h3>Effectifs et exemptions</h3>
+			<p>De 2 à 64 équipes. Quand l'effectif n'est pas une puissance de deux, les équipes les mieux placées sont <strong>exemptées du premier tour</strong> : elles passent sans jouer. Ces exemptions n'occupent ni créneau ni poste dans le planning et ne comptent pas comme des matchs.</p>
+
+			<h3>Le placement des équipes</h3>
+			<p>Le tableau suit l'algorithme classique de tête de série : la première rencontre la dernière, la deuxième l'avant-dernière, et ainsi de suite, réparties pour que les mieux classées ne se croisent que le plus tard possible. Pour 16 équipes, le premier tour est celui du dossier d'organisation d'origine.</p>
+
+			<ul class="seeding">
+				<li><span>M1</span> 1 vs 16</li>
+				<li><span>M2</span> 8 vs 9</li>
+				<li><span>M3</span> 4 vs 13</li>
+				<li><span>M4</span> 5 vs 12</li>
+				<li><span>M5</span> 2 vs 15</li>
+				<li><span>M6</span> 7 vs 10</li>
+				<li><span>M7</span> 3 vs 14</li>
+				<li><span>M8</span> 6 vs 11</li>
+			</ul>
+
+			<h3>Manches par tour</h3>
+			<p>Chaque tour se règle indépendamment en BO1, BO3 ou BO5. En BO3, la première équipe à deux manches gagnées l'emporte, et les scores se saisissent manche par manche. Un BO3 occupe environ deux fois le créneau d'un BO1 dans le planning : c'est le principal levier sur la durée totale.</p>
+
+			<h3>Options de fin de tournoi</h3>
+			<ul>
+				<li><strong>Match pour la 3e place</strong> : oppose les deux perdants des demi-finales. Sans objet en double élimination, où le perdant de la finale du repêchage est troisième.</li>
+				<li><strong>Seconde grande finale</strong> : en double élimination, si l'équipe venue du repêchage gagne la grande finale, une seconde est jouée, puisqu'elle avait déjà une défaite. Le match n'apparaît que s'il a lieu.</li>
+			</ul>
+
+			<h3>Composition des poules</h3>
+			<p>En mode automatique, les équipes sont réparties en serpentin selon leur position. En mode manuel, la poule se choisit sur la fiche de chaque équipe. Dans les deux cas, les qualifiés sont croisés entre poules : deux équipes d'une même poule ne se rencontrent pas au premier tour de la phase finale, et les premiers de poule ne peuvent pas se croiser avant la finale.</p>
+		</section>
+
+		<section id="equipes">
+			<h2 class="h"><span class="num">04</span> Les équipes</h2>
+			<p>Deux façons de constituer la liste, qui se combinent librement.</p>
+
+			<h3>Saisie par l'organisation</h3>
+			<p>Écran <strong>Tournois › Équipes</strong>. Le formulaire d'ajout est en haut de page : nom de l'équipe, tag, position, capitaine, e-mail, téléphone, joueurs et notes internes. Les notes ne sont jamais affichées publiquement.</p>
+
+			<h3>Inscriptions publiques</h3>
+			<p>Ouvrez le formulaire dans <strong>Réglages du tournoi › Inscriptions</strong>. Les demandes arrivent <strong>en attente de validation</strong> et n'apparaissent pas dans le tableau tant que vous ne les avez pas validées. Le bouton « Valider les inscriptions en attente » traite tout d'un coup.</p>
+			<p>Deux formulaires sont disponibles : le formulaire complet, avec la liste des joueurs, et un formulaire réduit à <strong>Team, Pseudo, Mail et Téléphone</strong> obtenu avec l'attribut <code>simple="yes"</code>.</p>
+			<p>À chaque inscription, le capitaine reçoit un accusé de réception et l'organisation une alerte, envoyée à l'adresse de notification du tournoi ou, à défaut, à l'adresse d'administration du site.</p>
+
+			<div class="note">
+				<span class="note__label">Protections du formulaire</span>
+				<p>Le formulaire est limité à trois envois par heure et par adresse, comporte un piège à robots invisible et exige l'acceptation du règlement, vérifiée côté serveur. Le nombre maximum d'inscriptions est réglable ; une équipe refusée libère sa place.</p>
+			</div>
+
+			<h3>Les positions</h3>
+			<p>Chaque équipe validée reçoit une position de 1 à N, qui la place dans le tableau. Vous pouvez les attribuer à la main, selon un classement ou un tirage au sort papier, ou utiliser le bouton <strong>Tirage au sort des positions libres</strong>, qui ne touche pas aux positions déjà fixées.</p>
+			<p>Le tableau reste incomplet tant que toutes les positions ne sont pas attribuées : c'est normal, il se remplit à mesure.</p>
+		</section>
+
+		<section id="partager">
+			<h2 class="h"><span class="num">05</span> Partager le tournoi</h2>
+			<p>Le tableau de bord affiche un bloc <strong>Liens publics</strong> avec les adresses à diffuser, chacune accompagnée d'un bouton Copier et d'un QR code.</p>
+
+			<h3>Les deux adresses</h3>
+			<ul>
+				<li><strong>Page du tournoi</strong> : la page à onglets, avec le tableau, le planning, les résultats, les équipes et le classement.</li>
+				<li><strong>Page d'inscription</strong> : si vous avez créé une page dédiée, son adresse courte. Sinon, le lien pointe vers l'onglet Inscription de la page du tournoi.</li>
+			</ul>
+
+			<h3>Les QR codes</h3>
+			<p>Chaque adresse a son QR code, téléchargeable en <strong>PNG</strong> d'environ 600 pixels de côté pour une affiche, ou en <strong>SVG</strong> vectoriel pour une impression grand format. Ils sont calculés par votre propre serveur : aucune adresse n'est transmise à un service extérieur.</p>
+			<p>Un usage courant : un QR code vers l'inscription sur les affiches avant l'événement, un QR code vers la page du tournoi sur les tables le soir même.</p>
+
+			<h3>La page du tournoi</h3>
+			<p>Elle est créée automatiquement et se trouve dans <strong>Tournois › Tous les tournois</strong>, et non dans le menu Pages de WordPress. Le bouton <strong>Modifier la page</strong> de la barre du tournoi l'ouvre dans l'éditeur, où vous pouvez ajouter du texte avant ou après le tournoi, ou la publier si elle est en brouillon.</p>
+
+			<div class="note">
+				<span class="note__label">Sans page dédiée</span>
+				<p>Si vous avez choisi cette option, la page du tournoi répond « introuvable » aux visiteurs et le tournoi n'apparaît pas dans la liste publique. Vous composez alors vos propres pages avec les codes courts, que le tableau de bord vous fournit déjà renseignés. L'option se change à tout moment dans les réglages du tournoi.</p>
+			</div>
+		</section>
+
+		<section id="jour-j">
+			<h2 class="h"><span class="num">06</span> Le jour J</h2>
+
+			<h3>Saisir les scores</h3>
+			<p>Écran <strong>Tournois › Matchs &amp; scores</strong>. Chaque match a son formulaire : statut, score, arbitre, postes et horaires. En BO3 ou BO5, les manches se saisissent une par une. Le statut passe automatiquement à « En cours » dès qu'un score est saisi.</p>
+			<p>Dès qu'un match est validé, <strong>le vainqueur est placé au tour suivant</strong>, et en double élimination le perdant part au repêchage. Si vous corrigez un résultat, tous les matchs qui en dépendaient sont remis à zéro : l'extension ne laisse jamais un tour suivant reposer sur un résultat périmé.</p>
+
+			<div class="note note--caution">
+				<span class="note__label">Ce que l'extension refuse</span>
+				<p>Un match nul, un match validé avant que les deux équipes soient connues, une manche à égalité, ou des manches en trop après que le vainqueur a atteint son total. Le message indique à chaque fois quoi corriger.</p>
+			</div>
+
+			<h3>L'affichage public</h3>
+			<p>La page du tournoi se rafraîchit toute seule, par défaut toutes les 30 secondes, sans que le visiteur ait à recharger. Le rafraîchissement se met en pause quand l'onglet est en arrière-plan, et espace ses tentatives en cas de coupure réseau.</p>
+			<p>Le tableau s'adapte seul à l'écran, en largeur comme en hauteur. Sur un écran de régie, le code court <code>[wegame_tableau header="no"]</code> affiche le tableau seul, sans en-tête.</p>
+
+			<h3>Le planning</h3>
+			<p>Écran <strong>Tournois › Planning</strong>. Les horaires sont calculés par tour, en tenant compte des matchs joués en même temps, des manches et des pauses. Vous pouvez ajuster chaque horaire à la main : vos ajustements ne sont pas écrasés, sauf si vous utilisez le bouton <strong>Recalculer le planning</strong>.</p>
+
+			<h3>Imprimer</h3>
+			<p>La feuille de résultats et le planning sont mis en forme pour l'impression : fond blanc, texte noir, tableau non rogné. Utilisez simplement l'impression du navigateur depuis la page publique.</p>
+		</section>
+
+		<section id="codes-courts">
+			<h2 class="h">Codes courts</h2>
+			<p>Les codes courts servent à placer le contenu du tournoi sur vos propres pages. La marche à suivre est toujours la même : créez une page dans <strong>Pages › Ajouter</strong>, collez-y le code court, puis cliquez sur <strong>Publier</strong>. Tant que la page n'est pas publiée, les visiteurs ne la voient pas.</p>
+
+			<div class="table-wrap">
+				<table>
+					<thead>
+						<tr><th>Code court</th><th>Affichage</th></tr>
+					</thead>
+					<tbody>
+						<tr><td><code>[wegame_tournoi]</code></td><td>Page complète à onglets. C'est celui de la page du tournoi.</td></tr>
+						<tr><td><code>[wegame_tableau]</code></td><td>Le tableau des matchs seul.</td></tr>
+						<tr><td><code>[wegame_planning]</code></td><td>Le planning horaire.</td></tr>
+						<tr><td><code>[wegame_resultats]</code></td><td>La feuille de résultats.</td></tr>
+						<tr><td><code>[wegame_classement]</code></td><td>Le classement général, de la première à la dernière place.</td></tr>
+						<tr><td><code>[wegame_poules]</code></td><td>Les classements de la phase de poules.</td></tr>
+						<tr><td><code>[wegame_equipes]</code></td><td>Les équipes engagées.</td></tr>
+						<tr><td><code>[wegame_inscription]</code></td><td>Le formulaire d'inscription.</td></tr>
+						<tr><td><code>[wegame_reglement]</code></td><td>Le règlement du tournoi.</td></tr>
+						<tr><td><code>[wegame_organisation]</code></td><td>Le personnel nécessaire.</td></tr>
+						<tr><td><code>[wegame_checklist]</code></td><td>La checklist avant ouverture.</td></tr>
+						<tr><td><code>[wegame_tournois]</code></td><td>La liste de tous les tournois publiés du site.</td></tr>
+					</tbody>
+				</table>
+			</div>
+
+			<h3>Attributs</h3>
+			<div class="table-wrap">
+				<table>
+					<thead>
+						<tr><th>Attribut</th><th>Sur</th><th>Effet</th></tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="wrap"><code>tournoi="identifiant"</code></td>
+							<td>tous sauf <code>[wegame_tournois]</code></td>
+							<td>Cible un tournoi précis. Sans cet attribut, le code court affiche le tournoi de la page courante, sinon le tournoi par défaut du site. <code>tournament</code> est accepté comme synonyme, et un identifiant numérique fonctionne aussi.</td>
+						</tr>
+						<tr>
+							<td><code>simple="yes"</code></td>
+							<td><code>[wegame_inscription]</code></td>
+							<td>Formulaire réduit à Team, Pseudo, Mail et Téléphone.</td>
+						</tr>
+						<tr>
+							<td><code>header="no"</code></td>
+							<td><code>[wegame_tableau]</code></td>
+							<td>Masque le bandeau de titre. Utile sur un écran de régie.</td>
+						</tr>
+						<tr>
+							<td><code>fit="width"</code></td>
+							<td><code>[wegame_tableau]</code>, <code>[wegame_tournoi]</code></td>
+							<td>Ajuste le tableau à la largeur seulement, avec défilement vertical, au lieu de le faire tenir entièrement à l'écran.</td>
+						</tr>
+						<tr>
+							<td><code>players="yes"</code></td>
+							<td><code>[wegame_equipes]</code></td>
+							<td>Affiche la composition des équipes.</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<h4>Exemple</h4>
+			<pre><code>[wegame_tableau tournoi="we-game-2026" header="no" fit="width"]</code></pre>
+		</section>
+
+		<section id="ecrans">
+			<h2 class="h">Les écrans</h2>
+			<p>Tous les écrans portent sur le tournoi choisi dans la barre <strong>Tournoi</strong> en haut de page. Ce choix est mémorisé pour chaque utilisateur.</p>
+
+			<ul class="screens">
+				<li><b>Tableau de bord</b><span>Chiffres clés, liens publics et QR codes, prochaines étapes, aperçu du tableau, outils, sauvegarde et codes courts.</span></li>
+				<li><b>Nouveau tournoi</b><span>L'assistant de création en quatre étapes.</span></li>
+				<li><b>Tous les tournois</b><span>La liste WordPress des tournois, pour publier, renommer ou modifier une page.</span></li>
+				<li><b>Équipes</b><span>Ajout et modification des équipes, validation des inscriptions, positions, tirage au sort.</span></li>
+				<li><b>Matchs &amp; scores</b><span>Saisie des résultats, manche par manche en BO3 et BO5.</span></li>
+				<li><b>Planning</b><span>Horaires et postes, ajustables à la main, avec recalcul complet possible.</span></li>
+				<li><b>Réglages du tournoi</b><span>Identité, format, manches, planning, affichage, inscriptions, et la zone sensible pour réinitialiser ou supprimer.</span></li>
+				<li><b>Aperçu public</b><span>Le rendu réel de chaque vue, en largeur bureau, tablette ou mobile.</span></li>
+				<li><b>Extension</b><span>Réglages communs à tout le site : tournoi par défaut, rafraîchissement, titre de page, mises à jour, e-mail de test, désinstallation.</span></li>
+			</ul>
+		</section>
+
+		<section id="reglages">
+			<h2 class="h">Réglages de l'extension</h2>
+			<p>Menu <strong>Tournois › Extension</strong>. Ces réglages valent pour tout le site, contrairement à ceux du tournoi.</p>
+
+			<div class="table-wrap">
+				<table>
+					<thead>
+						<tr><th>Réglage</th><th>Par défaut</th><th>Rôle</th></tr>
+					</thead>
+					<tbody>
+						<tr><td>Tournoi par défaut</td><td>le plus récent</td><td>Celui qu'affichent les codes courts sans attribut <code>tournoi</code>.</td></tr>
+						<tr><td>Rafraîchissement auto</td><td>30 secondes</td><td>Intervalle de mise à jour des pages publiques. 0 désactive.</td></tr>
+						<tr><td>Masquer le titre de page</td><td>activé</td><td>Masque le bandeau de titre du thème sur les pages de tournoi, qui ferait doublon avec l'en-tête du tournoi.</td></tr>
+						<tr><td>Sélecteurs supplémentaires</td><td>vide</td><td>Pour un thème dont le bandeau résiste, on peut ajouter ses propres sélecteurs CSS.</td></tr>
+						<tr><td>URL du manifeste</td><td>vide</td><td>Active les mises à jour automatiques. Voir ci-dessous.</td></tr>
+						<tr><td>Données à la désinstallation</td><td>conservées</td><td>Décoché, supprimer l'extension ne détruit aucune donnée.</td></tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+
+		<section id="sauvegarde">
+			<h2 class="h">Sauvegarde</h2>
+			<p><strong>Tableau de bord › Sauvegarde</strong> exporte un fichier JSON contenant les équipes, les matchs, les scores et les manches du tournoi affiché. Faites-le avant toute manipulation délicate : changement de format en cours de tournoi, import, réinitialisation.</p>
+			<p>La restauration remplace les données du tournoi choisi par celles du fichier. Elle est transactionnelle : en cas d'erreur, rien n'est modifié et le message indique la cause. Une case permet de restaurer aussi les réglages.</p>
+
+			<div class="note note--good">
+				<span class="note__label">Désinstallation</span>
+				<p>Par défaut, désinstaller l'extension ne supprime aucune donnée : les tables et les tournois sont conservés, et tout revient si vous réinstallez. La suppression complète n'a lieu que si vous cochez l'option correspondante au préalable.</p>
+			</div>
+		</section>
+
+		<section id="maj">
+			<h2 class="h">Mises à jour</h2>
+			<p>L'extension n'étant pas publiée sur l'annuaire WordPress.org, les mises à jour passent par un <strong>manifeste auto-hébergé</strong> : un fichier JSON décrivant la dernière version, dont vous indiquez l'adresse dans les réglages de l'extension. WordPress propose alors la mise à jour dans la page Extensions, comme pour n'importe quelle autre.</p>
+
+			<pre><code>{
+  "name": "We Game Tournoi",
+  "slug": "wegame-tournoi",
+  "version": "2.4.3",
+  "requires": "5.6",
+  "requires_php": "7.0",
+  "download_url": "https://exemple.fr/maj/wegame-tournoi-2.4.3.zip",
+  "sha256": "empreinte hexadécimale du fichier ZIP"
+}</code></pre>
+
+			<div class="note note--caution">
+				<span class="note__label">HTTPS obligatoire</span>
+				<p>Le manifeste et l'archive doivent être servis en HTTPS ; l'extension refuse toute autre adresse. Il s'agit de code PHP installé automatiquement sur votre site : une adresse en HTTP pourrait être détournée pour y faire installer autre chose.</p>
+				<p>La clé <code>sha256</code> est facultative. Lorsqu'elle est renseignée, l'archive téléchargée est vérifiée avant installation et rejetée si son empreinte ne correspond pas.</p>
+			</div>
+		</section>
+
+		<section id="api">
+			<h2 class="h">API REST</h2>
+			<p>Deux routes publiques en lecture seule, utiles pour un affichage sur écran, une régie ou un tableau de bord externe.</p>
+
+			<div class="table-wrap">
+				<table>
+					<thead>
+						<tr><th>Route</th><th>Renvoie</th></tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="wrap"><code>GET /wp-json/wegame/v1/state</code></td>
+							<td>L'état complet du tournoi en JSON : équipes, matchs, scores, statuts.</td>
+						</tr>
+						<tr>
+							<td class="wrap"><code>GET /wp-json/wegame/v1/render?view=bracket</code></td>
+							<td>Le HTML d'une vue. C'est ce que consulte le rafraîchissement automatique.</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<p>Les deux acceptent un paramètre <code>tournament</code> pour cibler un tournoi par son identifiant ou son slug. Les tournois en brouillon, privés ou sans page dédiée ne sont pas exposés aux visiteurs.</p>
+		</section>
+
+		<section id="depannage">
+			<h2 class="h">Dépannage</h2>
+
+			<div class="faq">
+				<details>
+					<summary>Je ne trouve pas la page du tournoi dans le menu Pages</summary>
+					<div class="faq__body">
+						<p>C'est normal : les tournois sont un type de contenu à part. Ils sont listés dans <strong>Tournois › Tous les tournois</strong>. Le bouton <strong>Voir</strong> de la barre du tournoi ouvre la page publique, et le tableau de bord affiche son adresse dans le bloc Liens publics.</p>
+					</div>
+				</details>
+				<details>
+					<summary>Les pages de tournoi renvoient une erreur 404</summary>
+					<div class="faq__body">
+						<p>Les règles de réécriture de WordPress n'ont pas été régénérées. Ouvrez <strong>Réglages › Permaliens</strong> et cliquez sur Enregistrer sans rien modifier.</p>
+					</div>
+				</details>
+				<details>
+					<summary>Les e-mails d'inscription n'arrivent pas</summary>
+					<div class="faq__body">
+						<p>Utilisez le bouton <strong>Envoyer un e-mail de test</strong> dans Tournois › Extension. S'il annonce un succès mais que rien n'arrive, c'est que l'hébergement n'expédie pas les messages : installez une extension SMTP et configurez-la avec les identifiants de votre messagerie. S'il annonce une erreur, elle est affichée telle quelle.</p>
+					</div>
+				</details>
+				<details>
+					<summary>Le titre de ma page s'affiche en double</summary>
+					<div class="faq__body">
+						<p>L'option « Masquer le titre de page » est active par défaut et couvre les thèmes courants. Si votre thème résiste, ajoutez son sélecteur CSS dans le champ prévu à cet effet dans les réglages de l'extension.</p>
+					</div>
+				</details>
+				<details>
+					<summary>Le tableau déborde ou le texte est minuscule</summary>
+					<div class="faq__body">
+						<p>Le tableau se met à l'échelle pour tenir à l'écran, ce qui peut réduire le texte quand les équipes sont nombreuses. L'attribut <code>fit="width"</code> ajuste seulement la largeur et laisse défiler verticalement, ce qui est souvent plus lisible sur un ordinateur. Sous 640 pixels de large, les tours s'empilent automatiquement.</p>
+					</div>
+				</details>
+				<details>
+					<summary>J'ai changé le format et les résultats ont disparu</summary>
+					<div class="faq__body">
+						<p>Changer le format, le nombre d'équipes ou les manches régénère le tableau : les matchs qui n'existent plus dans le nouveau format sont supprimés avec leurs scores. Exportez une sauvegarde avant toute modification de format en cours de tournoi.</p>
+					</div>
+				</details>
+				<details>
+					<summary>Une poule n'a pas de qualifié</summary>
+					<div class="faq__body">
+						<p>Les qualifiés ne sont désignés que lorsque <strong>tous</strong> les matchs de la poule sont validés. En composition manuelle, vérifiez aussi qu'aucune poule ne compte moins de deux équipes validées : le tableau de bord signale les poules incomplètes.</p>
+					</div>
+				</details>
+				<details>
+					<summary>Comment supprimer un tournoi</summary>
+					<div class="faq__body">
+						<p>Bouton <strong>Supprimer</strong> dans la barre du tournoi, qui mène à la zone sensible des réglages. Il faut saisir le mot SUPPRIMER puis confirmer. Le tournoi, sa page, sa page d'inscription et toutes ses données sont effacés. Les autres tournois ne sont pas touchés.</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<section id="donnees">
+			<h2 class="h">Données et vie privée</h2>
+			<p>Le formulaire d'inscription collecte le nom de l'équipe, celui du capitaine, une adresse e-mail, un téléphone et éventuellement les pseudonymes des joueurs. Trois points méritent votre attention.</p>
+			<ul>
+				<li>Le <strong>nom du capitaine</strong> est affiché publiquement sur la page des équipes, ainsi que les joueurs si vous activez l'option. L'e-mail et le téléphone ne le sont jamais.</li>
+				<li>L'acceptation du règlement est <strong>exigée</strong> à l'inscription, mais sa date n'est pas conservée.</li>
+				<li>Les données restent <strong>sur votre serveur</strong>. L'extension ne contacte aucun service extérieur, hormis l'adresse du manifeste de mise à jour si vous en renseignez une.</li>
+			</ul>
+			<p>Pensez à indiquer aux participants la finalité de la collecte et la durée de conservation, et à purger les tournois passés quand ils ne vous servent plus.</p>
+		</section>
+
+	</main>
+</div>
+
+<footer class="page-foot">
+	<div class="page-foot__inner">
+		<strong>We Game Tournoi 2.4.3</strong>
+		<span>Code source sur GitHub</span>
+		<span>Licence GPL v2 ou ultérieure</span>
+	</div>
+</footer>
+
+<script>
+(function () {
+	var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+	var map = {};
+	links.forEach(function (a) {
+		var id = a.getAttribute('href').slice(1);
+		var el = document.getElementById(id);
+		if (el) { map[id] = a; }
+	});
+	var sections = Object.keys(map).map(function (id) { return document.getElementById(id); });
+	if (!sections.length || !('IntersectionObserver' in window)) { return; }
+
+	var current = null;
+	var observer = new IntersectionObserver(function (entries) {
+		entries.forEach(function (entry) {
+			if (!entry.isIntersecting) { return; }
+			var id = entry.target.id;
+			if (current === id) { return; }
+			if (current && map[current]) { map[current].classList.remove('is-active'); }
+			current = id;
+			map[id].classList.add('is-active');
+		});
+	}, { rootMargin: '-10% 0px -70% 0px', threshold: 0 });
+
+	sections.forEach(function (s) { observer.observe(s); });
+})();
+</script>

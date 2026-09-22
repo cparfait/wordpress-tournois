@@ -1,0 +1,1285 @@
+/* ==========================================================================
+   We Game Tournoi — styles publics
+   Direction artistique « tactique » : interface sombre type HUD militaire,
+   angles coupés, typographie condensée, accents chevrons.
+   Aucune police externe n'est chargée (pas d'appel à un service tiers).
+   ========================================================================== */
+
+.wgt {
+	--wgt-accent: #e63946;
+	--wgt-bg: #0b0d10;
+	--wgt-bg-soft: #14181d;
+	--wgt-bg-raise: #1b2026;
+	--wgt-border: #2a313a;
+	--wgt-grid: rgba(255, 255, 255, 0.04);
+	--wgt-text: #e9ecf1;
+	--wgt-muted: #858d99;
+	--wgt-win: #9ede3a;
+	--wgt-stencil: "Bebas Neue", "Oswald", "Arial Narrow", "Haettenschweiler", system-ui, sans-serif;
+
+	color: var(--wgt-text);
+	background-color: var(--wgt-bg);
+	background-image:
+		linear-gradient(var(--wgt-grid) 1px, transparent 1px),
+		linear-gradient(90deg, var(--wgt-grid) 1px, transparent 1px);
+	background-size: 44px 44px, 44px 44px;
+	padding: 26px;
+	font-size: 15px;
+	line-height: 1.5;
+	box-sizing: border-box;
+	position: relative;
+}
+
+.wgt *,
+.wgt *::before,
+.wgt *::after {
+	box-sizing: inherit;
+}
+
+.wgt .wgt-view {
+	padding: 0;
+	background: transparent;
+}
+
+/* Neutralisation des styles du thème.
+   Le thème cible souvent td, th, li, p… avec une spécificité supérieure à la
+   couleur héritée du conteneur. On ne réinitialise que les éléments sans
+   classe, pour ne pas écraser les styles propres au plugin ci-dessous. */
+.wgt p:not([class]),
+.wgt li:not([class]),
+.wgt span:not([class]),
+.wgt em:not([class]),
+.wgt strong:not([class]),
+.wgt small:not([class]),
+.wgt h2:not([class]),
+.wgt h3:not([class]),
+.wgt h4:not([class]),
+.wgt table:not([class]),
+.wgt thead:not([class]),
+.wgt tbody:not([class]),
+.wgt tr:not([class]),
+.wgt th:not([class]),
+.wgt td:not([class]) {
+	color: inherit;
+	background-color: transparent;
+	border-color: var(--wgt-border);
+}
+
+/* Éléments du plugin qui héritent de la couleur de texte principale. */
+.wgt .wgt-table__slot,
+.wgt .wgt-slot__name,
+.wgt .wgt-cell__teams,
+.wgt .wgt-cell__score,
+.wgt .wgt-cell__code,
+.wgt .wgt-team__name,
+.wgt .wgt-subsection-title,
+.wgt .wgt-champion,
+.wgt .wgt-champion__label {
+	color: var(--wgt-text);
+}
+
+/* Métadonnées atténuées. */
+.wgt .wgt-match__bo,
+.wgt .wgt-match__time,
+.wgt .wgt-match__stations,
+.wgt .wgt-match__games,
+.wgt .wgt-slot__score,
+.wgt .wgt-team__tag,
+.wgt .wgt-team__captain,
+.wgt .wgt-header__subtitle,
+.wgt .wgt-header__meta,
+.wgt .wgt-legend,
+.wgt .wgt-note,
+.wgt .wgt-empty,
+.wgt .wgt-round__title,
+.wgt .wgt-table__note {
+	color: var(--wgt-muted);
+}
+
+.wgt .wgt-match__code,
+.wgt .wgt-badge--live {
+	color: #fff;
+}
+
+.wgt .wgt-header__game {
+	color: var(--wgt-accent);
+}
+
+.wgt a {
+	color: var(--wgt-accent);
+}
+
+/* Blindage des fonds de tableau.
+   Certains thèmes peignent tr/td en blanc avec une spécificité que l'on ne
+   peut pas dépasser depuis une extension (sélecteurs de contexte du thème).
+   On repart donc de transparent en forçant, puis on réaffirme plus bas les
+   quelques fonds voulus par le plugin, également en forçant. */
+.wgt table,
+.wgt thead,
+.wgt tbody,
+.wgt tfoot,
+.wgt tr,
+.wgt th,
+.wgt td {
+	background-color: transparent !important;
+	background-image: none !important;
+}
+
+.wgt table {
+	margin: 0;
+}
+
+/* ==========================================================================
+   En-tête
+   ========================================================================== */
+
+.wgt-header {
+	position: relative;
+	padding: 0 0 16px;
+	margin-bottom: 22px;
+	border-bottom: 1px solid var(--wgt-border);
+}
+
+.wgt-header::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -1px;
+	width: 140px;
+	height: 3px;
+	background: var(--wgt-accent);
+}
+
+.wgt-header__title {
+	margin: 0;
+	font-family: var(--wgt-stencil);
+	font-size: 2.6em;
+	font-weight: 700;
+	line-height: 1;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--wgt-text);
+}
+
+.wgt-header__game {
+	display: inline-block;
+}
+
+.wgt-header__subtitle {
+	margin: 8px 0 0;
+	font-size: 0.95em;
+}
+
+.wgt-header__meta {
+	margin: 10px 0 0;
+	font-size: 0.78em;
+	text-transform: uppercase;
+	letter-spacing: 0.14em;
+}
+
+.wgt-section-title {
+	margin: 0 0 16px;
+	font-family: var(--wgt-stencil);
+	font-size: 1.6em;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color: var(--wgt-text);
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.wgt-section-title::after {
+	content: "";
+	flex: 1;
+	height: 1px;
+	background: linear-gradient(90deg, var(--wgt-border), transparent);
+}
+
+.wgt-subsection-title {
+	margin: 22px 0 8px;
+	font-size: 1.05em;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+}
+
+/* ==========================================================================
+   Tableau
+   ========================================================================== */
+
+/* Zone du tableau.
+   En mode « ajusté », le contenu est mis à l'échelle par transform afin que
+   l'intégralité du tableau tienne dans la largeur, sans défilement. */
+
+.wgt-bracket-scroll {
+	overflow-x: auto;
+	padding-bottom: 10px;
+}
+
+.wgt-bracket-scroll.is-fit {
+	overflow: hidden;
+	padding-bottom: 0;
+}
+
+.wgt-bracket-fit {
+	transform-origin: top left;
+}
+
+.wgt-bracket {
+	display: flex;
+	gap: 20px;
+	min-width: 760px;
+	align-items: stretch;
+}
+
+.wgt-round {
+	flex: 1 1 0;
+	min-width: 180px;
+	display: flex;
+	flex-direction: column;
+}
+
+.wgt-round__title {
+	margin: 0 0 12px;
+	font-size: 0.72em;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.18em;
+	text-align: center;
+	padding-bottom: 6px;
+	border-bottom: 1px solid var(--wgt-border);
+}
+
+.wgt-round__matches {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	gap: 8px;
+	flex: 1;
+}
+
+/* Carte de match : coins coupés + repères d'angle type HUD */
+
+.wgt-match {
+	position: relative;
+	background: var(--wgt-bg-soft);
+	border: 1px solid var(--wgt-border);
+	padding: 7px 10px;
+	clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+
+.wgt-match::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 2px;
+	background: var(--wgt-border);
+}
+
+.wgt-match--live {
+	border-color: var(--wgt-accent);
+	background: linear-gradient(90deg, rgba(230, 57, 70, 0.12), var(--wgt-bg-soft) 55%);
+	background: linear-gradient(90deg, color-mix(in srgb, var(--wgt-accent) 16%, transparent), var(--wgt-bg-soft) 55%);
+}
+
+.wgt-match--live::before {
+	background: var(--wgt-accent);
+}
+
+.wgt-match--done::before {
+	background: var(--wgt-win);
+}
+
+.wgt-match__head {
+	display: flex;
+	flex-wrap: nowrap;
+	gap: 6px;
+	align-items: center;
+	font-size: 0.64em;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	margin-bottom: 5px;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.wgt-match__head > * {
+	flex: 0 0 auto;
+}
+
+.wgt-match__code {
+	background: var(--wgt-accent);
+	padding: 2px 8px;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	clip-path: polygon(0 0, 100% 0, calc(100% - 5px) 100%, 0 100%);
+}
+
+.wgt-slot {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 8px;
+	padding: 4px 0 4px 12px;
+	border-top: 1px solid rgba(255, 255, 255, 0.05);
+	position: relative;
+}
+
+.wgt-slot:first-of-type {
+	border-top: 0;
+}
+
+.wgt-slot__name {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-weight: 600;
+}
+
+.wgt-slot__score {
+	font-family: var(--wgt-stencil);
+	font-size: 1.25em;
+	font-variant-numeric: tabular-nums;
+	min-width: 1.4em;
+	text-align: right;
+}
+
+.wgt-slot.is-winner::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 5px;
+	height: 5px;
+	margin-top: -2.5px;
+	border-top: 2px solid var(--wgt-win);
+	border-right: 2px solid var(--wgt-win);
+	transform: rotate(45deg);
+}
+
+.wgt .wgt-slot.is-winner .wgt-slot__name,
+.wgt .wgt-slot.is-winner .wgt-slot__score {
+	color: var(--wgt-win);
+	font-weight: 700;
+}
+
+.wgt-slot.is-loser {
+	opacity: 0.5;
+}
+
+.wgt .wgt-slot.is-loser .wgt-slot__name {
+	text-decoration: line-through;
+	text-decoration-thickness: 1px;
+	text-decoration-color: var(--wgt-muted);
+}
+
+.wgt .wgt-slot.is-tbd .wgt-slot__name {
+	color: var(--wgt-muted);
+	font-style: italic;
+	font-weight: 400;
+}
+
+.wgt-match__games {
+	margin-top: 7px;
+	padding-top: 6px;
+	border-top: 1px dashed var(--wgt-border);
+	font-size: 0.74em;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+}
+
+/* Mode dense : appliqué automatiquement quand le tableau ne tient pas en
+   hauteur. On sacrifie les métadonnées secondaires (BO, horaire, postes,
+   toutes disponibles dans l'onglet Planning) plutôt que la lisibilité des
+   noms d'équipes. */
+
+.wgt-bracket.is-dense .wgt-match {
+	padding: 5px 9px;
+}
+
+.wgt-bracket.is-dense .wgt-match__head {
+	margin-bottom: 3px;
+	font-size: 0.6em;
+}
+
+.wgt-bracket.is-dense .wgt-match__bo,
+.wgt-bracket.is-dense .wgt-match__time,
+.wgt-bracket.is-dense .wgt-match__stations {
+	display: none;
+}
+
+.wgt-bracket.is-dense .wgt-slot {
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+.wgt-bracket.is-dense .wgt-slot__score {
+	font-size: 1.1em;
+}
+
+.wgt-bracket.is-dense .wgt-match__games {
+	margin-top: 4px;
+	padding-top: 4px;
+}
+
+.wgt-bracket.is-dense .wgt-round__matches {
+	gap: 6px;
+}
+
+.wgt-bracket.is-dense .wgt-round__title {
+	margin-bottom: 8px;
+}
+
+/* Badge « en cours » */
+
+.wgt-badge {
+	display: inline-block;
+	white-space: nowrap;
+	/* La découpe en parallélogramme mange 6 px de chaque côté : on compense. */
+	padding: 2px 14px;
+	font-size: 0.92em;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+}
+
+.wgt-badge--live {
+	background: var(--wgt-accent);
+	clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+}
+
+.wgt-badge--live::before {
+	content: "\25CF";
+	margin-right: 5px;
+	animation: wgt-blink 1.4s steps(1, end) infinite;
+}
+
+@keyframes wgt-blink {
+	50% { opacity: 0.2; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wgt-badge--live::before { animation: none; }
+}
+
+/* Bandeau vainqueur */
+
+.wgt-champion {
+	position: relative;
+	background: var(--wgt-bg-raise);
+	border: 1px solid var(--wgt-accent);
+	padding: 14px 18px 14px 22px;
+	margin: 0 0 20px;
+	font-family: var(--wgt-stencil);
+	font-size: 1.7em;
+	line-height: 1.1;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+}
+
+.wgt-champion::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 4px;
+	background: var(--wgt-accent);
+}
+
+.wgt-champion__label {
+	display: block;
+	font-family: inherit;
+	font-size: 0.42em;
+	letter-spacing: 0.22em;
+	color: var(--wgt-accent);
+	margin-bottom: 2px;
+}
+
+.wgt-legend,
+.wgt-note {
+	margin: 14px 0 0;
+	font-size: 0.8em;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+}
+
+.wgt-note {
+	text-transform: none;
+	letter-spacing: 0;
+	font-size: 0.85em;
+	padding-left: 12px;
+	border-left: 2px solid var(--wgt-border);
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+.wgt-table-scroll {
+	overflow-x: auto;
+	border: 1px solid var(--wgt-border);
+}
+
+.wgt-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.92em;
+}
+
+.wgt-table th,
+.wgt-table td {
+	border: 1px solid var(--wgt-border);
+	padding: 9px 12px;
+	text-align: left;
+	vertical-align: middle;
+}
+
+.wgt .wgt-table thead th {
+	background-color: var(--wgt-bg-raise) !important;
+	text-transform: uppercase;
+	font-size: 0.72em;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	color: var(--wgt-muted);
+	border-bottom: 2px solid var(--wgt-accent);
+}
+
+.wgt .wgt-table tbody tr:nth-child(even) td {
+	background-color: rgba(255, 255, 255, 0.02) !important;
+}
+
+.wgt-table__slot {
+	white-space: nowrap;
+	font-family: var(--wgt-stencil);
+	font-size: 1.15em;
+	letter-spacing: 0.04em;
+}
+
+.wgt-table__note {
+	font-style: italic;
+}
+
+.wgt-cell__code {
+	display: inline-block;
+	background-color: var(--wgt-bg-raise);
+	border-left: 2px solid var(--wgt-accent);
+	padding: 2px 7px;
+	margin-right: 4px;
+	font-size: 0.78em;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+}
+
+.wgt-cell__score {
+	font-family: var(--wgt-stencil);
+	font-size: 1.15em;
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+}
+
+.wgt .wgt-table td.is-winner {
+	color: var(--wgt-win);
+	font-weight: 700;
+}
+
+.wgt .wgt-table td.is-loser {
+	text-decoration: line-through;
+	text-decoration-thickness: 1px;
+	opacity: 0.6;
+}
+
+.wgt .wgt-row--live td {
+	background-color: rgba(230, 57, 70, 0.1) !important;
+	background-color: color-mix(in srgb, var(--wgt-accent) 12%, transparent) !important;
+}
+
+/* ==========================================================================
+   Équipes
+   ========================================================================== */
+
+.wgt-teams {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+	gap: 12px;
+}
+
+.wgt-team {
+	background: var(--wgt-bg-soft);
+	border: 1px solid var(--wgt-border);
+	border-left: 3px solid var(--wgt-accent);
+	padding: 11px 13px;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	position: relative;
+	clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+}
+
+.wgt-team--expandable {
+	padding: 0;
+}
+
+.wgt-team__seed {
+	position: absolute;
+	top: 7px;
+	right: 11px;
+	font-family: var(--wgt-stencil);
+	font-size: 1.35em;
+	line-height: 1;
+	color: var(--wgt-accent);
+	opacity: 0.85;
+	z-index: 1;
+}
+
+.wgt-team__name {
+	font-family: var(--wgt-stencil);
+	font-size: 1.3em;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	padding-right: 30px;
+	display: block;
+}
+
+.wgt-team__tag {
+	font-family: inherit;
+	font-weight: 400;
+}
+
+.wgt-team__captain {
+	font-size: 0.82em;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	display: block;
+}
+
+.wgt-team__summary {
+	list-style: none;
+	cursor: pointer;
+	padding: 11px 13px;
+	display: block;
+	position: relative;
+}
+
+.wgt-team__summary::-webkit-details-marker {
+	display: none;
+}
+
+.wgt-team__summary:hover {
+	background: rgba(255, 255, 255, 0.035);
+}
+
+.wgt-team__summary:focus-visible {
+	outline: 2px solid var(--wgt-accent);
+	outline-offset: -2px;
+}
+
+.wgt-team__count {
+	display: inline-block;
+	margin-top: 5px;
+	font-size: 0.72em;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+	color: var(--wgt-accent);
+}
+
+.wgt-team__count::after {
+	content: " \25BE";
+}
+
+.wgt-team__details[open] .wgt-team__count::after {
+	content: " \25B4";
+}
+
+.wgt .wgt-team__players {
+	list-style: none;
+	margin: 0;
+	padding: 0 13px 10px;
+	border-top: 1px solid var(--wgt-border);
+}
+
+.wgt .wgt-team__players li {
+	color: var(--wgt-text);
+	font-size: 0.88em;
+	padding: 6px 0 6px 20px;
+	position: relative;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.wgt .wgt-team__players li:last-child {
+	border-bottom: 0;
+}
+
+.wgt .wgt-team__players li::before {
+	content: "";
+	position: absolute;
+	left: 4px;
+	top: 50%;
+	width: 4px;
+	height: 4px;
+	margin-top: -2px;
+	border-top: 1px solid var(--wgt-accent);
+	border-right: 1px solid var(--wgt-accent);
+	transform: rotate(45deg);
+}
+
+/* ==========================================================================
+   Poules
+   ========================================================================== */
+
+.wgt-groups {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: 16px;
+	margin-bottom: 20px;
+}
+
+.wgt-group {
+	border: 1px solid var(--wgt-border);
+}
+
+.wgt .wgt-group__title {
+	margin: 0;
+	padding: 8px 12px;
+	font-family: var(--wgt-stencil);
+	font-size: 1.15em;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--wgt-text);
+	background-color: var(--wgt-bg-raise) !important;
+	border-bottom: 2px solid var(--wgt-accent);
+}
+
+.wgt .wgt-table--standings th,
+.wgt .wgt-table--standings td {
+	border-left: 0;
+	border-right: 0;
+	padding: 6px 12px;
+	text-align: center;
+}
+
+.wgt .wgt-table--standings th:nth-child(2),
+.wgt .wgt-table--standings td:nth-child(2) {
+	text-align: left;
+}
+
+.wgt .wgt-table--standings tr.is-qualified td {
+	background-color: rgba(158, 222, 58, 0.08) !important;
+}
+
+.wgt .wgt-table--standings tr.is-qualified td:first-child {
+	box-shadow: inset 3px 0 0 var(--wgt-win);
+	font-weight: 700;
+}
+
+/* ==========================================================================
+   Classement général
+   ========================================================================== */
+
+.wgt .wgt-table--ranking td:first-child,
+.wgt .wgt-table--ranking th:first-child,
+.wgt .wgt-table--ranking td:last-child,
+.wgt .wgt-table--ranking th:last-child {
+	text-align: center;
+	width: 1%;
+	white-space: nowrap;
+}
+
+.wgt .wgt-rank {
+	font-family: var(--wgt-stencil);
+	font-size: 1.3em;
+	color: var(--wgt-muted);
+}
+
+.wgt .wgt-table--ranking tr.is-podium .wgt-rank {
+	color: var(--wgt-text);
+}
+
+.wgt .wgt-table--ranking tr.is-rank-1 td {
+	background-color: rgba(255, 196, 0, 0.1) !important;
+}
+
+.wgt .wgt-table--ranking tr.is-rank-1 td:first-child {
+	box-shadow: inset 3px 0 0 #ffc400;
+}
+
+.wgt .wgt-table--ranking tr.is-rank-2 td:first-child {
+	box-shadow: inset 3px 0 0 #c0c6cf;
+}
+
+.wgt .wgt-table--ranking tr.is-rank-3 td:first-child {
+	box-shadow: inset 3px 0 0 #cd7f32;
+}
+
+.wgt .wgt-rank sup {
+	font-size: 0.55em;
+	color: var(--wgt-muted);
+}
+
+/* ==========================================================================
+   Liste des tournois
+   ========================================================================== */
+
+.wgt-tournaments {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+	gap: 12px;
+}
+
+.wgt-tournament {
+	background: var(--wgt-bg-soft);
+	border: 1px solid var(--wgt-border);
+	border-left: 3px solid var(--wgt-accent);
+	clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+}
+
+.wgt .wgt-tournament__link {
+	display: block;
+	padding: 14px 16px;
+	text-decoration: none;
+	color: var(--wgt-text);
+}
+
+.wgt .wgt-tournament__link:hover {
+	background: rgba(255, 255, 255, 0.04);
+}
+
+.wgt .wgt-tournament__name {
+	display: block;
+	font-family: var(--wgt-stencil);
+	font-size: 1.35em;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: var(--wgt-text);
+}
+
+.wgt .wgt-tournament__meta {
+	display: block;
+	font-size: 0.82em;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color: var(--wgt-muted);
+	margin-top: 2px;
+}
+
+.wgt .wgt-tournament__winner {
+	display: block;
+	margin-top: 6px;
+	font-size: 0.85em;
+	color: var(--wgt-win);
+}
+
+.wgt .wgt-champion__third {
+	display: block;
+	font-family: inherit;
+	font-size: 0.45em;
+	letter-spacing: 0.12em;
+	color: var(--wgt-muted);
+	margin-top: 4px;
+}
+
+/* ==========================================================================
+   Listes
+   ========================================================================== */
+
+.wgt-list {
+	margin: 0;
+	padding-left: 0;
+	list-style: none;
+}
+
+.wgt-list li {
+	position: relative;
+	margin-bottom: 8px;
+	padding-left: 20px;
+}
+
+.wgt-list li::before {
+	content: "";
+	position: absolute;
+	left: 2px;
+	top: 0.55em;
+	width: 5px;
+	height: 5px;
+	border-top: 2px solid var(--wgt-accent);
+	border-right: 2px solid var(--wgt-accent);
+	transform: rotate(45deg);
+}
+
+.wgt-list--check li::before {
+	content: "";
+	left: 0;
+	top: 0.35em;
+	width: 11px;
+	height: 11px;
+	border: 1px solid var(--wgt-accent);
+	transform: none;
+}
+
+.wgt-empty {
+	font-style: italic;
+}
+
+/* ==========================================================================
+   Onglets
+   ========================================================================== */
+
+.wgt-tabs__nav {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2px;
+	margin-bottom: 22px;
+	border-bottom: 1px solid var(--wgt-border);
+}
+
+.wgt-tabs__btn {
+	background: transparent;
+	border: 0;
+	border-bottom: 3px solid transparent;
+	color: var(--wgt-muted);
+	padding: 10px 18px;
+	font-family: var(--wgt-stencil);
+	font-size: 1.12em;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	cursor: pointer;
+	border-radius: 0;
+	transition: color 0.12s ease, background-color 0.12s ease;
+}
+
+.wgt-tabs__btn:hover {
+	color: var(--wgt-text);
+	background: rgba(255, 255, 255, 0.035);
+}
+
+.wgt-tabs__btn.is-active {
+	color: var(--wgt-text);
+	border-bottom-color: var(--wgt-accent);
+	background: rgba(255, 255, 255, 0.05);
+}
+
+.wgt-tabs__btn:focus-visible {
+	outline: 2px solid var(--wgt-accent);
+	outline-offset: -2px;
+}
+
+.wgt-tabs__panel {
+	display: none;
+}
+
+.wgt-tabs__panel.is-active {
+	display: block;
+}
+
+/* ==========================================================================
+   Formulaire
+   ========================================================================== */
+
+.wgt-anchor {
+	position: relative;
+	top: -80px;
+	height: 0;
+}
+
+.wgt-form {
+	max-width: 560px;
+}
+
+.wgt-field {
+	margin: 0 0 16px;
+}
+
+.wgt-field label {
+	display: block;
+	font-size: 0.75em;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.14em;
+	color: var(--wgt-muted);
+	margin-bottom: 5px;
+}
+
+.wgt-field input[type="text"],
+.wgt-field input[type="email"],
+.wgt-field textarea {
+	width: 100%;
+	background: var(--wgt-bg-soft);
+	border: 1px solid var(--wgt-border);
+	border-radius: 0;
+	color: var(--wgt-text);
+	padding: 9px 11px;
+	font: inherit;
+}
+
+.wgt-field input:focus,
+.wgt-field textarea:focus {
+	outline: none;
+	border-color: var(--wgt-accent);
+}
+
+.wgt-field--consent label {
+	text-transform: none;
+	letter-spacing: 0;
+	font-size: 0.95em;
+	font-weight: 400;
+	color: var(--wgt-text);
+}
+
+.wgt-button {
+	background: var(--wgt-accent);
+	border: 0;
+	border-radius: 0;
+	color: #fff;
+	font-family: var(--wgt-stencil);
+	font-size: 1.15em;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	padding: 11px 28px;
+	cursor: pointer;
+	clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+
+.wgt-button:hover {
+	filter: brightness(1.12);
+}
+
+.wgt-hp {
+	position: absolute;
+	left: -9999px;
+}
+
+.wgt-notice {
+	padding: 12px 16px;
+	margin-bottom: 18px;
+	border-left: 3px solid var(--wgt-accent);
+	background: var(--wgt-bg-soft);
+}
+
+.wgt-notice--success {
+	border-left-color: var(--wgt-win);
+}
+
+.wgt-notice--error {
+	border-left-color: #ff5a5f;
+	background: rgba(255, 90, 95, 0.1);
+	color: #ffb3b5;
+}
+
+/* ==========================================================================
+   Rafraîchissement automatique
+   ========================================================================== */
+
+/* Heure de dernière mise à jour, ajoutée par le script en fin de vue. */
+.wgt .wgt-refresh-status {
+	margin: 12px 0 0;
+	font-size: 0.7em;
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+	text-align: right;
+	color: var(--wgt-muted);
+	opacity: 0.7;
+}
+
+.wgt .wgt-refresh-status:empty {
+	display: none;
+}
+
+/* Le serveur ne répond plus : les données affichées peuvent être périmées. */
+.wgt.is-offline .wgt-refresh-status {
+	color: #ffb3b5;
+	opacity: 1;
+}
+
+.wgt.is-offline .wgt-refresh-status::before {
+	content: "\25CF";
+	margin-right: 5px;
+	color: #ff5a5f;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+/* Sous 640 px, une mise à l'échelle rendrait le texte illisible : on empile
+   les tours les uns sous les autres plutôt que de réduire. */
+@media (max-width: 640px) {
+	.wgt-bracket {
+		flex-direction: column;
+		min-width: 0;
+		gap: 22px;
+	}
+
+	.wgt-round {
+		min-width: 0;
+	}
+
+	.wgt-round__title {
+		text-align: left;
+		font-size: 0.78em;
+	}
+
+	.wgt-round__matches {
+		gap: 8px;
+	}
+
+	.wgt-bracket-scroll,
+	.wgt-bracket-scroll.is-fit {
+		overflow: visible;
+	}
+}
+
+@media (max-width: 782px) {
+	.wgt {
+		padding: 16px;
+	}
+
+	.wgt-header__title {
+		font-size: 1.9em;
+	}
+
+	.wgt-section-title {
+		font-size: 1.3em;
+	}
+
+	.wgt-champion {
+		font-size: 1.3em;
+	}
+}
+
+/* ==========================================================================
+   Impression
+   ========================================================================== */
+
+/* Les couleurs du plugin passent toutes par les variables déclarées sur .wgt :
+   les redéfinir ici suffit pour que les sélecteurs qui forcent
+   color: var(--wgt-text) ou var(--wgt-muted) impriment en noir sur blanc. */
+@media print {
+	.wgt {
+		--wgt-bg: #fff;
+		--wgt-bg-soft: #fff;
+		--wgt-bg-raise: #f2f2f2;
+		--wgt-border: #999;
+		--wgt-grid: transparent;
+		--wgt-text: #000;
+		--wgt-muted: #444;
+		--wgt-win: #1f6f00;
+
+		background: #fff !important;
+		background-image: none !important;
+		color: #000;
+		padding: 0;
+	}
+
+	.wgt .wgt-view {
+		background: transparent !important;
+	}
+
+	/* Éléments peints sur fond accent : le fond peut ne pas s'imprimer. */
+	.wgt .wgt-match__code,
+	.wgt .wgt-badge--live,
+	.wgt .wgt-button {
+		color: #000;
+		background: transparent;
+		border: 1px solid #000;
+		clip-path: none;
+	}
+
+	.wgt-match,
+	.wgt-team,
+	.wgt-tournament,
+	.wgt-champion,
+	.wgt-notice {
+		background: #fff !important;
+		border-color: #999;
+		clip-path: none;
+		break-inside: avoid;
+		page-break-inside: avoid;
+	}
+
+	.wgt-match--live {
+		background: #fff !important;
+	}
+
+	.wgt-slot {
+		border-top-color: #ddd;
+	}
+
+	.wgt .wgt-table tbody tr:nth-child(even) td,
+	.wgt .wgt-row--live td {
+		background-color: transparent !important;
+	}
+
+	.wgt .wgt-table thead th {
+		background-color: #f2f2f2 !important;
+	}
+
+	/* Neutralisation de la mise à l'échelle et de la hauteur fixées par le
+	   script : le tableau s'imprime en taille réelle, sur autant de pages que
+	   nécessaire. */
+	.wgt-bracket-scroll,
+	.wgt-bracket-scroll.is-fit {
+		overflow: visible !important;
+		height: auto !important;
+	}
+
+	.wgt-bracket-fit {
+		transform: none !important;
+		width: auto !important;
+	}
+
+	.wgt-bracket {
+		min-width: 0;
+		flex-wrap: wrap;
+	}
+
+	/* Onglets : tous les panneaux à la suite, chacun précédé de son titre. */
+	.wgt-tabs__nav {
+		display: none;
+	}
+
+	.wgt-tabs__panel {
+		display: block !important;
+		margin-bottom: 28px;
+		break-before: auto;
+	}
+
+	.wgt-tabs__panel + .wgt-tabs__panel {
+		page-break-before: always;
+		break-before: page;
+	}
+
+	.wgt-tabs__panel::before {
+		content: attr(data-wgt-label);
+		display: block;
+		margin: 0 0 14px;
+		padding-bottom: 6px;
+		border-bottom: 2px solid #000;
+		font-family: var(--wgt-stencil);
+		font-size: 1.4em;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: #000;
+	}
+
+	/* Rien à imprimer : formulaire, état du rafraîchissement, animation. */
+	.wgt-form,
+	.wgt-refresh-status {
+		display: none !important;
+	}
+
+	.wgt-badge--live::before {
+		animation: none;
+	}
+}

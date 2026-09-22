@@ -1,0 +1,14 @@
+# Archives de distribution : publiées comme fichiers joints aux releases.
+*.zip
+
+# Dossiers de travail
+.chrome-profile/
+.claude/
+node_modules/
+
+# Systèmes
+.DS_Store
+Thumbs.db
+
+# Maquettes de développement, antérieures au code actuel : hors distribution.
+wegame-tournoi/_preview/
