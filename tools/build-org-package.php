@@ -115,7 +115,7 @@ preg_match( '/^ \* Version:\s*(.+)$/m', $code, $m );
 $version = isset( $m[1] ) ? trim( $m[1] ) : '0.0.0';
 
 // Archive.
-$zip_path = $build . '/wegame-tournoi-org-' . $version . '.zip';
+$zip_path = $root . '/wegame-tournoi-' . $version . '-POUR-WORDPRESS-ORG.zip';
 @unlink( $zip_path );
 
 $zip = new ZipArchive();
@@ -134,6 +134,17 @@ foreach ( $items as $item ) {
 }
 $zip->close();
 
+echo "
+";
+echo "  Cette archive est destinee a WordPress.org : le module de mise a
+";
+echo "  jour auto-hebergee en a ete retire, comme l'exige le reglement.
+";
+echo "  Pour installer l'extension sur un site, utilisez plutot
+";
+echo "  wegame-tournoi-$version.zip
+
+";
 echo "Version    : $version\n";
 echo "Fichiers   : $copied\n";
 echo 'Retirés    : ' . implode( ', ', $skipped ) . "\n";
