@@ -108,7 +108,7 @@ Every shortcode except `[brackethive_tournois]` accepts `tournoi="slug"` (alias 
 * `[brackethive_checklist]` - checklist before opening.
 * `[brackethive_inscription]` - sign-up form. `simple="yes"` for a reduced form.
 
-Example: `[brackethive_tableau tournoi="we-game-2026" header="no" fit="width"]`
+Example: `[brackethive_tableau tournoi="spring-esports-cup" header="no" fit="width"]`
 
 == REST API ==
 
@@ -138,7 +138,7 @@ Uninstalling the plugin keeps all data by default. A setting under Tournaments >
 = 2.6.0 =
 * The plugin is renamed **Brackethive Tournament Manager**. The previous name borrowed a registered trademark, which the plugin directory does not allow.
 * Everything the plugin declares or stores is now prefixed `brackethive_`: classes, constants, options, database tables, post meta, shortcodes and script handles.
-* Existing sites keep their data. Tables, settings, tournaments and sign-up pages are renamed automatically on the first page load after the update, and the former `[wegame_*]` shortcodes keep working, so published pages are not affected.
+* Existing sites keep their data. Tables, settings, tournaments and sign-up pages are migrated automatically on the first page load after the update, and the shortcodes of the previous name keep working, so published pages are not affected.
 * Fixed: the plugin settings screen raised a fatal error in the package distributed through the plugin directory, where the self-hosted update module is absent.
 * Styles and scripts of the preview screen now go through the WordPress enqueue API.
 * Compiled translation files are no longer shipped in the directory package; translations come from translate.wordpress.org.
