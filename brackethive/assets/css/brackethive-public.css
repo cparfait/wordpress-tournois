@@ -1,0 +1,1285 @@
+/* ==========================================================================
+   Brackethive — styles publics
+   Direction artistique « tactique » : interface sombre type HUD militaire,
+   angles coupés, typographie condensée, accents chevrons.
+   Aucune police externe n'est chargée (pas d'appel à un service tiers).
+   ========================================================================== */
+
+.brackethive {
+	--brackethive-accent: #e63946;
+	--brackethive-bg: #0b0d10;
+	--brackethive-bg-soft: #14181d;
+	--brackethive-bg-raise: #1b2026;
+	--brackethive-border: #2a313a;
+	--brackethive-grid: rgba(255, 255, 255, 0.04);
+	--brackethive-text: #e9ecf1;
+	--brackethive-muted: #858d99;
+	--brackethive-win: #9ede3a;
+	--brackethive-stencil: "Bebas Neue", "Oswald", "Arial Narrow", "Haettenschweiler", system-ui, sans-serif;
+
+	color: var(--brackethive-text);
+	background-color: var(--brackethive-bg);
+	background-image:
+		linear-gradient(var(--brackethive-grid) 1px, transparent 1px),
+		linear-gradient(90deg, var(--brackethive-grid) 1px, transparent 1px);
+	background-size: 44px 44px, 44px 44px;
+	padding: 26px;
+	font-size: 15px;
+	line-height: 1.5;
+	box-sizing: border-box;
+	position: relative;
+}
+
+.brackethive *,
+.brackethive *::before,
+.brackethive *::after {
+	box-sizing: inherit;
+}
+
+.brackethive .brackethive-view {
+	padding: 0;
+	background: transparent;
+}
+
+/* Neutralisation des styles du thème.
+   Le thème cible souvent td, th, li, p… avec une spécificité supérieure à la
+   couleur héritée du conteneur. On ne réinitialise que les éléments sans
+   classe, pour ne pas écraser les styles propres au plugin ci-dessous. */
+.brackethive p:not([class]),
+.brackethive li:not([class]),
+.brackethive span:not([class]),
+.brackethive em:not([class]),
+.brackethive strong:not([class]),
+.brackethive small:not([class]),
+.brackethive h2:not([class]),
+.brackethive h3:not([class]),
+.brackethive h4:not([class]),
+.brackethive table:not([class]),
+.brackethive thead:not([class]),
+.brackethive tbody:not([class]),
+.brackethive tr:not([class]),
+.brackethive th:not([class]),
+.brackethive td:not([class]) {
+	color: inherit;
+	background-color: transparent;
+	border-color: var(--brackethive-border);
+}
+
+/* Éléments du plugin qui héritent de la couleur de texte principale. */
+.brackethive .brackethive-table__slot,
+.brackethive .brackethive-slot__name,
+.brackethive .brackethive-cell__teams,
+.brackethive .brackethive-cell__score,
+.brackethive .brackethive-cell__code,
+.brackethive .brackethive-team__name,
+.brackethive .brackethive-subsection-title,
+.brackethive .brackethive-champion,
+.brackethive .brackethive-champion__label {
+	color: var(--brackethive-text);
+}
+
+/* Métadonnées atténuées. */
+.brackethive .brackethive-match__bo,
+.brackethive .brackethive-match__time,
+.brackethive .brackethive-match__stations,
+.brackethive .brackethive-match__games,
+.brackethive .brackethive-slot__score,
+.brackethive .brackethive-team__tag,
+.brackethive .brackethive-team__captain,
+.brackethive .brackethive-header__subtitle,
+.brackethive .brackethive-header__meta,
+.brackethive .brackethive-legend,
+.brackethive .brackethive-note,
+.brackethive .brackethive-empty,
+.brackethive .brackethive-round__title,
+.brackethive .brackethive-table__note {
+	color: var(--brackethive-muted);
+}
+
+.brackethive .brackethive-match__code,
+.brackethive .brackethive-badge--live {
+	color: #fff;
+}
+
+.brackethive .brackethive-header__game {
+	color: var(--brackethive-accent);
+}
+
+.brackethive a {
+	color: var(--brackethive-accent);
+}
+
+/* Blindage des fonds de tableau.
+   Certains thèmes peignent tr/td en blanc avec une spécificité que l'on ne
+   peut pas dépasser depuis une extension (sélecteurs de contexte du thème).
+   On repart donc de transparent en forçant, puis on réaffirme plus bas les
+   quelques fonds voulus par le plugin, également en forçant. */
+.brackethive table,
+.brackethive thead,
+.brackethive tbody,
+.brackethive tfoot,
+.brackethive tr,
+.brackethive th,
+.brackethive td {
+	background-color: transparent !important;
+	background-image: none !important;
+}
+
+.brackethive table {
+	margin: 0;
+}
+
+/* ==========================================================================
+   En-tête
+   ========================================================================== */
+
+.brackethive-header {
+	position: relative;
+	padding: 0 0 16px;
+	margin-bottom: 22px;
+	border-bottom: 1px solid var(--brackethive-border);
+}
+
+.brackethive-header::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -1px;
+	width: 140px;
+	height: 3px;
+	background: var(--brackethive-accent);
+}
+
+.brackethive-header__title {
+	margin: 0;
+	font-family: var(--brackethive-stencil);
+	font-size: 2.6em;
+	font-weight: 700;
+	line-height: 1;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--brackethive-text);
+}
+
+.brackethive-header__game {
+	display: inline-block;
+}
+
+.brackethive-header__subtitle {
+	margin: 8px 0 0;
+	font-size: 0.95em;
+}
+
+.brackethive-header__meta {
+	margin: 10px 0 0;
+	font-size: 0.78em;
+	text-transform: uppercase;
+	letter-spacing: 0.14em;
+}
+
+.brackethive-section-title {
+	margin: 0 0 16px;
+	font-family: var(--brackethive-stencil);
+	font-size: 1.6em;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color: var(--brackethive-text);
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.brackethive-section-title::after {
+	content: "";
+	flex: 1;
+	height: 1px;
+	background: linear-gradient(90deg, var(--brackethive-border), transparent);
+}
+
+.brackethive-subsection-title {
+	margin: 22px 0 8px;
+	font-size: 1.05em;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+}
+
+/* ==========================================================================
+   Tableau
+   ========================================================================== */
+
+/* Zone du tableau.
+   En mode « ajusté », le contenu est mis à l'échelle par transform afin que
+   l'intégralité du tableau tienne dans la largeur, sans défilement. */
+
+.brackethive-bracket-scroll {
+	overflow-x: auto;
+	padding-bottom: 10px;
+}
+
+.brackethive-bracket-scroll.is-fit {
+	overflow: hidden;
+	padding-bottom: 0;
+}
+
+.brackethive-bracket-fit {
+	transform-origin: top left;
+}
+
+.brackethive-bracket {
+	display: flex;
+	gap: 20px;
+	min-width: 760px;
+	align-items: stretch;
+}
+
+.brackethive-round {
+	flex: 1 1 0;
+	min-width: 180px;
+	display: flex;
+	flex-direction: column;
+}
+
+.brackethive-round__title {
+	margin: 0 0 12px;
+	font-size: 0.72em;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.18em;
+	text-align: center;
+	padding-bottom: 6px;
+	border-bottom: 1px solid var(--brackethive-border);
+}
+
+.brackethive-round__matches {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	gap: 8px;
+	flex: 1;
+}
+
+/* Carte de match : coins coupés + repères d'angle type HUD */
+
+.brackethive-match {
+	position: relative;
+	background: var(--brackethive-bg-soft);
+	border: 1px solid var(--brackethive-border);
+	padding: 7px 10px;
+	clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+
+.brackethive-match::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 2px;
+	background: var(--brackethive-border);
+}
+
+.brackethive-match--live {
+	border-color: var(--brackethive-accent);
+	background: linear-gradient(90deg, rgba(230, 57, 70, 0.12), var(--brackethive-bg-soft) 55%);
+	background: linear-gradient(90deg, color-mix(in srgb, var(--brackethive-accent) 16%, transparent), var(--brackethive-bg-soft) 55%);
+}
+
+.brackethive-match--live::before {
+	background: var(--brackethive-accent);
+}
+
+.brackethive-match--done::before {
+	background: var(--brackethive-win);
+}
+
+.brackethive-match__head {
+	display: flex;
+	flex-wrap: nowrap;
+	gap: 6px;
+	align-items: center;
+	font-size: 0.64em;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	margin-bottom: 5px;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.brackethive-match__head > * {
+	flex: 0 0 auto;
+}
+
+.brackethive-match__code {
+	background: var(--brackethive-accent);
+	padding: 2px 8px;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	clip-path: polygon(0 0, 100% 0, calc(100% - 5px) 100%, 0 100%);
+}
+
+.brackethive-slot {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 8px;
+	padding: 4px 0 4px 12px;
+	border-top: 1px solid rgba(255, 255, 255, 0.05);
+	position: relative;
+}
+
+.brackethive-slot:first-of-type {
+	border-top: 0;
+}
+
+.brackethive-slot__name {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-weight: 600;
+}
+
+.brackethive-slot__score {
+	font-family: var(--brackethive-stencil);
+	font-size: 1.25em;
+	font-variant-numeric: tabular-nums;
+	min-width: 1.4em;
+	text-align: right;
+}
+
+.brackethive-slot.is-winner::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 5px;
+	height: 5px;
+	margin-top: -2.5px;
+	border-top: 2px solid var(--brackethive-win);
+	border-right: 2px solid var(--brackethive-win);
+	transform: rotate(45deg);
+}
+
+.brackethive .brackethive-slot.is-winner .brackethive-slot__name,
+.brackethive .brackethive-slot.is-winner .brackethive-slot__score {
+	color: var(--brackethive-win);
+	font-weight: 700;
+}
+
+.brackethive-slot.is-loser {
+	opacity: 0.5;
+}
+
+.brackethive .brackethive-slot.is-loser .brackethive-slot__name {
+	text-decoration: line-through;
+	text-decoration-thickness: 1px;
+	text-decoration-color: var(--brackethive-muted);
+}
+
+.brackethive .brackethive-slot.is-tbd .brackethive-slot__name {
+	color: var(--brackethive-muted);
+	font-style: italic;
+	font-weight: 400;
+}
+
+.brackethive-match__games {
+	margin-top: 7px;
+	padding-top: 6px;
+	border-top: 1px dashed var(--brackethive-border);
+	font-size: 0.74em;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+}
+
+/* Mode dense : appliqué automatiquement quand le tableau ne tient pas en
+   hauteur. On sacrifie les métadonnées secondaires (BO, horaire, postes,
+   toutes disponibles dans l'onglet Planning) plutôt que la lisibilité des
+   noms d'équipes. */
+
+.brackethive-bracket.is-dense .brackethive-match {
+	padding: 5px 9px;
+}
+
+.brackethive-bracket.is-dense .brackethive-match__head {
+	margin-bottom: 3px;
+	font-size: 0.6em;
+}
+
+.brackethive-bracket.is-dense .brackethive-match__bo,
+.brackethive-bracket.is-dense .brackethive-match__time,
+.brackethive-bracket.is-dense .brackethive-match__stations {
+	display: none;
+}
+
+.brackethive-bracket.is-dense .brackethive-slot {
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+.brackethive-bracket.is-dense .brackethive-slot__score {
+	font-size: 1.1em;
+}
+
+.brackethive-bracket.is-dense .brackethive-match__games {
+	margin-top: 4px;
+	padding-top: 4px;
+}
+
+.brackethive-bracket.is-dense .brackethive-round__matches {
+	gap: 6px;
+}
+
+.brackethive-bracket.is-dense .brackethive-round__title {
+	margin-bottom: 8px;
+}
+
+/* Badge « en cours » */
+
+.brackethive-badge {
+	display: inline-block;
+	white-space: nowrap;
+	/* La découpe en parallélogramme mange 6 px de chaque côté : on compense. */
+	padding: 2px 14px;
+	font-size: 0.92em;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+}
+
+.brackethive-badge--live {
+	background: var(--brackethive-accent);
+	clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+}
+
+.brackethive-badge--live::before {
+	content: "\25CF";
+	margin-right: 5px;
+	animation: brackethive-blink 1.4s steps(1, end) infinite;
+}
+
+@keyframes brackethive-blink {
+	50% { opacity: 0.2; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.brackethive-badge--live::before { animation: none; }
+}
+
+/* Bandeau vainqueur */
+
+.brackethive-champion {
+	position: relative;
+	background: var(--brackethive-bg-raise);
+	border: 1px solid var(--brackethive-accent);
+	padding: 14px 18px 14px 22px;
+	margin: 0 0 20px;
+	font-family: var(--brackethive-stencil);
+	font-size: 1.7em;
+	line-height: 1.1;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+}
+
+.brackethive-champion::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 4px;
+	background: var(--brackethive-accent);
+}
+
+.brackethive-champion__label {
+	display: block;
+	font-family: inherit;
+	font-size: 0.42em;
+	letter-spacing: 0.22em;
+	color: var(--brackethive-accent);
+	margin-bottom: 2px;
+}
+
+.brackethive-legend,
+.brackethive-note {
+	margin: 14px 0 0;
+	font-size: 0.8em;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+}
+
+.brackethive-note {
+	text-transform: none;
+	letter-spacing: 0;
+	font-size: 0.85em;
+	padding-left: 12px;
+	border-left: 2px solid var(--brackethive-border);
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+.brackethive-table-scroll {
+	overflow-x: auto;
+	border: 1px solid var(--brackethive-border);
+}
+
+.brackethive-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.92em;
+}
+
+.brackethive-table th,
+.brackethive-table td {
+	border: 1px solid var(--brackethive-border);
+	padding: 9px 12px;
+	text-align: left;
+	vertical-align: middle;
+}
+
+.brackethive .brackethive-table thead th {
+	background-color: var(--brackethive-bg-raise) !important;
+	text-transform: uppercase;
+	font-size: 0.72em;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	color: var(--brackethive-muted);
+	border-bottom: 2px solid var(--brackethive-accent);
+}
+
+.brackethive .brackethive-table tbody tr:nth-child(even) td {
+	background-color: rgba(255, 255, 255, 0.02) !important;
+}
+
+.brackethive-table__slot {
+	white-space: nowrap;
+	font-family: var(--brackethive-stencil);
+	font-size: 1.15em;
+	letter-spacing: 0.04em;
+}
+
+.brackethive-table__note {
+	font-style: italic;
+}
+
+.brackethive-cell__code {
+	display: inline-block;
+	background-color: var(--brackethive-bg-raise);
+	border-left: 2px solid var(--brackethive-accent);
+	padding: 2px 7px;
+	margin-right: 4px;
+	font-size: 0.78em;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+}
+
+.brackethive-cell__score {
+	font-family: var(--brackethive-stencil);
+	font-size: 1.15em;
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+}
+
+.brackethive .brackethive-table td.is-winner {
+	color: var(--brackethive-win);
+	font-weight: 700;
+}
+
+.brackethive .brackethive-table td.is-loser {
+	text-decoration: line-through;
+	text-decoration-thickness: 1px;
+	opacity: 0.6;
+}
+
+.brackethive .brackethive-row--live td {
+	background-color: rgba(230, 57, 70, 0.1) !important;
+	background-color: color-mix(in srgb, var(--brackethive-accent) 12%, transparent) !important;
+}
+
+/* ==========================================================================
+   Équipes
+   ========================================================================== */
+
+.brackethive-teams {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+	gap: 12px;
+}
+
+.brackethive-team {
+	background: var(--brackethive-bg-soft);
+	border: 1px solid var(--brackethive-border);
+	border-left: 3px solid var(--brackethive-accent);
+	padding: 11px 13px;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	position: relative;
+	clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+}
+
+.brackethive-team--expandable {
+	padding: 0;
+}
+
+.brackethive-team__seed {
+	position: absolute;
+	top: 7px;
+	right: 11px;
+	font-family: var(--brackethive-stencil);
+	font-size: 1.35em;
+	line-height: 1;
+	color: var(--brackethive-accent);
+	opacity: 0.85;
+	z-index: 1;
+}
+
+.brackethive-team__name {
+	font-family: var(--brackethive-stencil);
+	font-size: 1.3em;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	padding-right: 30px;
+	display: block;
+}
+
+.brackethive-team__tag {
+	font-family: inherit;
+	font-weight: 400;
+}
+
+.brackethive-team__captain {
+	font-size: 0.82em;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	display: block;
+}
+
+.brackethive-team__summary {
+	list-style: none;
+	cursor: pointer;
+	padding: 11px 13px;
+	display: block;
+	position: relative;
+}
+
+.brackethive-team__summary::-webkit-details-marker {
+	display: none;
+}
+
+.brackethive-team__summary:hover {
+	background: rgba(255, 255, 255, 0.035);
+}
+
+.brackethive-team__summary:focus-visible {
+	outline: 2px solid var(--brackethive-accent);
+	outline-offset: -2px;
+}
+
+.brackethive-team__count {
+	display: inline-block;
+	margin-top: 5px;
+	font-size: 0.72em;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+	color: var(--brackethive-accent);
+}
+
+.brackethive-team__count::after {
+	content: " \25BE";
+}
+
+.brackethive-team__details[open] .brackethive-team__count::after {
+	content: " \25B4";
+}
+
+.brackethive .brackethive-team__players {
+	list-style: none;
+	margin: 0;
+	padding: 0 13px 10px;
+	border-top: 1px solid var(--brackethive-border);
+}
+
+.brackethive .brackethive-team__players li {
+	color: var(--brackethive-text);
+	font-size: 0.88em;
+	padding: 6px 0 6px 20px;
+	position: relative;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.brackethive .brackethive-team__players li:last-child {
+	border-bottom: 0;
+}
+
+.brackethive .brackethive-team__players li::before {
+	content: "";
+	position: absolute;
+	left: 4px;
+	top: 50%;
+	width: 4px;
+	height: 4px;
+	margin-top: -2px;
+	border-top: 1px solid var(--brackethive-accent);
+	border-right: 1px solid var(--brackethive-accent);
+	transform: rotate(45deg);
+}
+
+/* ==========================================================================
+   Poules
+   ========================================================================== */
+
+.brackethive-groups {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: 16px;
+	margin-bottom: 20px;
+}
+
+.brackethive-group {
+	border: 1px solid var(--brackethive-border);
+}
+
+.brackethive .brackethive-group__title {
+	margin: 0;
+	padding: 8px 12px;
+	font-family: var(--brackethive-stencil);
+	font-size: 1.15em;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--brackethive-text);
+	background-color: var(--brackethive-bg-raise) !important;
+	border-bottom: 2px solid var(--brackethive-accent);
+}
+
+.brackethive .brackethive-table--standings th,
+.brackethive .brackethive-table--standings td {
+	border-left: 0;
+	border-right: 0;
+	padding: 6px 12px;
+	text-align: center;
+}
+
+.brackethive .brackethive-table--standings th:nth-child(2),
+.brackethive .brackethive-table--standings td:nth-child(2) {
+	text-align: left;
+}
+
+.brackethive .brackethive-table--standings tr.is-qualified td {
+	background-color: rgba(158, 222, 58, 0.08) !important;
+}
+
+.brackethive .brackethive-table--standings tr.is-qualified td:first-child {
+	box-shadow: inset 3px 0 0 var(--brackethive-win);
+	font-weight: 700;
+}
+
+/* ==========================================================================
+   Classement général
+   ========================================================================== */
+
+.brackethive .brackethive-table--ranking td:first-child,
+.brackethive .brackethive-table--ranking th:first-child,
+.brackethive .brackethive-table--ranking td:last-child,
+.brackethive .brackethive-table--ranking th:last-child {
+	text-align: center;
+	width: 1%;
+	white-space: nowrap;
+}
+
+.brackethive .brackethive-rank {
+	font-family: var(--brackethive-stencil);
+	font-size: 1.3em;
+	color: var(--brackethive-muted);
+}
+
+.brackethive .brackethive-table--ranking tr.is-podium .brackethive-rank {
+	color: var(--brackethive-text);
+}
+
+.brackethive .brackethive-table--ranking tr.is-rank-1 td {
+	background-color: rgba(255, 196, 0, 0.1) !important;
+}
+
+.brackethive .brackethive-table--ranking tr.is-rank-1 td:first-child {
+	box-shadow: inset 3px 0 0 #ffc400;
+}
+
+.brackethive .brackethive-table--ranking tr.is-rank-2 td:first-child {
+	box-shadow: inset 3px 0 0 #c0c6cf;
+}
+
+.brackethive .brackethive-table--ranking tr.is-rank-3 td:first-child {
+	box-shadow: inset 3px 0 0 #cd7f32;
+}
+
+.brackethive .brackethive-rank sup {
+	font-size: 0.55em;
+	color: var(--brackethive-muted);
+}
+
+/* ==========================================================================
+   Liste des tournois
+   ========================================================================== */
+
+.brackethive-tournaments {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+	gap: 12px;
+}
+
+.brackethive-tournament {
+	background: var(--brackethive-bg-soft);
+	border: 1px solid var(--brackethive-border);
+	border-left: 3px solid var(--brackethive-accent);
+	clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+}
+
+.brackethive .brackethive-tournament__link {
+	display: block;
+	padding: 14px 16px;
+	text-decoration: none;
+	color: var(--brackethive-text);
+}
+
+.brackethive .brackethive-tournament__link:hover {
+	background: rgba(255, 255, 255, 0.04);
+}
+
+.brackethive .brackethive-tournament__name {
+	display: block;
+	font-family: var(--brackethive-stencil);
+	font-size: 1.35em;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: var(--brackethive-text);
+}
+
+.brackethive .brackethive-tournament__meta {
+	display: block;
+	font-size: 0.82em;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color: var(--brackethive-muted);
+	margin-top: 2px;
+}
+
+.brackethive .brackethive-tournament__winner {
+	display: block;
+	margin-top: 6px;
+	font-size: 0.85em;
+	color: var(--brackethive-win);
+}
+
+.brackethive .brackethive-champion__third {
+	display: block;
+	font-family: inherit;
+	font-size: 0.45em;
+	letter-spacing: 0.12em;
+	color: var(--brackethive-muted);
+	margin-top: 4px;
+}
+
+/* ==========================================================================
+   Listes
+   ========================================================================== */
+
+.brackethive-list {
+	margin: 0;
+	padding-left: 0;
+	list-style: none;
+}
+
+.brackethive-list li {
+	position: relative;
+	margin-bottom: 8px;
+	padding-left: 20px;
+}
+
+.brackethive-list li::before {
+	content: "";
+	position: absolute;
+	left: 2px;
+	top: 0.55em;
+	width: 5px;
+	height: 5px;
+	border-top: 2px solid var(--brackethive-accent);
+	border-right: 2px solid var(--brackethive-accent);
+	transform: rotate(45deg);
+}
+
+.brackethive-list--check li::before {
+	content: "";
+	left: 0;
+	top: 0.35em;
+	width: 11px;
+	height: 11px;
+	border: 1px solid var(--brackethive-accent);
+	transform: none;
+}
+
+.brackethive-empty {
+	font-style: italic;
+}
+
+/* ==========================================================================
+   Onglets
+   ========================================================================== */
+
+.brackethive-tabs__nav {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2px;
+	margin-bottom: 22px;
+	border-bottom: 1px solid var(--brackethive-border);
+}
+
+.brackethive-tabs__btn {
+	background: transparent;
+	border: 0;
+	border-bottom: 3px solid transparent;
+	color: var(--brackethive-muted);
+	padding: 10px 18px;
+	font-family: var(--brackethive-stencil);
+	font-size: 1.12em;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	cursor: pointer;
+	border-radius: 0;
+	transition: color 0.12s ease, background-color 0.12s ease;
+}
+
+.brackethive-tabs__btn:hover {
+	color: var(--brackethive-text);
+	background: rgba(255, 255, 255, 0.035);
+}
+
+.brackethive-tabs__btn.is-active {
+	color: var(--brackethive-text);
+	border-bottom-color: var(--brackethive-accent);
+	background: rgba(255, 255, 255, 0.05);
+}
+
+.brackethive-tabs__btn:focus-visible {
+	outline: 2px solid var(--brackethive-accent);
+	outline-offset: -2px;
+}
+
+.brackethive-tabs__panel {
+	display: none;
+}
+
+.brackethive-tabs__panel.is-active {
+	display: block;
+}
+
+/* ==========================================================================
+   Formulaire
+   ========================================================================== */
+
+.brackethive-anchor {
+	position: relative;
+	top: -80px;
+	height: 0;
+}
+
+.brackethive-form {
+	max-width: 560px;
+}
+
+.brackethive-field {
+	margin: 0 0 16px;
+}
+
+.brackethive-field label {
+	display: block;
+	font-size: 0.75em;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.14em;
+	color: var(--brackethive-muted);
+	margin-bottom: 5px;
+}
+
+.brackethive-field input[type="text"],
+.brackethive-field input[type="email"],
+.brackethive-field textarea {
+	width: 100%;
+	background: var(--brackethive-bg-soft);
+	border: 1px solid var(--brackethive-border);
+	border-radius: 0;
+	color: var(--brackethive-text);
+	padding: 9px 11px;
+	font: inherit;
+}
+
+.brackethive-field input:focus,
+.brackethive-field textarea:focus {
+	outline: none;
+	border-color: var(--brackethive-accent);
+}
+
+.brackethive-field--consent label {
+	text-transform: none;
+	letter-spacing: 0;
+	font-size: 0.95em;
+	font-weight: 400;
+	color: var(--brackethive-text);
+}
+
+.brackethive-button {
+	background: var(--brackethive-accent);
+	border: 0;
+	border-radius: 0;
+	color: #fff;
+	font-family: var(--brackethive-stencil);
+	font-size: 1.15em;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	padding: 11px 28px;
+	cursor: pointer;
+	clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+
+.brackethive-button:hover {
+	filter: brightness(1.12);
+}
+
+.brackethive-hp {
+	position: absolute;
+	left: -9999px;
+}
+
+.brackethive-notice {
+	padding: 12px 16px;
+	margin-bottom: 18px;
+	border-left: 3px solid var(--brackethive-accent);
+	background: var(--brackethive-bg-soft);
+}
+
+.brackethive-notice--success {
+	border-left-color: var(--brackethive-win);
+}
+
+.brackethive-notice--error {
+	border-left-color: #ff5a5f;
+	background: rgba(255, 90, 95, 0.1);
+	color: #ffb3b5;
+}
+
+/* ==========================================================================
+   Rafraîchissement automatique
+   ========================================================================== */
+
+/* Heure de dernière mise à jour, ajoutée par le script en fin de vue. */
+.brackethive .brackethive-refresh-status {
+	margin: 12px 0 0;
+	font-size: 0.7em;
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+	text-align: right;
+	color: var(--brackethive-muted);
+	opacity: 0.7;
+}
+
+.brackethive .brackethive-refresh-status:empty {
+	display: none;
+}
+
+/* Le serveur ne répond plus : les données affichées peuvent être périmées. */
+.brackethive.is-offline .brackethive-refresh-status {
+	color: #ffb3b5;
+	opacity: 1;
+}
+
+.brackethive.is-offline .brackethive-refresh-status::before {
+	content: "\25CF";
+	margin-right: 5px;
+	color: #ff5a5f;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+/* Sous 640 px, une mise à l'échelle rendrait le texte illisible : on empile
+   les tours les uns sous les autres plutôt que de réduire. */
+@media (max-width: 640px) {
+	.brackethive-bracket {
+		flex-direction: column;
+		min-width: 0;
+		gap: 22px;
+	}
+
+	.brackethive-round {
+		min-width: 0;
+	}
+
+	.brackethive-round__title {
+		text-align: left;
+		font-size: 0.78em;
+	}
+
+	.brackethive-round__matches {
+		gap: 8px;
+	}
+
+	.brackethive-bracket-scroll,
+	.brackethive-bracket-scroll.is-fit {
+		overflow: visible;
+	}
+}
+
+@media (max-width: 782px) {
+	.brackethive {
+		padding: 16px;
+	}
+
+	.brackethive-header__title {
+		font-size: 1.9em;
+	}
+
+	.brackethive-section-title {
+		font-size: 1.3em;
+	}
+
+	.brackethive-champion {
+		font-size: 1.3em;
+	}
+}
+
+/* ==========================================================================
+   Impression
+   ========================================================================== */
+
+/* Les couleurs du plugin passent toutes par les variables déclarées sur .brackethive :
+   les redéfinir ici suffit pour que les sélecteurs qui forcent
+   color: var(--brackethive-text) ou var(--brackethive-muted) impriment en noir sur blanc. */
+@media print {
+	.brackethive {
+		--brackethive-bg: #fff;
+		--brackethive-bg-soft: #fff;
+		--brackethive-bg-raise: #f2f2f2;
+		--brackethive-border: #999;
+		--brackethive-grid: transparent;
+		--brackethive-text: #000;
+		--brackethive-muted: #444;
+		--brackethive-win: #1f6f00;
+
+		background: #fff !important;
+		background-image: none !important;
+		color: #000;
+		padding: 0;
+	}
+
+	.brackethive .brackethive-view {
+		background: transparent !important;
+	}
+
+	/* Éléments peints sur fond accent : le fond peut ne pas s'imprimer. */
+	.brackethive .brackethive-match__code,
+	.brackethive .brackethive-badge--live,
+	.brackethive .brackethive-button {
+		color: #000;
+		background: transparent;
+		border: 1px solid #000;
+		clip-path: none;
+	}
+
+	.brackethive-match,
+	.brackethive-team,
+	.brackethive-tournament,
+	.brackethive-champion,
+	.brackethive-notice {
+		background: #fff !important;
+		border-color: #999;
+		clip-path: none;
+		break-inside: avoid;
+		page-break-inside: avoid;
+	}
+
+	.brackethive-match--live {
+		background: #fff !important;
+	}
+
+	.brackethive-slot {
+		border-top-color: #ddd;
+	}
+
+	.brackethive .brackethive-table tbody tr:nth-child(even) td,
+	.brackethive .brackethive-row--live td {
+		background-color: transparent !important;
+	}
+
+	.brackethive .brackethive-table thead th {
+		background-color: #f2f2f2 !important;
+	}
+
+	/* Neutralisation de la mise à l'échelle et de la hauteur fixées par le
+	   script : le tableau s'imprime en taille réelle, sur autant de pages que
+	   nécessaire. */
+	.brackethive-bracket-scroll,
+	.brackethive-bracket-scroll.is-fit {
+		overflow: visible !important;
+		height: auto !important;
+	}
+
+	.brackethive-bracket-fit {
+		transform: none !important;
+		width: auto !important;
+	}
+
+	.brackethive-bracket {
+		min-width: 0;
+		flex-wrap: wrap;
+	}
+
+	/* Onglets : tous les panneaux à la suite, chacun précédé de son titre. */
+	.brackethive-tabs__nav {
+		display: none;
+	}
+
+	.brackethive-tabs__panel {
+		display: block !important;
+		margin-bottom: 28px;
+		break-before: auto;
+	}
+
+	.brackethive-tabs__panel + .brackethive-tabs__panel {
+		page-break-before: always;
+		break-before: page;
+	}
+
+	.brackethive-tabs__panel::before {
+		content: attr(data-brackethive-label);
+		display: block;
+		margin: 0 0 14px;
+		padding-bottom: 6px;
+		border-bottom: 2px solid #000;
+		font-family: var(--brackethive-stencil);
+		font-size: 1.4em;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: #000;
+	}
+
+	/* Rien à imprimer : formulaire, état du rafraîchissement, animation. */
+	.brackethive-form,
+	.brackethive-refresh-status {
+		display: none !important;
+	}
+
+	.brackethive-badge--live::before {
+		animation: none;
+	}
+}

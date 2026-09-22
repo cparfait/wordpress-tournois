@@ -1,7 +1,16 @@
 # Journal des versions
 
-Toutes les versions notables de We Game Tournoi.
+Toutes les versions notables de Brackethive.
 Le format suit celui du fichier `readme.txt` de l'extension.
+
+## 2.6.0
+* L'extension est renommée **Brackethive Tournament Manager**. L'ancien nom reprenait une marque déposée, ce que le répertoire officiel n'autorise pas.
+* Tout ce que l'extension déclare ou enregistre porte désormais le préfixe `brackethive_` : classes, constantes, options, tables, métadonnées, codes courts et identifiants de scripts. Le règlement exige au moins quatre caractères ; `wgt_` n'en avait que trois.
+* Les sites existants ne perdent rien : tables, réglages, tournois et pages d'inscription sont renommés automatiquement au premier chargement suivant la mise à jour, et les anciens codes courts `[wegame_*]` continuent de fonctionner.
+* Correction : l'écran de réglages provoquait une erreur fatale dans le paquet distribué par le répertoire officiel, d'où le module de mise à jour auto-hébergée est retiré.
+* Les styles et scripts de l'écran d'aperçu passent par l'API d'enregistrement de WordPress.
+* Les catalogues de traduction compilés ne sont plus inclus dans le paquet destiné au répertoire : les traductions y sont fournies par translate.wordpress.org.
+
 
 ## 2.4.3
 * Correction : les QR codes n'apparaissaient pas. Ils sont désormais calculés par le serveur et affichés en SVG dans la page, sans dépendre d'un script : ils restent visibles même avec une extension de cache qui regroupe ou diffère les fichiers JavaScript.
@@ -38,14 +47,14 @@ Le format suit celui du fichier `readme.txt` de l'extension.
 * Inscription : détection de l'adresse IP derrière un proxy, consentement vérifié côté serveur.
 * Affichage : l'en-tête n'apparaît plus en double après le rafraîchissement automatique ; `fit="width"` fonctionne ; impression lisible.
 * Affichage : heure de dernière mise à jour et état « hors ligne » sous les vues rafraîchies automatiquement ; espacement des tentatives après plusieurs échecs.
-* Documentation : codes courts [wegame_tournois], [wegame_poules] et [wegame_classement] et attribut `tournoi="slug"` documentés.
+* Documentation : codes courts [brackethive_tournois], [brackethive_poules] et [brackethive_classement] et attribut `tournoi="slug"` documentés.
 * Correction : en BO3/BO5, les manches en trop et les manches à égalité sont refusées ; une saisie refusée ne supprime plus les manches déjà enregistrées.
 * Correction : la petite finale est attribuée sans match quand une demi-finale était une exemption.
 * Correction : les exemptions ne comptent plus dans le nombre de matchs ni dans le planning.
 * Correction : au classement général, les équipes éliminées en poule sont départagées par leur place en poule.
 * Correction : la suppression définitive d'un tournoi depuis la corbeille WordPress nettoie aussi ses équipes et ses matchs ; la désinstallation avec purge inclut les tournois à la corbeille.
 * Le règlement affiche le nombre de joueurs configuré au lieu de « 4 » en dur.
-* Nouveau : `[wegame_inscription simple="yes"]`, formulaire réduit à Team, Pseudo, Mail et Téléphone.
+* Nouveau : `[brackethive_inscription simple="yes"]`, formulaire réduit à Team, Pseudo, Mail et Téléphone.
 * Nouvel assistant « Nouveau tournoi » en quatre étapes (identité, format expliqué, matchs et horaires, inscriptions) avec récapitulatif et estimation de la durée.
 * Tableau de bord : panneau « Prochaines étapes » qui guide jusqu’au jour J (équipes, positions, page publique, scores).
 * Menu réorganisé pour plusieurs tournois : Tableau de bord, Nouveau tournoi, Tous les tournois, Équipes, Matchs, Planning, Réglages du tournoi, Aperçu, Extension. La zone sensible (réinitialiser, supprimer) est dans Réglages du tournoi, accessible par le bouton « Supprimer » de la barre du tournoi.
@@ -66,8 +75,8 @@ Le format suit celui du fichier `readme.txt` de l'extension.
 
 ## 2.2.1
 * CLASSEMENT GÉNÉRAL du tournoi, de la 1re à la dernière place, quel que soit le format. Podium lu sur les matchs décisifs, autres équipes départagées par la profondeur atteinte, rangs partagés signalés.
-* Nouvel onglet Classement et code court [wegame_classement].
-* Les codes courts [wegame_poules] et [wegame_classement] sont documentés dans l'administration.
+* Nouvel onglet Classement et code court [brackethive_classement].
+* Les codes courts [brackethive_poules] et [brackethive_classement] sont documentés dans l'administration.
 * La désinstallation supprime aussi les tournois et leurs pages lorsque l'option de purge est activée.
 
 
@@ -78,7 +87,7 @@ Le format suit celui du fichier `readme.txt` de l'extension.
 * PHASE DE POULES : répartition en serpentin, matchs toutes rondes, classements automatiques (victoires, différence, score, confrontation directe) et qualifiés croisés entre poules.
 * Nombre de manches réglable pour chaque tour, y compris les poules et le repêchage.
 * Planning calculé : durée d'un match, matchs simultanés, temps d'accueil et pauses entre les tours. Les horaires ajustés à la main ne sont plus écrasés ; un bouton « Recalculer le planning » les régénère.
-* Nouveau code court [wegame_poules] pour les classements de poules.
+* Nouveau code court [brackethive_poules] pour les classements de poules.
 * Correction : sur écran large, le tableau réduit pour tenir en hauteur laissait de grandes marges vides.
 
 
@@ -89,7 +98,7 @@ Le format suit celui du fichier `readme.txt` de l'extension.
 * Match pour la 3e place, activable tournoi par tournoi.
 * Nombre de manches réglable par tour (BO1, BO3, BO5).
 * L'heure de début décale automatiquement tout le planning.
-* Nouveau code court [wegame_tournois] : liste de tous les tournois du site.
+* Nouveau code court [brackethive_tournois] : liste de tous les tournois du site.
 * Tous les codes courts acceptent un attribut tournoi="slug" ; sans attribut, ils affichent le tournoi par défaut.
 * Migration automatique : les données existantes deviennent le premier tournoi, sans ressaisie.
 
@@ -114,7 +123,7 @@ Le format suit celui du fichier `readme.txt` de l'extension.
 ## 1.0.6
 * Le tableau tient désormais dans la largeur disponible, sans défilement horizontal : mise à l'échelle automatique.
 * Sous 640 px, les tours s'empilent verticalement plutôt que de réduire le texte jusqu'à l'illisible.
-* Attribut `fit="screen"` sur [wegame_tableau] pour que le tableau tienne aussi en hauteur (affichage sur écran de régie).
+* Attribut `fit="screen"` sur [brackethive_tableau] pour que le tableau tienne aussi en hauteur (affichage sur écran de régie).
 
 ## 1.0.5
 * Nouvelle option « Masquer le bandeau de titre du thème » sur les pages affichant le tournoi (Réglages). Couvre notamment le thème Salient, avec champ de sélecteurs supplémentaires.

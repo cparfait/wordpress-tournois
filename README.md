@@ -1,17 +1,17 @@
 <div align="center">
 
-# We Game Tournoi
+# Brackethive
 
 **Organiser et diffuser un tournoi e-sport depuis WordPress.**
 
 De 2 à 64 équipes, en élimination directe, double élimination ou phase de poules.
 Le tableau, le planning et les résultats s'affichent sur une page publique qui se met à jour toute seule pendant la soirée.
 
-[![Version](https://img.shields.io/badge/version-2.5.0-d62839)](https://github.com/cparfait/wordpress-tournois/releases)
+[![Version](https://img.shields.io/badge/version-2.6.0-d62839)](https://github.com/cparfait/wordpress-tournois/releases)
 [![WordPress](https://img.shields.io/badge/WordPress-5.6%2B-21759b)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.0%2B-777bb3)](https://www.php.net/)
 [![Licence](https://img.shields.io/badge/licence-GPL--2.0-blue)](LICENSE)
-[![Langues](https://img.shields.io/badge/langues-fr%20%7C%20en-d62839)](wegame-tournoi/languages)
+[![Langues](https://img.shields.io/badge/langues-fr%20%7C%20en-d62839)](brackethive/languages)
 
 [Documentation](https://cparfait.github.io/wordpress-tournois/) · [Téléchargement](https://github.com/cparfait/wordpress-tournois/releases/latest) · [Signaler un problème](https://github.com/cparfait/wordpress-tournois/issues)
 
@@ -41,7 +41,7 @@ Le tableau, le planning et les résultats s'affichent sur une page publique qui 
 
 ## Pourquoi cette extension
 
-Elle a été écrite pour **We Game 2026**, un tournoi à 16 équipes sur 8 postes de jeu. Le besoin était simple et mal couvert par les outils existants : afficher le tableau sur un écran et sur les téléphones des joueurs, saisir les scores sans se tromper, et ne pas dépendre d'un service en ligne.
+Elle a été écrite pour **Brackethive 2026**, un tournoi à 16 équipes sur 8 postes de jeu. Le besoin était simple et mal couvert par les outils existants : afficher le tableau sur un écran et sur les téléphones des joueurs, saisir les scores sans se tromper, et ne pas dépendre d'un service en ligne.
 
 Elle gère aujourd'hui plusieurs tournois par site, dans trois formats, avec ou sans inscriptions publiques.
 
@@ -94,7 +94,7 @@ Elle gère aujourd'hui plusieurs tournois par site, dans trois formats, avec ou 
 
 ### Depuis l'archive
 
-1. Téléchargez `wegame-tournoi-2.5.0.zip` depuis la [dernière version](https://github.com/cparfait/wordpress-tournois/releases/latest).
+1. Téléchargez `brackethive-2.6.0.zip` depuis la [dernière version](https://github.com/cparfait/wordpress-tournois/releases/latest).
 2. Dans WordPress : **Extensions → Ajouter → Téléverser une extension**.
 3. Activez. Un menu **Tournois** apparaît.
 
@@ -103,15 +103,15 @@ Elle gère aujourd'hui plusieurs tournois par site, dans trois formats, avec ou 
 >
 > | Archive | Pour quoi |
 > |---|---|
-> | `wegame-tournoi-2.5.0.zip` | **Installation sur un site.** Contient les mises à jour automatiques par manifeste. |
-> | `wegame-tournoi-2.5.0-POUR-WORDPRESS-ORG.zip` | **Uniquement pour soumettre au répertoire WordPress.org.** Le module de mise à jour en est retiré, car le règlement l'interdit. |
+> | `brackethive-2.6.0.zip` | **Installation sur un site.** Contient les mises à jour automatiques par manifeste. |
+> | `brackethive-2.6.0-POUR-WORDPRESS-ORG.zip` | **Uniquement pour soumettre au répertoire WordPress.org.** Le module de mise à jour en est retiré, car le règlement l'interdit. |
 >
 > L'outil *Plugin Check* signalera toujours un `plugin_updater_detected` sur la première : c'est normal et sans conséquence tant que vous ne soumettez pas au répertoire. C'est la seconde qu'il faut installer pour vérifier le paquet de soumission.
 
 > [!WARNING]
-> **Le dossier de l'extension doit s'appeler exactement `wegame-tournoi`.**
+> **Le dossier de l'extension doit s'appeler exactement `brackethive`.**
 >
-> WordPress.org déduit le domaine de traduction du nom du dossier. Un dossier renommé, par exemple `we-game-tournoi`, fait échouer l'analyse avec des centaines d'erreurs `TextDomainMismatch`, alors que le code est correct. Les archives publiées créent le bon dossier : ne le renommez pas.
+> WordPress.org déduit le domaine de traduction du nom du dossier. Un dossier renommé, par exemple `brackethive-main`, fait échouer l'analyse avec des centaines d'erreurs `TextDomainMismatch`, alors que le code est correct. Les archives publiées créent le bon dossier : ne le renommez pas.
 
 
 
@@ -119,7 +119,7 @@ Elle gère aujourd'hui plusieurs tournois par site, dans trois formats, avec ou 
 
 ```bash
 git clone https://github.com/cparfait/wordpress-tournois.git
-cp -r wordpress-tournois/wegame-tournoi /chemin/vers/wp-content/plugins/
+cp -r wordpress-tournois/brackethive /chemin/vers/wp-content/plugins/
 ```
 
 Puis activez l'extension dans WordPress.
@@ -191,31 +191,31 @@ Créez une page dans **Pages → Ajouter**, collez-y le code court, puis **Publi
 
 | Code court | Affichage |
 |---|---|
-| `[wegame_tournoi]` | Page complète à onglets |
-| `[wegame_tableau]` | Le tableau des matchs seul |
-| `[wegame_planning]` | Le planning horaire |
-| `[wegame_resultats]` | La feuille de résultats |
-| `[wegame_classement]` | Le classement général |
-| `[wegame_poules]` | Les classements de poules |
-| `[wegame_equipes]` | Les équipes engagées |
-| `[wegame_inscription]` | Le formulaire d'inscription |
-| `[wegame_reglement]` | Le règlement |
-| `[wegame_organisation]` | Le personnel nécessaire |
-| `[wegame_checklist]` | La checklist avant ouverture |
-| `[wegame_tournois]` | La liste des tournois du site |
+| `[brackethive_tournoi]` | Page complète à onglets |
+| `[brackethive_tableau]` | Le tableau des matchs seul |
+| `[brackethive_planning]` | Le planning horaire |
+| `[brackethive_resultats]` | La feuille de résultats |
+| `[brackethive_classement]` | Le classement général |
+| `[brackethive_poules]` | Les classements de poules |
+| `[brackethive_equipes]` | Les équipes engagées |
+| `[brackethive_inscription]` | Le formulaire d'inscription |
+| `[brackethive_reglement]` | Le règlement |
+| `[brackethive_organisation]` | Le personnel nécessaire |
+| `[brackethive_checklist]` | La checklist avant ouverture |
+| `[brackethive_tournois]` | La liste des tournois du site |
 
 ### Attributs
 
 | Attribut | Sur | Effet |
 |---|---|---|
-| `tournoi="identifiant"` | tous sauf `[wegame_tournois]` | Cible un tournoi précis. Sans lui : le tournoi de la page, sinon celui par défaut. |
-| `simple="yes"` | `[wegame_inscription]` | Formulaire réduit à Team, Pseudo, Mail, Téléphone |
-| `header="no"` | `[wegame_tableau]` | Masque le bandeau de titre (écran de régie) |
-| `fit="width"` | `[wegame_tableau]`, `[wegame_tournoi]` | Ajuste à la largeur seulement, avec défilement vertical |
-| `players="yes"` | `[wegame_equipes]` | Affiche la composition des équipes |
+| `tournoi="identifiant"` | tous sauf `[brackethive_tournois]` | Cible un tournoi précis. Sans lui : le tournoi de la page, sinon celui par défaut. |
+| `simple="yes"` | `[brackethive_inscription]` | Formulaire réduit à Team, Pseudo, Mail, Téléphone |
+| `header="no"` | `[brackethive_tableau]` | Masque le bandeau de titre (écran de régie) |
+| `fit="width"` | `[brackethive_tableau]`, `[brackethive_tournoi]` | Ajuste à la largeur seulement, avec défilement vertical |
+| `players="yes"` | `[brackethive_equipes]` | Affiche la composition des équipes |
 
 ```
-[wegame_tableau tournoi="we-game-2026" header="no" fit="width"]
+[brackethive_tableau tournoi="we-game-2026" header="no" fit="width"]
 ```
 
 ---
@@ -226,13 +226,13 @@ Deux routes publiques, en lecture seule.
 
 | Route | Renvoie |
 |---|---|
-| `GET /wp-json/wegame/v1/state` | L'état complet du tournoi en JSON |
-| `GET /wp-json/wegame/v1/render?view=bracket` | Le HTML d'une vue |
+| `GET /wp-json/brackethive/v1/state` | L'état complet du tournoi en JSON |
+| `GET /wp-json/brackethive/v1/render?view=bracket` | Le HTML d'une vue |
 
 Les deux acceptent un paramètre `tournament` (identifiant ou slug). Les tournois en brouillon, privés ou sans page dédiée ne sont jamais exposés aux visiteurs.
 
 ```bash
-curl https://exemple.fr/wp-json/wegame/v1/state?tournament=we-game-2026
+curl https://exemple.fr/wp-json/brackethive/v1/state?tournament=we-game-2026
 ```
 
 ---
@@ -243,12 +243,12 @@ L'extension n'étant pas publiée sur l'annuaire WordPress.org, les mises à jou
 
 ```json
 {
-  "name": "We Game Tournoi",
-  "slug": "wegame-tournoi",
-  "version": "2.5.0",
+  "name": "Brackethive",
+  "slug": "brackethive",
+  "version": "2.6.0",
   "requires": "5.6",
   "requires_php": "7.0",
-  "download_url": "https://exemple.fr/maj/wegame-tournoi-2.5.0.zip",
+  "download_url": "https://exemple.fr/maj/brackethive-2.6.0.zip",
   "sha256": "empreinte hexadécimale du fichier ZIP"
 }
 ```
@@ -261,7 +261,7 @@ https://cparfait.github.io/wordpress-tournois/manifest.json
 
 Il est servi en HTTPS par GitHub Pages, pointe vers la dernière archive publiée en release et porte l'empreinte SHA-256 du paquet. WordPress proposera alors chaque nouvelle version depuis la page Extensions, sans aucun hébergement à prévoir.
 
-Voir [`wegame-tournoi-manifest.json`](wegame-tournoi-manifest.json) pour le fichier source.
+Voir [`brackethive-manifest.json`](brackethive-manifest.json) pour le fichier source.
 
 > [!IMPORTANT]
 > Le manifeste **et** l'archive doivent être servis en HTTPS ; l'extension refuse toute autre adresse. Il s'agit de code PHP installé automatiquement sur votre site.
@@ -277,12 +277,12 @@ L'extension est **traduisible intégralement**. Les chaînes source sont en angl
 | | |
 |---|---|
 | Anglais | langue source, aucune traduction à charger |
-| Français | 550 chaînes, livrées dans `wegame-tournoi/languages/` |
-| Autre langue | déposez un fichier `wegame-tournoi-<code>.mo` dans ce dossier, il apparaît aussitôt dans la liste |
+| Français | 550 chaînes, livrées dans `brackethive/languages/` |
+| Autre langue | déposez un fichier `brackethive-<code>.mo` dans ce dossier, il apparaît aussitôt dans la liste |
 
 Le réglage **Langue**, dans Tournois puis Extension, choisit la langue de l'extension indépendamment de celle du site : identique au site, anglais, ou l'une des traductions installées. Un message après l'activation y renvoie.
 
-Pour traduire, partez du catalogue `wegame-tournoi/languages/wegame-tournoi.pot`.
+Pour traduire, partez du catalogue `brackethive/languages/brackethive.pot`.
 
 ---
 
@@ -292,35 +292,35 @@ Pour traduire, partez du catalogue `wegame-tournoi/languages/wegame-tournoi.pot`
 |---|---|
 | WordPress | 5.6 minimum, testé jusqu'à 7.1 |
 | PHP | 7.0 minimum, testé jusqu'à 8.3 |
-| Base de données | MySQL ou MariaDB. Trois tables préfixées `wgt_`. |
+| Base de données | MySQL ou MariaDB. Trois tables préfixées `brackethive_`. |
 | Thèmes | Indépendant du thème. Le bandeau de titre est masqué sur les pages de tournoi, avec une liste de sélecteurs extensible. |
 | Dépendances | Aucune. Ni bibliothèque JavaScript externe, ni service en ligne, ni clé d'API. |
-| Langues | Anglais et français livrés ; traduisible dans toute autre langue, domaine `wegame-tournoi`. |
+| Langues | Anglais et français livrés ; traduisible dans toute autre langue, domaine `brackethive`. |
 
 ---
 
 ## Structure du code
 
 ```
-wegame-tournoi/
-├── wegame-tournoi.php          Amorçage, constantes, chargement des assets
+brackethive/
+├── brackethive.php          Amorçage, constantes, chargement des assets
 ├── uninstall.php               Désinstallation (ne supprime rien par défaut)
 ├── includes/
-│   ├── class-wgt-tournament.php  Type de contenu, réglages par tournoi
-│   ├── class-wgt-install.php     Tables, migrations, permaliens
-│   ├── class-wgt-bracket.php     Génération de la structure et du planning
-│   ├── class-wgt-data.php        Accès aux données, propagation des résultats
-│   ├── class-wgt-standings.php   Classements de poules et classement général
-│   ├── class-wgt-qr.php          Générateur de QR code (mode octets, niveau M)
-│   ├── class-wgt-render.php      Rendu HTML des vues publiques
-│   ├── class-wgt-shortcodes.php  Codes courts
-│   ├── class-wgt-rest.php        Routes REST
-│   ├── class-wgt-registration.php Formulaire public, anti-abus, e-mails
-│   ├── class-wgt-io.php          Export et import JSON
-│   ├── class-wgt-updater.php     Mises à jour par manifeste
-│   ├── class-wgt-theme.php       Intégration au thème
-│   ├── class-wgt-settings.php    Réglages communs au site
-│   └── class-wgt-admin.php       Écrans d'administration
+│   ├── class-brackethive-tournament.php  Type de contenu, réglages par tournoi
+│   ├── class-brackethive-install.php     Tables, migrations, permaliens
+│   ├── class-brackethive-bracket.php     Génération de la structure et du planning
+│   ├── class-brackethive-data.php        Accès aux données, propagation des résultats
+│   ├── class-brackethive-standings.php   Classements de poules et classement général
+│   ├── class-brackethive-qr.php          Générateur de QR code (mode octets, niveau M)
+│   ├── class-brackethive-render.php      Rendu HTML des vues publiques
+│   ├── class-brackethive-shortcodes.php  Codes courts
+│   ├── class-brackethive-rest.php        Routes REST
+│   ├── class-brackethive-registration.php Formulaire public, anti-abus, e-mails
+│   ├── class-brackethive-io.php          Export et import JSON
+│   ├── class-brackethive-updater.php     Mises à jour par manifeste
+│   ├── class-brackethive-theme.php       Intégration au thème
+│   ├── class-brackethive-settings.php    Réglages communs au site
+│   └── class-brackethive-admin.php       Écrans d'administration
 └── assets/                      CSS et JavaScript, front et admin
 ```
 
@@ -349,6 +349,6 @@ Pensez à indiquer aux participants la finalité de la collecte et la durée de 
 
 Publié sous [licence GPL v2 ou ultérieure](LICENSE), comme WordPress.
 
-Développé pour **We Game 2026**, un tournoi à 16 équipes sur 8 postes de jeu.
+Développé pour **Brackethive 2026**, un tournoi à 16 équipes sur 8 postes de jeu.
 
 Le [journal des versions](CHANGELOG.md) retrace l'évolution de l'extension depuis la version 1.0.0.

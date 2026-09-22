@@ -8,15 +8,15 @@
  * rien d'autre à modifier.
  *
  * Usage : php tools/build-org-package.php
- * Produit : build/wegame-tournoi/ et build/wegame-tournoi-org-<version>.zip
+ * Produit : build/brackethive/ et build/brackethive-org-<version>.zip
  *
- * @package WeGameTournoi
+ * @package Brackethive
  */
 
 $root   = dirname( __DIR__ );
-$source = $root . '/wegame-tournoi';
+$source = $root . '/brackethive';
 $build  = $root . '/build';
-$target = $build . '/wegame-tournoi';
+$target = $build . '/brackethive';
 
 if ( ! is_dir( $source ) ) {
 	fwrite( STDERR, "Dossier source introuvable : $source\n" );
@@ -28,7 +28,7 @@ if ( ! is_dir( $source ) ) {
  *
  * @param string $dir Dossier.
  */
-function wgt_rmdir( $dir ) {
+function brackethive_rmdir( $dir ) {
 	if ( ! is_dir( $dir ) ) {
 		return;
 	}
@@ -44,12 +44,21 @@ function wgt_rmdir( $dir ) {
 
 // Fichiers et dossiers exclus du paquet.
 $excluded = array(
-	'_preview',                        // Maquettes de développement.
-	'.claude',                         // Réglages d'outillage, hors production.
-	'includes/class-wgt-updater.php',  // Interdit sur WordPress.org.
+	'_preview',                               // Maquettes de développement.
+	'.claude',                                // Réglages d'outillage, hors production.
+	'includes/class-brackethive-updater.php', // Interdit sur WordPress.org.
 );
 
-wgt_rmdir( $target );
+/*
+ * Catalogues de traduction compilés. WordPress.org les génère lui-même à
+ * partir de translate.wordpress.org et les distribue par le canal habituel :
+ * les embarquer dans le paquet est inutile et signalé à la relecture. Le
+ * modèle .pot reste, il sert de base aux traducteurs.
+ */
+$excluded_ext    = array( 'po', 'mo' );
+$excluded_suffix = array( '.l10n.php' );
+
+brackethive_rmdir( $target );
 @mkdir( $target, 0777, true );
 
 $copied  = 0;
@@ -71,6 +80,19 @@ foreach ( $items as $item ) {
 		}
 	}
 
+	if ( $item->isFile() ) {
+		if ( in_array( strtolower( $item->getExtension() ), $excluded_ext, true ) ) {
+			$skipped[] = $relative;
+			continue;
+		}
+		foreach ( $excluded_suffix as $suffix ) {
+			if ( substr( $relative, -strlen( $suffix ) ) === $suffix ) {
+				$skipped[] = $relative;
+				continue 2;
+			}
+		}
+	}
+
 	if ( $item->isDir() ) {
 		@mkdir( $target . '/' . $relative, 0777, true );
 	} else {
@@ -81,7 +103,7 @@ foreach ( $items as $item ) {
 
 // load_plugin_textdomain() est superflu pour une extension hébergée sur
 // WordPress.org : les traductions y sont chargées automatiquement.
-$main = $target . '/wegame-tournoi.php';
+$main = $target . '/brackethive.php';
 $code = file_get_contents( $main );
 $code = preg_replace(
 	"/\t*load_plugin_textdomain\([^;]*\);\r?\n/",
@@ -103,7 +125,8 @@ foreach ( $items as $item ) {
 	}
 	$raw  = file_get_contents( $item->getPathname() );
 	$norm = str_replace( array( "
-", "" ), "
+", "
+" ), "
 ", $raw );
 	if ( $norm !== $raw ) {
 		file_put_contents( $item->getPathname(), $norm );
@@ -115,7 +138,7 @@ preg_match( '/^ \* Version:\s*(.+)$/m', $code, $m );
 $version = isset( $m[1] ) ? trim( $m[1] ) : '0.0.0';
 
 // Archive.
-$zip_path = $root . '/wegame-tournoi-' . $version . '-POUR-WORDPRESS-ORG.zip';
+$zip_path = $root . '/brackethive-' . $version . '-POUR-WORDPRESS-ORG.zip';
 @unlink( $zip_path );
 
 $zip = new ZipArchive();
@@ -129,7 +152,7 @@ $items = new RecursiveIteratorIterator(
 	RecursiveIteratorIterator::SELF_FIRST
 );
 foreach ( $items as $item ) {
-	$relative = 'wegame-tournoi/' . str_replace( '\\', '/', substr( $item->getPathname(), strlen( $target ) + 1 ) );
+	$relative = 'brackethive/' . str_replace( '\\', '/', substr( $item->getPathname(), strlen( $target ) + 1 ) );
 	$item->isDir() ? $zip->addEmptyDir( $relative ) : $zip->addFile( $item->getPathname(), $relative );
 }
 $zip->close();
@@ -142,7 +165,7 @@ echo "  jour auto-hebergee en a ete retire, comme l'exige le reglement.
 ";
 echo "  Pour installer l'extension sur un site, utilisez plutot
 ";
-echo "  wegame-tournoi-$version.zip
+echo "  brackethive-$version.zip
 
 ";
 echo "Version    : $version\n";

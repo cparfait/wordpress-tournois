@@ -1,4 +1,4 @@
-<title>We Game Tournoi</title>
+<title>Brackethive</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
@@ -626,7 +626,7 @@ html { scroll-behavior: smooth; }
 
 		<section id="presentation">
 			<h2 class="h">Présentation</h2>
-			<p class="intro">We Game Tournoi a été développé pour <strong>We Game 2026</strong>, un tournoi à 16 équipes sur 8 postes de jeu. Il gère aujourd'hui plusieurs tournois par site, dans trois formats, avec ou sans inscriptions publiques.</p>
+			<p class="intro">Brackethive a été développé pour <strong>Brackethive 2026</strong>, un tournoi à 16 équipes sur 8 postes de jeu. Il gère aujourd'hui plusieurs tournois par site, dans trois formats, avec ou sans inscriptions publiques.</p>
 
 			<p>L'extension fait trois choses : elle <strong>génère le tableau des matchs</strong> à partir du format et du nombre d'équipes, elle <strong>propage les résultats</strong> que vous saisissez, et elle <strong>publie tout cela</strong> sur une page que les joueurs et le public consultent depuis leur téléphone.</p>
 
@@ -652,8 +652,8 @@ html { scroll-behavior: smooth; }
 					<span class="step__n">1</span>
 					<div>
 						<h4>Téléverser l'archive</h4>
-						<p>Dans l'administration WordPress : <strong>Extensions</strong>, puis <strong>Ajouter</strong>, puis <strong>Téléverser une extension</strong>. Choisissez le fichier <code>wegame-tournoi-2.4.3.zip</code> et installez.</p>
-						<p>Vous pouvez aussi décompresser l'archive et déposer le dossier <code>wegame-tournoi</code> dans <code>wp-content/plugins/</code> par FTP.</p>
+						<p>Dans l'administration WordPress : <strong>Extensions</strong>, puis <strong>Ajouter</strong>, puis <strong>Téléverser une extension</strong>. Choisissez le fichier <code>brackethive-2.4.3.zip</code> et installez.</p>
+						<p>Vous pouvez aussi décompresser l'archive et déposer le dossier <code>brackethive</code> dans <code>wp-content/plugins/</code> par FTP.</p>
 					</div>
 				</li>
 				<li>
@@ -840,7 +840,7 @@ html { scroll-behavior: smooth; }
 
 			<h3>L'affichage public</h3>
 			<p>La page du tournoi se rafraîchit toute seule, par défaut toutes les 30 secondes, sans que le visiteur ait à recharger. Le rafraîchissement se met en pause quand l'onglet est en arrière-plan, et espace ses tentatives en cas de coupure réseau.</p>
-			<p>Le tableau s'adapte seul à l'écran, en largeur comme en hauteur. Sur un écran de régie, le code court <code>[wegame_tableau header="no"]</code> affiche le tableau seul, sans en-tête.</p>
+			<p>Le tableau s'adapte seul à l'écran, en largeur comme en hauteur. Sur un écran de régie, le code court <code>[brackethive_tableau header="no"]</code> affiche le tableau seul, sans en-tête.</p>
 
 			<h3>Le planning</h3>
 			<p>Écran <strong>Tournois › Planning</strong>. Les horaires sont calculés par tour, en tenant compte des matchs joués en même temps, des manches et des pauses. Vous pouvez ajuster chaque horaire à la main : vos ajustements ne sont pas écrasés, sauf si vous utilisez le bouton <strong>Recalculer le planning</strong>.</p>
@@ -859,18 +859,18 @@ html { scroll-behavior: smooth; }
 						<tr><th>Code court</th><th>Affichage</th></tr>
 					</thead>
 					<tbody>
-						<tr><td><code>[wegame_tournoi]</code></td><td>Page complète à onglets. C'est celui de la page du tournoi.</td></tr>
-						<tr><td><code>[wegame_tableau]</code></td><td>Le tableau des matchs seul.</td></tr>
-						<tr><td><code>[wegame_planning]</code></td><td>Le planning horaire.</td></tr>
-						<tr><td><code>[wegame_resultats]</code></td><td>La feuille de résultats.</td></tr>
-						<tr><td><code>[wegame_classement]</code></td><td>Le classement général, de la première à la dernière place.</td></tr>
-						<tr><td><code>[wegame_poules]</code></td><td>Les classements de la phase de poules.</td></tr>
-						<tr><td><code>[wegame_equipes]</code></td><td>Les équipes engagées.</td></tr>
-						<tr><td><code>[wegame_inscription]</code></td><td>Le formulaire d'inscription.</td></tr>
-						<tr><td><code>[wegame_reglement]</code></td><td>Le règlement du tournoi.</td></tr>
-						<tr><td><code>[wegame_organisation]</code></td><td>Le personnel nécessaire.</td></tr>
-						<tr><td><code>[wegame_checklist]</code></td><td>La checklist avant ouverture.</td></tr>
-						<tr><td><code>[wegame_tournois]</code></td><td>La liste de tous les tournois publiés du site.</td></tr>
+						<tr><td><code>[brackethive_tournoi]</code></td><td>Page complète à onglets. C'est celui de la page du tournoi.</td></tr>
+						<tr><td><code>[brackethive_tableau]</code></td><td>Le tableau des matchs seul.</td></tr>
+						<tr><td><code>[brackethive_planning]</code></td><td>Le planning horaire.</td></tr>
+						<tr><td><code>[brackethive_resultats]</code></td><td>La feuille de résultats.</td></tr>
+						<tr><td><code>[brackethive_classement]</code></td><td>Le classement général, de la première à la dernière place.</td></tr>
+						<tr><td><code>[brackethive_poules]</code></td><td>Les classements de la phase de poules.</td></tr>
+						<tr><td><code>[brackethive_equipes]</code></td><td>Les équipes engagées.</td></tr>
+						<tr><td><code>[brackethive_inscription]</code></td><td>Le formulaire d'inscription.</td></tr>
+						<tr><td><code>[brackethive_reglement]</code></td><td>Le règlement du tournoi.</td></tr>
+						<tr><td><code>[brackethive_organisation]</code></td><td>Le personnel nécessaire.</td></tr>
+						<tr><td><code>[brackethive_checklist]</code></td><td>La checklist avant ouverture.</td></tr>
+						<tr><td><code>[brackethive_tournois]</code></td><td>La liste de tous les tournois publiés du site.</td></tr>
 					</tbody>
 				</table>
 			</div>
@@ -884,27 +884,27 @@ html { scroll-behavior: smooth; }
 					<tbody>
 						<tr>
 							<td class="wrap"><code>tournoi="identifiant"</code></td>
-							<td>tous sauf <code>[wegame_tournois]</code></td>
+							<td>tous sauf <code>[brackethive_tournois]</code></td>
 							<td>Cible un tournoi précis. Sans cet attribut, le code court affiche le tournoi de la page courante, sinon le tournoi par défaut du site. <code>tournament</code> est accepté comme synonyme, et un identifiant numérique fonctionne aussi.</td>
 						</tr>
 						<tr>
 							<td><code>simple="yes"</code></td>
-							<td><code>[wegame_inscription]</code></td>
+							<td><code>[brackethive_inscription]</code></td>
 							<td>Formulaire réduit à Team, Pseudo, Mail et Téléphone.</td>
 						</tr>
 						<tr>
 							<td><code>header="no"</code></td>
-							<td><code>[wegame_tableau]</code></td>
+							<td><code>[brackethive_tableau]</code></td>
 							<td>Masque le bandeau de titre. Utile sur un écran de régie.</td>
 						</tr>
 						<tr>
 							<td><code>fit="width"</code></td>
-							<td><code>[wegame_tableau]</code>, <code>[wegame_tournoi]</code></td>
+							<td><code>[brackethive_tableau]</code>, <code>[brackethive_tournoi]</code></td>
 							<td>Ajuste le tableau à la largeur seulement, avec défilement vertical, au lieu de le faire tenir entièrement à l'écran.</td>
 						</tr>
 						<tr>
 							<td><code>players="yes"</code></td>
-							<td><code>[wegame_equipes]</code></td>
+							<td><code>[brackethive_equipes]</code></td>
 							<td>Affiche la composition des équipes.</td>
 						</tr>
 					</tbody>
@@ -912,7 +912,7 @@ html { scroll-behavior: smooth; }
 			</div>
 
 			<h4>Exemple</h4>
-			<pre><code>[wegame_tableau tournoi="we-game-2026" header="no" fit="width"]</code></pre>
+			<pre><code>[brackethive_tableau tournoi="we-game-2026" header="no" fit="width"]</code></pre>
 		</section>
 
 		<section id="ecrans">
@@ -969,12 +969,12 @@ html { scroll-behavior: smooth; }
 			<p>L'extension n'étant pas publiée sur l'annuaire WordPress.org, les mises à jour passent par un <strong>manifeste auto-hébergé</strong> : un fichier JSON décrivant la dernière version, dont vous indiquez l'adresse dans les réglages de l'extension. WordPress propose alors la mise à jour dans la page Extensions, comme pour n'importe quelle autre.</p>
 
 			<pre><code>{
-  "name": "We Game Tournoi",
-  "slug": "wegame-tournoi",
+  "name": "Brackethive",
+  "slug": "brackethive",
   "version": "2.4.3",
   "requires": "5.6",
   "requires_php": "7.0",
-  "download_url": "https://exemple.fr/maj/wegame-tournoi-2.4.3.zip",
+  "download_url": "https://exemple.fr/maj/brackethive-2.4.3.zip",
   "sha256": "empreinte hexadécimale du fichier ZIP"
 }</code></pre>
 
@@ -996,11 +996,11 @@ html { scroll-behavior: smooth; }
 					</thead>
 					<tbody>
 						<tr>
-							<td class="wrap"><code>GET /wp-json/wegame/v1/state</code></td>
+							<td class="wrap"><code>GET /wp-json/brackethive/v1/state</code></td>
 							<td>L'état complet du tournoi en JSON : équipes, matchs, scores, statuts.</td>
 						</tr>
 						<tr>
-							<td class="wrap"><code>GET /wp-json/wegame/v1/render?view=bracket</code></td>
+							<td class="wrap"><code>GET /wp-json/brackethive/v1/render?view=bracket</code></td>
 							<td>Le HTML d'une vue. C'est ce que consulte le rafraîchissement automatique.</td>
 						</tr>
 					</tbody>
@@ -1081,7 +1081,7 @@ html { scroll-behavior: smooth; }
 
 <footer class="page-foot">
 	<div class="page-foot__inner">
-		<strong>We Game Tournoi 2.4.3</strong>
+		<strong>Brackethive 2.4.3</strong>
 		<span>Code source sur GitHub</span>
 		<span>Licence GPL v2 ou ultérieure</span>
 	</div>

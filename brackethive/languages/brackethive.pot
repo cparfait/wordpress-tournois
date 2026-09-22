@@ -1,0 +1,2459 @@
+# Copyright (C) 2026 cparfait
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Brackethive 2.5.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/brackethive\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-09-22T10:16:09+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: brackethive\n"
+
+#. Plugin Name of the plugin
+#: brackethive.php
+msgid "Brackethive Tournament Manager"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: brackethive.php
+msgid "https://github.com/cparfait/wordpress-tournois"
+msgstr ""
+
+#. Description of the plugin
+#: brackethive.php
+msgid "Run an esports tournament from WordPress: 2 to 64 teams, single or double elimination, or a group stage, with a live public page."
+msgstr ""
+
+#. Author of the plugin
+#: brackethive.php
+msgid "cparfait"
+msgstr ""
+
+#. Author URI of the plugin
+#: brackethive.php
+msgid "https://github.com/cparfait"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:62
+#: includes/class-brackethive-admin.php:63
+#: includes/class-brackethive-admin.php:1335
+#: includes/class-brackethive-render.php:837
+#: includes/class-brackethive-tournament.php:39
+#: includes/class-brackethive-tournament.php:50
+msgid "Tournaments"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:71
+#: includes/class-brackethive-admin.php:1346
+msgid "Dashboard"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:72
+#: includes/class-brackethive-admin.php:238
+#: includes/class-brackethive-admin.php:311
+#: includes/class-brackethive-tournament.php:44
+msgid "New tournament"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:73
+#: includes/class-brackethive-tournament.php:49
+msgid "All tournaments"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:74
+#: includes/class-brackethive-admin.php:490
+#: includes/class-brackethive-admin.php:1522
+#: includes/class-brackethive-admin.php:1544
+#: includes/class-brackethive-admin.php:1840
+#: includes/class-brackethive-render.php:1014
+msgid "Teams"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:75
+#: includes/class-brackethive-admin.php:1664
+#: includes/class-brackethive-admin.php:1675
+msgid "Matches & scores"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:76
+#: includes/class-brackethive-admin.php:1775
+#: includes/class-brackethive-admin.php:1837
+#: includes/class-brackethive-admin.php:2039
+#: includes/class-brackethive-render.php:1011
+msgid "Schedule"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:77
+#: includes/class-brackethive-admin.php:1917
+#: includes/class-brackethive-admin.php:1924
+msgid "Tournament settings"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:78
+#: includes/class-brackethive-admin.php:1830
+#: includes/class-brackethive-admin.php:1865
+msgid "Public preview"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:79
+#: includes/class-brackethive-admin.php:2089
+msgid "Plugin settings"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:79
+msgid "Plugin"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:99
+msgid "Copied"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:100
+#: includes/class-brackethive-admin.php:674
+msgid "Copy"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:121
+msgid "Access denied."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:184
+#: includes/class-brackethive-admin.php:488
+#: includes/class-brackethive-install.php:217
+#: includes/class-brackethive-tournament.php:40
+msgid "Tournament"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:187
+msgid "no tournament"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:205
+msgid "Edit page"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:206
+msgid "View"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:210
+#: includes/class-brackethive-admin.php:1647
+msgid "Delete"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:213
+#: includes/class-brackethive-admin.php:1153
+msgid "Create a tournament"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:226
+msgid "No tournament exists yet. The wizard below guides you through four steps."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:239
+#: includes/class-brackethive-admin.php:1936
+msgid "Name"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:239
+#: includes/class-brackethive-admin.php:370
+msgid "Spring Esports Cup 2027"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:240
+#: includes/class-brackethive-admin.php:371
+#: includes/class-brackethive-admin.php:1943
+msgid "Game"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:241
+#: includes/class-brackethive-admin.php:373
+#: includes/class-brackethive-admin.php:1952
+msgid "Date"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:242
+msgid "Create"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:294
+msgid "Tournament created as a draft. Next step: add the teams, then publish the page."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:296
+msgid "Tournament created without a dedicated page. Place the shortcodes on your own pages, then add the teams."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:298
+msgid "Tournament created and page published. Next step: add the teams."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:303
+msgid "Tournament created."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:328
+#: includes/class-brackethive-admin.php:1976
+#: includes/class-brackethive-render.php:342
+msgid "Single elimination"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:329
+msgid "The simplest and fastest format: one loss and the team is out. Ideal for a single evening."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:330
+msgid "16 teams: 15 matches"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:333
+#: includes/class-brackethive-render.php:343
+msgid "Double elimination"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:334
+msgid "A team is only out after two losses, thanks to a losers bracket. Longer, but fairer."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:335
+msgid "16 teams: 30 matches"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:338
+#: includes/class-brackethive-admin.php:1978
+#: includes/class-brackethive-render.php:344
+msgid "Group stage then playoffs"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:339
+msgid "Each team plays several matches in its group, then the best ones face off in a bracket. The longest format."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:340
+msgid "16 teams in 4 groups: 24 + 7 matches"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:354
+msgid "The tournament"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:355
+msgid "The format"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:356
+msgid "Matches and times"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:357
+msgid "Sign-ups and creation"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:367
+msgid "1. The tournament"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:368
+msgid "This information appears at the top of the public page. Only the name is required; everything can be changed later in Tournament settings."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:370
+msgid "Tournament name"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:370
+msgid "It also becomes the title and the address of the tournament page."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:371
+msgid "Arena League"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:372
+#: includes/class-brackethive-admin.php:1945
+msgid "Venue"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:372
+msgid "Community hall"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:374
+msgid "First match time"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:375
+msgid "Subtitle (optional)"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:375
+msgid "Amateur tournament open to all"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:376
+#: includes/class-brackethive-admin.php:1967
+msgid "Accent color"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:382
+msgid "2. The format"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:383
+msgid "Choose how the teams face each other. The match bracket is generated automatically from this choice."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:396
+#: includes/class-brackethive-admin.php:1990
+msgid "Number of teams"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:396
+msgid "From 2 to 64. If it is not a power of two (8, 16, 32…), the top seeds get a bye in the first round."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:397
+#: includes/class-brackethive-admin.php:1964
+msgid "Players per team"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:399
+#: includes/class-brackethive-admin.php:1996
+msgid "Number of groups"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:399
+msgid "Teams are spread across the groups in snake order according to their seed. You can also build the groups by hand."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:400
+#: includes/class-brackethive-admin.php:1997
+msgid "Qualifiers per group"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:400
+msgid "Qualifiers are cross-matched between groups for the playoffs."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:403
+msgid "Play a third place match between the semi-final losers"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:404
+msgid "Bracket reset if the team coming from the losers bracket wins the first grand final (strict rule)"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:404
+msgid "In double elimination, the loser of the losers bracket final is automatically 3rd."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:410
+msgid "3. Matches and times"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:411
+msgid "The schedule is calculated from these values: each match is given a time and stations. You can then adjust each time by hand."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:413
+msgid "Number of games per round"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:414
+msgid "BO1: one game. BO3: the first team to win two games. BO5: the first to three. A BO3 takes about twice as long as a BO1."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:416
+msgid "Group matches"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:417
+msgid "Early rounds (round of 64, round of 32)"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:418
+#: includes/class-brackethive-admin.php:2009
+#: includes/class-brackethive-bracket.php:159
+msgid "R16"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:419
+#: includes/class-brackethive-admin.php:2010
+#: includes/class-brackethive-bracket.php:158
+msgid "Quarters"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:420
+#: includes/class-brackethive-bracket.php:126
+msgid "Semi-finals"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:421
+#: includes/class-brackethive-admin.php:2012
+#: includes/class-brackethive-bracket.php:125
+#: includes/class-brackethive-bracket.php:156
+msgid "Final"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:422
+#: includes/class-brackethive-admin.php:2013
+#: includes/class-brackethive-render.php:209
+msgid "Losers bracket"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:435
+msgid "Stations and durations"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:437
+msgid "Available gaming stations"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:437
+msgid "Total number of PCs or consoles."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:438
+msgid "Matches played at the same time"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:438
+msgid "With 8 stations and teams of 4, two matches can run simultaneously."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:439
+msgid "Length of one game (minutes)"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:439
+msgid "Setup and team changeover included."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:440
+msgid "Check-in before the first match (minutes)"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:441
+msgid "Break between rounds (minutes)"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:442
+#: includes/class-brackethive-admin.php:1957
+msgid "Expected end time"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:442
+msgid "Approximate, shown on the public page."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:448
+msgid "4. Sign-ups and creation"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:449
+msgid "Two ways to build the teams: enter them yourself in the Teams screen, or open a public form for the players to fill in (requests arrive pending approval)."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:451
+msgid "Open the public sign-up form on the tournament page"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:452
+msgid "Maximum number of sign-ups"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:452
+msgid "0 = unlimited. A rejected team frees up its slot."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:453
+msgid "E-mail notified on each sign-up"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:454
+msgid "Message shown after sign-up"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:457
+msgid "Publishing"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:458
+msgid "Creation generates a dedicated tournament page (listed under \"Tournaments › All tournaments\", not under \"Pages\"), with its Bracket, Schedule, Results and Teams tabs and, if you open it, Sign-up. As long as the page is not published, only administrators can see it. Its address is then shown on the dashboard."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:461
+msgid "Publish the page right away"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:462
+msgid "The page goes live immediately: players can view it and sign up if the form is open."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:464
+msgid "Keep as a draft"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:465
+msgid "You prepare the teams and the content at your own pace, then publish the page from \"All tournaments\" or \"Edit page\"."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:467
+msgid "No dedicated page"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:468
+msgid "No page is visible for this tournament. You place the bracket, the form or the schedule on your own pages yourself, using the shortcodes."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:471
+msgid "Also create a dedicated sign-up page"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:471
+msgid "A WordPress page containing only the simplified form (Team, Nickname, E-mail, Phone): ideal for a QR code or a poster. Its address and its QR code will appear on the dashboard."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:474
+msgid "What happens after creation?"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:476
+msgid "Links: as soon as the tournament is created, the dashboard shows the address of the tournament page and of the sign-up form, ready to copy or to turn into a QR code."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:477
+msgid "Tournament page: it is created automatically. It does not appear in the WordPress \"Pages\" menu but under \"Tournaments › All tournaments\" (the \"View\" button in the tournament bar). To publish or unpublish it later: \"Edit page\", then the Publish button. The \"No dedicated page\" option can be changed in Tournament settings."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:478
+msgid "Sign-up page: if you open sign-ups, the form is already in the Sign-up tab of the tournament page. You can also create a separate WordPress page, easier to share, by pasting the shortcode below into it, then publish it."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:479
+msgid "Sharing: a QR code or a link to one of these pages is all players need to sign up and then follow the tournament live."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:480
+msgid "Teams: enter them in the Teams screen or approve the sign-ups received, then assign the seeds. The dashboard reminds you of these steps."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:482
+msgid "short form (Team, Nickname, E-mail, Phone)"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:482
+msgid "full form with the player list"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:485
+msgid "Summary"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:489
+#: includes/class-brackethive-admin.php:1972
+msgid "Format"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:491
+msgid "Matches to play"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:492
+msgid "When"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:493
+msgid "Estimated end"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:494
+#: includes/class-brackethive-admin.php:2064
+msgid "Sign-ups"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:495
+#: includes/class-brackethive-admin.php:591
+#: includes/class-brackethive-admin.php:2056
+msgid "Tournament page"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:501
+msgid "Everything can still be changed after creation. The match bracket is created immediately; it fills in as the teams are given a seed."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:506
+msgid "← Previous"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:507
+msgid "Next →"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:508
+msgid "Create the tournament"
+msgstr ""
+
+#. translators: %d: nombre d'équipes
+#: includes/class-brackethive-admin.php:520
+#: includes/class-brackethive-render.php:352
+#, php-format
+msgid "%d teams"
+msgstr ""
+
+#. translators: 1: nombre de poules, 2: nombre de qualifiés par poule
+#: includes/class-brackethive-admin.php:522
+#, php-format
+msgid "%1$d groups, %2$d qualifiers per group"
+msgstr ""
+
+#. translators: %d: nombre de matchs estimé
+#: includes/class-brackethive-admin.php:524
+#, php-format
+msgid "about %d"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:525
+msgid "Public form open"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:526
+msgid "Entered by the organizers"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:527
+msgid "Published immediately"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:528
+msgid "Draft, to publish later"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:529
+msgid "No dedicated page (shortcodes)"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:530
+msgid "to"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:531
+#: includes/class-brackethive-tournament.php:414
+msgid "The tournament name is required."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:545
+msgid "Danger zone: reset or delete the tournament"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:547
+msgid "These actions cannot be undone and only affect the selected tournament."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:553
+msgid "To empty the tournament (teams + results), type REINITIALISER:"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:555
+msgid "Permanently delete all teams and all results of this tournament?"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:555
+msgid "Reset"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:562
+msgid "To delete the tournament and its page, type SUPPRIMER:"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:564
+msgid "Permanently delete this tournament, its page and all its data?"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:564
+msgid "Delete the tournament"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:583
+msgid "Public links"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:586
+msgid "The tournament page is a draft: its address will only work for visitors once it is published."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:592
+msgid "bracket, schedule, results, teams"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:604
+msgid "Sign-up page"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:606
+msgid "to share with players"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:607
+msgid "not published: publish it to make it accessible"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:614
+msgid "Sign-up form"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:615
+msgid "Sign-up tab of the tournament page"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:626
+msgid "Create a dedicated sign-up page"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:627
+msgid "A WordPress page containing only the simplified form: shorter to share and to print as a QR code."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:632
+msgid "Sign-ups are closed: the form will show \"sign-ups closed\" until you open them in Tournament settings."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:636
+msgid "This tournament has no dedicated page. Paste these shortcodes into your own pages, then publish them:"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:637
+msgid "full tabbed page"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:638
+msgid "simplified sign-up form"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:639
+msgid "bracket only (control room screen)"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:644
+msgid "Site pages using the shortcodes"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:648
+msgid "not published"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:650
+msgid "edit"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:675
+msgid "Open"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:677
+#: includes/class-brackethive-admin.php:1641
+msgid "Edit"
+msgstr ""
+
+#. translators: %s: intitulé du lien
+#: includes/class-brackethive-admin.php:693
+#, php-format
+msgid "QR code to %s"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:697
+msgid "Download the QR code"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:699
+msgid "PNG"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:701
+msgid "SVG"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:762
+msgid "Publish the tournament page"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:763
+msgid "The page is a draft: only administrators can see it. Publish it once the content is ready so players can view it and sign up."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:765
+msgid "Edit and publish"
+msgstr ""
+
+#. translators: 1: équipes validées, 2: équipes attendues
+#: includes/class-brackethive-admin.php:773
+#, php-format
+msgid "Build the teams (%1$d / %2$d approved)"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:778
+msgid "The public form is open: approve the requests received, or add teams yourself."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:779
+msgid "Add each team from the Teams screen, or open public sign-ups in Tournament settings."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:781
+msgid "Open Teams"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:785
+msgid "Assign the seeds"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:786
+msgid "Each approved team gets a number from 1 to N that places it in the bracket. The \"Random draw for seeds\" button does it for you."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:788
+msgid "Place the teams"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:793
+msgid "Check the public page"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:794
+msgid "The tournament page shows the bracket, schedule, results and sign-ups. Its links are in the \"Public links\" box above."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:796
+msgid "View the page"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:801
+msgid "Put the shortcodes on your pages"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:802
+msgid "This tournament has no dedicated page: copy the shortcodes from the \"Public links\" box into the pages of your choice, then publish them."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:804
+msgid "Create a page"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:809
+msgid "On the day: enter the scores"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:810
+msgid "In Matches & scores, enter the result of each match: the winner automatically moves on to the next round and the public page updates by itself."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:812
+msgid "Open Matches & scores"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:815
+msgid "Next steps"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:842
+msgid "Tournament duplicated."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:853
+#: includes/class-brackethive-admin.php:1182
+#: includes/class-brackethive-registration.php:49
+#: includes/class-brackethive-rest.php:113
+#: includes/class-brackethive-rest.php:148
+#: includes/class-brackethive-shortcodes.php:83
+#: includes/class-brackethive-tournament.php:610
+msgid "Tournament not found."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:872
+msgid "Tournament settings saved."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:909
+msgid "Team saved."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:925
+msgid "Team deleted."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:966
+msgid "Result saved."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:979
+#: includes/class-brackethive-admin.php:1072
+#: includes/class-brackethive-admin.php:1094
+#: includes/class-brackethive-data.php:135
+msgid "No tournament selected."
+msgstr ""
+
+#. translators: %d: nombre d'équipes
+#: includes/class-brackethive-admin.php:989
+#, php-format
+msgid "%d team(s) placed randomly in the bracket."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:998
+msgid "All results have been reset to zero."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1004
+msgid "Bracket regenerated."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1009
+msgid "Schedule recalculated from the tournament settings."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1021
+msgid "All pending sign-ups have been approved."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1027
+msgid "Reset cancelled: the confirmation word does not match."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1030
+msgid "Tournament reset: teams and results deleted, empty bracket recreated."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1036
+msgid "Deletion cancelled: the confirmation word does not match."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1039
+msgid "Tournament deleted."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1042
+msgid "Unknown action."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1057
+msgid "Settings saved."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1098
+msgid "No file received."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1102
+msgid "The file upload failed."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1107
+msgid "File empty or too large (5 MB maximum)."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1114
+msgid "The file could not be read."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1123
+msgid "Backup restored."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1143
+#: includes/class-brackethive-admin.php:2101
+msgid "English"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1145
+msgid "Brackethive is ready."
+msgstr ""
+
+#. translators: %s: language name
+#: includes/class-brackethive-admin.php:1149
+#, php-format
+msgid "The plugin follows your site language (%s). You can pick another one in its settings."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1154
+msgid "Choose the language"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1155
+msgid "Dismiss"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1190
+msgid "Sign-up page created and published."
+msgstr ""
+
+#. translators: %s: nom du site
+#: includes/class-brackethive-admin.php:1214
+#, php-format
+msgid "[%s] Brackethive test email"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1217
+msgid "If you receive this message, the site can send sign-up notifications."
+msgstr ""
+
+#. translators: %s: adresse e-mail
+#: includes/class-brackethive-admin.php:1228
+#, php-format
+msgid "Test email handed to the server for %s. Check the inbox (and the spam folder); if it does not arrive, your hosting does not relay emails: install an SMTP plugin."
+msgstr ""
+
+#. translators: %s: message d'erreur
+#: includes/class-brackethive-admin.php:1239
+#, php-format
+msgid "The server could not send the email: %s. Set up sending (SMTP plugin) before opening sign-ups."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1240
+msgid "no mail function available"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1252
+msgid "No valid manifest could be retrieved. Check the URL (the package must be served over HTTPS)."
+msgstr ""
+
+#. translators: %s: numéro de version
+#: includes/class-brackethive-admin.php:1261
+#, php-format
+msgid "Version %s available. Go to the Plugins page to install it."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1267
+msgid "The plugin is up to date."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1297
+msgid "Preview"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1352
+msgid "Signed-up teams"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1353
+msgid "Approved teams"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1354
+msgid "Seeds assigned"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1355
+msgid "Matches played"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1363
+msgid "Winner:"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1365
+msgid "Third place:"
+msgstr ""
+
+#. translators: %d: nombre d'équipes attendu
+#: includes/class-brackethive-admin.php:1374
+#, php-format
+msgid "The bracket is not complete: assign a seed (1 to %d) to each approved team from the Teams screen."
+msgstr ""
+
+#. translators: %s: liste des poules
+#: includes/class-brackethive-admin.php:1397
+#, php-format
+msgid "Incomplete groups: %s. A group must have at least 2 approved teams for its matches to exist; assign a group to each team from the Teams screen."
+msgstr ""
+
+#. translators: 1: liste des poules, 2: effectif attendu
+#: includes/class-brackethive-admin.php:1406
+#, php-format
+msgid "Unbalanced groups: %1$s (reference size: %2$d). Each group plays its own matches, but a larger group plays more of them; the number of qualified teams is limited by the smallest group."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1418
+msgid "Bracket preview"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1441
+msgid "Tools"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1446
+msgid "Regenerate the bracket"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1447
+msgid "Random draw for seeds"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1448
+msgid "Reset all results to zero? The teams are kept."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1448
+#: includes/class-brackethive-admin.php:1762
+msgid "Reset all results"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1452
+msgid "Backup"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1453
+msgid "The backup only covers the selected tournament."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1459
+msgid "Download a backup (JSON)"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1466
+msgid "Restore a backup into this tournament"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1468
+msgid "Also restore the tournament settings"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1469
+msgid "Replace this tournament's data with the contents of the file?"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1469
+msgid "Restore"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1473
+msgid "Duplicate this tournament"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1478
+msgid "Carries over the settings and the format, without the results. Ideal for preparing the next edition."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1479
+msgid "Name of the new tournament"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1480
+msgid "Also carry over the teams (pending approval, without a seed)"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1481
+msgid "Duplicate"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1485
+msgid "Shortcodes"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1486
+msgid "The tournament page already shows everything automatically: these shortcodes are only useful if you want the same content elsewhere on the site."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1487
+msgid "How to use them:"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1487
+msgid "create a WordPress page (Pages › Add New), paste the shortcode you want into it, then click Publish. The tournament content will appear on that page, and will update by itself during the event."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1488
+msgid "Shortcode"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1488
+#: includes/class-brackethive-admin.php:2050
+msgid "Display"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1491
+msgid "List of all tournaments on the site"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1492
+msgid "Full tabbed page"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1493
+msgid "Single-elimination bracket"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1494
+#: includes/class-brackethive-render.php:471
+msgid "Time schedule"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1495
+msgid "Results sheet"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1496
+#: includes/class-brackethive-render.php:894
+msgid "Overall ranking"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1497
+msgid "Group standings"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1498
+#: includes/class-brackethive-render.php:583
+msgid "Participating teams"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1499
+#: includes/class-brackethive-admin.php:1841
+#: includes/class-brackethive-admin.php:2053
+#: includes/class-brackethive-render.php:756
+#: includes/class-brackethive-render.php:1017
+msgid "Rules"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1500
+#: includes/class-brackethive-render.php:794
+msgid "Staff needed"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1501
+#: includes/class-brackethive-admin.php:1814
+#: includes/class-brackethive-render.php:814
+msgid "Pre-opening checklist"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1502
+msgid "Sign-up form (simple=\"yes\": Team, Nickname, Email, Phone)"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1509
+msgid "Without the \"tournoi\" attribute, the shortcode shows the site's default tournament. A page containing a shortcode stays invisible to visitors until it is published."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1510
+msgid "Create a page now"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1538
+msgid "Pending"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1539
+msgid "Approved"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1540
+msgid "Rejected"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1550
+msgid "Edit team"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1550
+msgid "Add a team"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1561
+#: includes/class-brackethive-render.php:968
+msgid "Team name"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1562
+msgid "Tag"
+msgstr ""
+
+#. translators: %d: nombre d'équipes
+#: includes/class-brackethive-admin.php:1567
+#, php-format
+msgid "Seed in the bracket (1 to %d)"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1572
+msgid "— unseeded —"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1580
+msgid "Group"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1581
+msgid "— unassigned —"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1588
+#: includes/class-brackethive-admin.php:1623
+#: includes/class-brackethive-render.php:972
+msgid "Captain"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1589
+msgid "Email"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1590
+#: includes/class-brackethive-render.php:974
+msgid "Phone"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1591
+msgid "Players (one per line)"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1592
+msgid "Internal notes"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1594
+#: includes/class-brackethive-admin.php:1625
+#: includes/class-brackethive-admin.php:1746
+#: includes/class-brackethive-render.php:687
+msgid "Status"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1599
+msgid "Only approved teams appear in the bracket."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1601
+#: includes/class-brackethive-admin.php:1752
+msgid "Save"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1603
+msgid "Cancel"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1616
+msgid "Approve pending sign-ups"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1617
+msgid "Random draw for the free seeds"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1621
+msgid "Seed"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1622
+#: includes/class-brackethive-admin.php:1799
+#: includes/class-brackethive-render.php:307
+#: includes/class-brackethive-render.php:902
+msgid "Team"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1624
+msgid "Contact"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1626
+msgid "Actions"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1630
+msgid "No team in this tournament."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1647
+msgid "Delete this team?"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1678
+msgid "Confirm a match to send the winner to the next round automatically. Editing a result already confirmed resets the following matches involved."
+msgstr ""
+
+#. translators: %d: numéro de manche
+#: includes/class-brackethive-admin.php:1719
+#, php-format
+msgid "Game %d"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1722
+msgid "Map / mode"
+msgstr ""
+
+#. translators: 1: format BO, 2: manches à gagner
+#: includes/class-brackethive-admin.php:1729
+#, php-format
+msgid "Leave unplayed games empty. In BO%1$d, the winner must win %2$d of them."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1736
+#: includes/class-brackethive-admin.php:1799
+#: includes/class-brackethive-render.php:684
+msgid "Score"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1742
+#: includes/class-brackethive-render.php:686
+msgid "Stations"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1743
+#: includes/class-brackethive-admin.php:1956
+msgid "Start"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1744
+#: includes/class-brackethive-admin.php:1799
+msgid "Referee"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1762
+msgid "Reset every result to zero?"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1780
+msgid "Schedule & score sheet"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1783
+msgid "Print"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1789
+msgid "Recalculate every time and station from the settings? Manual adjustments will be lost."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1789
+msgid "Recalculate the schedule"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1798
+msgid "Score sheet"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1799
+#: includes/class-brackethive-render.php:681
+msgid "Match"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1816
+msgid "Staff"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1835
+msgid "Full page (tabs)"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1836
+#: includes/class-brackethive-render.php:1010
+msgid "Bracket"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1838
+#: includes/class-brackethive-render.php:678
+#: includes/class-brackethive-render.php:1012
+msgid "Results"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1839
+#: includes/class-brackethive-render.php:1013
+msgid "Ranking"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1842
+#: includes/class-brackethive-render.php:1023
+msgid "Sign-up"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1843
+msgid "Tournament list"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1847
+msgid "Desktop"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1848
+msgid "Tablet"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1849
+msgid "Mobile"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1868
+msgid "Exactly what visitors will see. The theme wrapper (menu, footer) is not reproduced here."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1872
+msgid "Displayed view"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1879
+msgid "Width"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1904
+msgid "Preview of the public display"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1938
+msgid "Rename"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1939
+msgid "The name and the page address are changed from the tournament page."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1944
+msgid "Subtitle"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1955
+msgid "Times"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1958
+msgid "Changing the start time shifts the whole schedule automatically."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1961
+msgid "Gaming stations"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1977
+msgid "Double elimination (with losers bracket)"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1981
+msgid "Tournament format"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1987
+msgid "In double elimination, a team is only eliminated after two losses. In groups, each team meets every other team of its group before the final phase."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1992
+msgid "From 2 to 64. If the number is not a power of two, the top seeds get a bye in the first round."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1995
+#: includes/class-brackethive-admin.php:2006
+#: includes/class-brackethive-bracket.php:163
+#: includes/class-brackethive-render.php:1007
+msgid "Groups"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1998
+msgid "Make-up"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:1999
+msgid "Automatic (snake order by seed)"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2000
+msgid "Manual (group chosen for each team)"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2002
+msgid "With manual make-up, the group is chosen on each team's record. Qualified teams are crossed between groups either way."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2007
+#: includes/class-brackethive-bracket.php:161
+msgid "R64"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2008
+#: includes/class-brackethive-bracket.php:160
+msgid "R32"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2011
+#: includes/class-brackethive-bracket.php:157
+msgid "Semis"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2016
+msgid "Number of games"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2024
+msgid "Only the rounds actually present in the chosen format are used."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2027
+#: includes/class-brackethive-bracket.php:131
+msgid "Third place match"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2028
+msgid "Pit the two semi-final losers against each other"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2029
+msgid "Not applicable in double elimination: the loser of the losers bracket final is third."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2032
+msgid "Bracket reset"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2033
+msgid "Replay the final if the team coming from the losers bracket wins it (« bracket reset »)"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2034
+msgid "Strict double elimination rule: the team coming from the losers bracket already has one loss, so it must inflict two. The match is only played if needed."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2041
+msgid "Time calculation"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2042
+msgid "Match length (min)"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2043
+msgid "Simultaneous matches"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2044
+msgid "Welcome time before the 1st match (min)"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2045
+msgid "Break between rounds (min)"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2046
+msgid "A BO3 counts as two slots, a BO5 as three. Times already set are not overwritten: use « Recalculate the schedule » below to regenerate them."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2052
+msgid "Tabs"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2054
+msgid "Organisation (staff)"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2057
+msgid "Dedicated public page"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2058
+msgid "Unchecked, the tournament page answers « not found » to visitors; the tournament is then shown only by the shortcodes placed on your own pages."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2059
+msgid "Show the tournament automatically on its page"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2060
+msgid "Uncheck if you prefer to build the page yourself with the shortcodes."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2065
+msgid "Public form"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2066
+msgid "Open sign-ups for this tournament"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2067
+msgid "Maximum number of teams"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2068
+msgid "Notification email"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2069
+msgid "Notified on every sign-up. Empty: the site administration address. The captain gets an acknowledgement of his own."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2070
+msgid "Confirmation message"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2098
+msgid "Language"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2100
+msgid "Same as the site"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2106
+msgid "Language of the tournament screens and of the public page. Choose \"Same as the site\" to follow the site language."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2109
+msgid "Default tournament"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2111
+#: includes/class-brackethive-render.php:840
+msgid "No published tournament."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2115
+msgid "— the most recent —"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2120
+msgid "Used by the shortcodes without a « tournoi » attribute."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2124
+msgid "Auto refresh"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2125
+msgid "seconds (0 to disable)"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2127
+msgid "Page title"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2128
+msgid "Hide the theme title banner on tournament pages"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2129
+msgid "Additional CSS selectors"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2133
+msgid "Update manifest URL"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2135
+msgid "Leave empty to disable automatic updates."
+msgstr ""
+
+#. translators: 1: version disponible, 2: version installée
+#: includes/class-brackethive-admin.php:2143
+#, php-format
+msgid "Version %1$s is available (you are running %2$s)."
+msgstr ""
+
+#. translators: %s: version installée
+#: includes/class-brackethive-admin.php:2152
+#, php-format
+msgid "Up to date (version %s)."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2160
+msgid "Data on uninstall"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2161
+msgid "Delete everything if the plugin is uninstalled"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2162
+msgid "Unchecked (recommended), tournaments and their data are kept."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2172
+msgid "Check for updates now"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2175
+msgid "Emails"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2176
+msgid "Every public sign-up sends an acknowledgement to the captain and an alert to the tournament notification address (failing that, the site administration address). Delivery depends on your hosting: test it here."
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2180
+msgid "Send a test email to"
+msgstr ""
+
+#: includes/class-brackethive-admin.php:2181
+msgid "Send"
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:127
+msgid "Quarter-finals"
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:128
+msgid "Round of 16"
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:129
+msgid "Round of 32"
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:130
+msgid "Round of 64"
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:132
+#: includes/class-brackethive-render.php:291
+msgid "Group stage"
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:133
+#: includes/class-brackethive-bracket.php:164
+msgid "Grand final"
+msgstr ""
+
+#. translators: %d: numéro de tour de repêchage
+#: includes/class-brackethive-bracket.php:140
+#, php-format
+msgid "Losers bracket — round %d"
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:162
+msgid "Third place"
+msgstr ""
+
+#. translators: %d: numéro de tour de repêchage
+#: includes/class-brackethive-bracket.php:172
+#, php-format
+msgid "Losers round %d"
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:1190
+msgid "Tournament manager"
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:1190
+msgid "Supervision, rules, decisions and coordination"
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:1191
+msgid "Front desk / management"
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:1191
+msgid "Sign-ups, results, bracket and times"
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:1192
+msgid "Referees"
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:1192
+msgid "Match follow-up, score approval, disputes"
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:1193
+msgid "Technicians"
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:1193
+msgid "Stations, network, accounts, peripherals, incidents"
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:1194
+msgid "Host / communication"
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:1194
+msgid "Announcements, atmosphere, hosting, prize ceremony"
+msgstr ""
+
+#. translators: %d: nombre de joueurs titulaires
+#: includes/class-brackethive-bracket.php:1213
+#, php-format
+msgid "Each team is made up of %d starting player; a substitute is recommended."
+msgid_plural "Each team is made up of %d starting players; a substitute is recommended."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-brackethive-bracket.php:1221
+msgid "The captain is the team's official contact."
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:1222
+msgid "Players must follow the instructions of the referees and the organizers."
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:1223
+msgid "Any cheat, deliberate exploit or unsportsmanlike behavior may lead to a penalty or a disqualification."
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:1224
+msgid "Technical problems must be reported to the referee immediately."
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:1225
+msgid "Results are approved by the referee before moving on to the next round."
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:1226
+msgid "The organizers may adjust the schedule in the event of a technical problem or a significant delay."
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:1237
+msgid "Check the stations and peripherals"
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:1238
+msgid "Test the network and the connection to game services"
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:1239
+msgid "Check the accounts / profiles used"
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:1240
+msgid "Prepare the tournament bracket and the score sheets"
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:1241
+msgid "Identify the team captains"
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:1242
+msgid "Brief the players and referees"
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:1243
+msgid "Prepare prizes / trophy / rewards"
+msgstr ""
+
+#: includes/class-brackethive-bracket.php:1244
+msgid "Plan for water, breaks and a waiting area"
+msgstr ""
+
+#: includes/class-brackethive-data.php:139
+#: includes/class-brackethive-registration.php:78
+msgid "The team name is required."
+msgstr ""
+
+#. translators: %d: nombre d'équipes du tournoi
+#: includes/class-brackethive-data.php:151
+#, php-format
+msgid "The seed must be between 1 and %d (0 = unseeded)."
+msgstr ""
+
+#. translators: %d: numéro de position
+#: includes/class-brackethive-data.php:172
+#, php-format
+msgid "Seed #%d is already taken by another team."
+msgstr ""
+
+#: includes/class-brackethive-data.php:485
+msgid "Match not found."
+msgstr ""
+
+#. translators: 1: format BO, 2: nombre de manches à gagner
+#: includes/class-brackethive-data.php:520
+#, php-format
+msgid "In BO%1$d, the match ends as soon as %2$d games are won: remove the extra games."
+msgstr ""
+
+#. translators: %d: numéro de manche
+#: includes/class-brackethive-data.php:536
+#, php-format
+msgid "Game %d is tied: a game must have a winner."
+msgstr ""
+
+#: includes/class-brackethive-data.php:571
+msgid "Both teams must be known before the match can be approved."
+msgstr ""
+
+#: includes/class-brackethive-data.php:574
+msgid "A single-elimination match cannot end in a tie."
+msgstr ""
+
+#. translators: 1: format BO, 2: nombre de manches à gagner
+#: includes/class-brackethive-data.php:581
+#, php-format
+msgid "In BO%1$d, the winner must win %2$d games."
+msgstr ""
+
+#. translators: %s: code du match
+#: includes/class-brackethive-data.php:885
+#, php-format
+msgid "Winner of %s"
+msgstr ""
+
+#. translators: %s: code du match
+#: includes/class-brackethive-data.php:889
+#, php-format
+msgid "Loser of %s"
+msgstr ""
+
+#. translators: 1: numéro d'équipe, 2: lettre de poule
+#: includes/class-brackethive-data.php:896
+#, php-format
+msgid "Team %1$d of group %2$s"
+msgstr ""
+
+#. translators: 1: rang, 2: numéro de poule
+#: includes/class-brackethive-data.php:907
+#, php-format
+msgid "%1$d%2$s in group %3$s"
+msgstr ""
+
+#: includes/class-brackethive-data.php:909
+msgid "st"
+msgstr ""
+
+#: includes/class-brackethive-data.php:909
+msgid "th"
+msgstr ""
+
+#: includes/class-brackethive-data.php:915
+msgid "Bye"
+msgstr ""
+
+#. translators: %d: numéro de position
+#: includes/class-brackethive-data.php:919
+#, php-format
+msgid "Team #%d"
+msgstr ""
+
+#: includes/class-brackethive-data.php:921
+#: includes/class-brackethive-data.php:1234
+#: includes/class-brackethive-data.php:1243
+msgid "To be determined"
+msgstr ""
+
+#: includes/class-brackethive-io.php:79
+msgid "Target tournament not found."
+msgstr ""
+
+#: includes/class-brackethive-io.php:85
+msgid "Unreadable file: this is not valid JSON."
+msgstr ""
+
+#: includes/class-brackethive-io.php:89
+msgid "This file does not come from the Brackethive plugin."
+msgstr ""
+
+#: includes/class-brackethive-io.php:93
+msgid "This file was produced by a newer version of the plugin."
+msgstr ""
+
+#: includes/class-brackethive-io.php:97
+msgid "Incomplete backup: teams or matches are missing."
+msgstr ""
+
+#: includes/class-brackethive-io.php:141
+msgid "Restore aborted: a team could not be saved. No data was kept."
+msgstr ""
+
+#: includes/class-brackethive-io.php:151
+msgid "Restore aborted: a match could not be saved. No data was kept."
+msgstr ""
+
+#: includes/class-brackethive-io.php:165
+msgid "Restore aborted: a game could not be saved. No data was kept."
+msgstr ""
+
+#. translators: %d: index
+#: includes/class-brackethive-io.php:206
+#, php-format
+msgid "Team no. %d is unreadable."
+msgstr ""
+
+#. translators: %d: index
+#: includes/class-brackethive-io.php:209
+#, php-format
+msgid "Team no. %d has no name."
+msgstr ""
+
+#. translators: %d: index
+#: includes/class-brackethive-io.php:216
+#, php-format
+msgid "Match no. %d is unreadable."
+msgstr ""
+
+#. translators: %d: index
+#: includes/class-brackethive-io.php:220
+#, php-format
+msgid "Match no. %d has no code."
+msgstr ""
+
+#. translators: %s: code du match
+#: includes/class-brackethive-io.php:223
+#, php-format
+msgid "Duplicate match code \"%s\"."
+msgstr ""
+
+#. translators: %d: index
+#: includes/class-brackethive-io.php:230
+#, php-format
+msgid "Game no. %d is unreadable."
+msgstr ""
+
+#: includes/class-brackethive-registration.php:39
+msgid "Session expired, please submit the form again."
+msgstr ""
+
+#: includes/class-brackethive-registration.php:44
+msgid "Thank you, your sign-up has been recorded."
+msgstr ""
+
+#: includes/class-brackethive-registration.php:53
+msgid "Sign-ups are closed."
+msgstr ""
+
+#: includes/class-brackethive-registration.php:58
+msgid "You must accept the rules."
+msgstr ""
+
+#: includes/class-brackethive-registration.php:68
+msgid "Too many requests sent from this connection. Please try again in an hour."
+msgstr ""
+
+#: includes/class-brackethive-registration.php:73
+#: includes/class-brackethive-render.php:950
+msgid "The maximum number of teams has been reached."
+msgstr ""
+
+#. translators: 1: nom du tournoi, 2: nom de l'équipe
+#: includes/class-brackethive-registration.php:154
+#, php-format
+msgid "[%1$s] New sign-up: %2$s"
+msgstr ""
+
+#: includes/class-brackethive-registration.php:159
+msgid "New sign-up request received."
+msgstr ""
+
+#: includes/class-brackethive-registration.php:160
+msgid "Team:"
+msgstr ""
+
+#: includes/class-brackethive-registration.php:161
+msgid "Captain:"
+msgstr ""
+
+#: includes/class-brackethive-registration.php:162
+msgid "Email:"
+msgstr ""
+
+#: includes/class-brackethive-registration.php:163
+msgid "Phone:"
+msgstr ""
+
+#: includes/class-brackethive-registration.php:164
+msgid "Players:"
+msgstr ""
+
+#. translators: 1: nom du tournoi, 2: nom de l'équipe
+#: includes/class-brackethive-registration.php:185
+#, php-format
+msgid "[%1$s] Sign-up received: %2$s"
+msgstr ""
+
+#. translators: %s: nom de l'équipe
+#: includes/class-brackethive-registration.php:192
+#, php-format
+msgid "Hello, the sign-up request for team \"%s\" has been received."
+msgstr ""
+
+#: includes/class-brackethive-registration.php:195
+msgid "It will be reviewed by the organizers, who will get back to you if needed."
+msgstr ""
+
+#: includes/class-brackethive-registration.php:196
+msgid "Follow the tournament:"
+msgstr ""
+
+#: includes/class-brackethive-render.php:47
+msgid "No tournament has been created yet."
+msgstr ""
+
+#. translators: %s: heure de début
+#: includes/class-brackethive-render.php:145
+#, php-format
+msgid "Starts at %s"
+msgstr ""
+
+#. translators: %d: nombre de postes
+#: includes/class-brackethive-render.php:152
+#, php-format
+msgid "%d gaming stations"
+msgstr ""
+
+#: includes/class-brackethive-render.php:188
+msgid "Tournament winner"
+msgstr ""
+
+#. translators: %s: nom de l'équipe
+#: includes/class-brackethive-render.php:193
+#, php-format
+msgid "Third place: %s"
+msgstr ""
+
+#: includes/class-brackethive-render.php:268
+msgid "This tournament has no group stage."
+msgstr ""
+
+#. translators: %s: lettre de la poule
+#: includes/class-brackethive-render.php:301
+#, php-format
+msgid "Group %s"
+msgstr ""
+
+#: includes/class-brackethive-render.php:308
+msgid "P"
+msgstr ""
+
+#: includes/class-brackethive-render.php:309
+msgid "W"
+msgstr ""
+
+#: includes/class-brackethive-render.php:310
+msgid "L"
+msgstr ""
+
+#: includes/class-brackethive-render.php:311
+msgid "Diff."
+msgstr ""
+
+#. translators: %s: numéros de postes
+#: includes/class-brackethive-render.php:414
+#: includes/class-brackethive-render.php:497
+#, php-format
+msgid "Stations %s"
+msgstr ""
+
+#: includes/class-brackethive-render.php:417
+#: includes/class-brackethive-render.php:563
+#: includes/class-brackethive-render.php:736
+msgid "In progress"
+msgstr ""
+
+#: includes/class-brackethive-render.php:447
+msgid "Games:"
+msgstr ""
+
+#: includes/class-brackethive-render.php:474
+msgid "No match scheduled."
+msgstr ""
+
+#: includes/class-brackethive-render.php:505
+msgid "Time"
+msgstr ""
+
+#. translators: %d: numéro de colonne
+#: includes/class-brackethive-render.php:509
+#, php-format
+msgid "Match %d"
+msgstr ""
+
+#: includes/class-brackethive-render.php:524
+msgid "Not scheduled"
+msgstr ""
+
+#: includes/class-brackethive-render.php:541
+msgid "Times are indicative: they assume matches without significant delay. A match played over several games may push back the rest of the schedule."
+msgstr ""
+
+#: includes/class-brackethive-render.php:558
+msgid "vs"
+msgstr ""
+
+#: includes/class-brackethive-render.php:586
+msgid "No team approved yet."
+msgstr ""
+
+#. translators: %s: nom du capitaine
+#: includes/class-brackethive-render.php:604
+#, php-format
+msgid "Captain: %s"
+msgstr ""
+
+#. translators: %d: nombre de joueurs
+#: includes/class-brackethive-render.php:620
+#, php-format
+msgid "%d player"
+msgid_plural "%d players"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-brackethive-render.php:682
+msgid "Round"
+msgstr ""
+
+#: includes/class-brackethive-render.php:683
+msgid "Team 1"
+msgstr ""
+
+#: includes/class-brackethive-render.php:685
+msgid "Team 2"
+msgstr ""
+
+#: includes/class-brackethive-render.php:735
+msgid "To play"
+msgstr ""
+
+#: includes/class-brackethive-render.php:737
+msgid "Finished"
+msgstr ""
+
+#: includes/class-brackethive-render.php:765
+msgid "Match format"
+msgstr ""
+
+#: includes/class-brackethive-render.php:767
+msgid "BO1: a single game, the team that wins it qualifies."
+msgstr ""
+
+#: includes/class-brackethive-render.php:768
+msgid "BO3: up to three games, the first team to win two takes the match."
+msgstr ""
+
+#. translators: %d: nombre de joueurs
+#: includes/class-brackethive-render.php:773
+#, php-format
+msgid "Teams of %d starting players, one substitute recommended."
+msgstr ""
+
+#: includes/class-brackethive-render.php:778
+msgid "A third place match pits the two semi-final losers against each other."
+msgstr ""
+
+#: includes/class-brackethive-render.php:796
+msgid "Role"
+msgstr ""
+
+#: includes/class-brackethive-render.php:796
+msgid "Qty."
+msgstr ""
+
+#: includes/class-brackethive-render.php:796
+msgid "Main duties"
+msgstr ""
+
+#. translators: %s: nom de l'équipe
+#: includes/class-brackethive-render.php:871
+#, php-format
+msgid "Winner: %s"
+msgstr ""
+
+#: includes/class-brackethive-render.php:897
+msgid "The ranking will build up as matches are played."
+msgstr ""
+
+#: includes/class-brackethive-render.php:901
+msgid "Rank"
+msgstr ""
+
+#: includes/class-brackethive-render.php:903
+msgid "Starting seed"
+msgstr ""
+
+#: includes/class-brackethive-render.php:916
+msgid "Teams eliminated in the same round share the same rank, marked with a \"+\". The ranking becomes more precise as matches are approved."
+msgstr ""
+
+#: includes/class-brackethive-render.php:936
+msgid "Team sign-up"
+msgstr ""
+
+#: includes/class-brackethive-render.php:944
+msgid "Sign-ups are currently closed."
+msgstr ""
+
+#: includes/class-brackethive-render.php:959
+msgid "Do not fill in"
+msgstr ""
+
+#: includes/class-brackethive-render.php:968
+msgctxt "short sign-up form label"
+msgid "Team"
+msgstr ""
+
+#: includes/class-brackethive-render.php:970
+msgid "Tag (optional)"
+msgstr ""
+
+#: includes/class-brackethive-render.php:972
+msgid "Nickname"
+msgstr ""
+
+#: includes/class-brackethive-render.php:973
+msgid "Mail"
+msgstr ""
+
+#: includes/class-brackethive-render.php:973
+msgid "Captain's email"
+msgstr ""
+
+#. translators: %d: nombre de joueurs
+#: includes/class-brackethive-render.php:979
+#, php-format
+msgid "Players (%d starters + substitute, one per line)"
+msgstr ""
+
+#: includes/class-brackethive-render.php:984
+msgid "I accept the tournament rules."
+msgstr ""
+
+#: includes/class-brackethive-render.php:985
+msgid "Send sign-up"
+msgstr ""
+
+#: includes/class-brackethive-render.php:1020
+msgid "Organizers"
+msgstr ""
+
+#: includes/class-brackethive-rest.php:106
+msgid "Unknown view."
+msgstr ""
+
+#: includes/class-brackethive-tournament.php:41
+msgid "Add"
+msgstr ""
+
+#: includes/class-brackethive-tournament.php:42
+msgid "Add a tournament"
+msgstr ""
+
+#: includes/class-brackethive-tournament.php:43
+msgid "Edit tournament"
+msgstr ""
+
+#: includes/class-brackethive-tournament.php:45
+msgid "View tournament"
+msgstr ""
+
+#: includes/class-brackethive-tournament.php:46
+msgid "Search a tournament"
+msgstr ""
+
+#: includes/class-brackethive-tournament.php:47
+msgid "No tournament"
+msgstr ""
+
+#: includes/class-brackethive-tournament.php:48
+msgid "No tournament in the trash"
+msgstr ""
+
+#: includes/class-brackethive-tournament.php:446
+msgid "Source tournament not found."
+msgstr ""
+
+#. translators: %s: nom du tournoi
+#: includes/class-brackethive-tournament.php:625
+#, php-format
+msgid "Sign-up — %s"
+msgstr ""
+
+#: includes/class-brackethive-updater.php:325
+msgid "The SHA-256 hash of the downloaded package does not match the one declared in the manifest: installation refused."
+msgstr ""
+
+#: brackethive.php:155
+msgid "Updated"
+msgstr ""
+
+#: brackethive.php:156
+msgid "Offline — retrying"
+msgstr ""
