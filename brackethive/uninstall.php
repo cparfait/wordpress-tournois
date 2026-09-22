@@ -29,7 +29,7 @@ if ( ! $brackethive_purge ) {
  */
 $brackethive_posts = get_posts(
 	array(
-		'post_type'   => 'brackethive_tournament',
+		'post_type'   => 'brackethive_tourney',
 		'post_status' => array( 'any', 'trash' ),
 		'numberposts' => -1,
 		'fields'      => 'ids',

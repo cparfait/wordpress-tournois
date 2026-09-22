@@ -1,0 +1,27 @@
+Hello,
+
+New permalink request: please reserve the slug "brackethive".
+
+The plugin is now named "Brackethive Tournament Manager", slug "brackethive".
+"Brackethive" is a coined name; I checked the plugin directory and the web and
+found no plugin, company or trademark using it. All references to the previous
+name are gone from the code, the readme and the directory assets (icon and
+banners). An updated version has been uploaded.
+
+On ownership: this is my own plugin, written for a local gaming event I run.
+It is not an official plugin of any company and does not represent any entity,
+so the account "cparfait" and its email are the right owner.
+
+The other issues you reported have been addressed, including the fatal error on
+the settings screen (the self-hosted update module is excluded from the
+directory package, and every call to it is now conditional).
+
+One thing worth mentioning: the plugin ships a one-time migration routine that
+renames its own database tables, options, post meta and custom post type from
+the former "wgt_" prefix, which was three characters long. It exists so that the
+sites already running the plugin outside the directory keep their data. The
+former shortcodes are kept as aliases for the same reason.
+
+Thanks for the review.
+
+cparfait

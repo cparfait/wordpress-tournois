@@ -1314,7 +1314,9 @@ class Brackethive_Admin {
 		 * Bien que ce document soit autonome (il n'est pas rendu par le
 		 * thème), ses feuilles de style et ses scripts passent par l'API
 		 * d'enregistrement de WordPress, puis sont imprimés explicitement :
-		 * versions, dépendances et filtres restent ainsi respectés.
+		 * versions, dépendances et filtres restent ainsi respectés. Seules
+		 * nos ressources sont imprimées ; la barre d'administration et ses
+		 * dépendances n'ont rien à faire dans un aperçu du rendu public.
 		 */
 		wp_enqueue_style( 'brackethive-public', BRACKETHIVE_URL . 'assets/css/brackethive-public.css', array(), BRACKETHIVE_VERSION );
 		wp_add_inline_style( 'brackethive-public', 'html,body{margin:0;padding:0;background:transparent}' );
@@ -1343,12 +1345,12 @@ class Brackethive_Admin {
 		echo '><head><meta charset="utf-8" />';
 		echo '<meta name="viewport" content="width=device-width, initial-scale=1" />';
 		echo '<title>' . esc_html__( 'Preview', 'brackethive' ) . '</title>';
-		wp_print_styles();
+		wp_styles()->do_items( array( 'brackethive-public' ) );
 		echo '</head><body>';
 
 		echo Brackethive_Render::view( $view, array( 'tournament_id' => $tid ) ); // phpcs:ignore WordPress.Security.EscapeOutput -- Rendu HTML complet, échappement effectué dans les gabarits de Brackethive_Render.
 
-		wp_print_footer_scripts();
+		wp_scripts()->do_items( array( 'brackethive-public' ) );
 
 		echo '</body></html>';
 		exit;

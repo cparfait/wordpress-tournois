@@ -142,6 +142,7 @@ Uninstalling the plugin keeps all data by default. A setting under Tournaments >
 * Fixed: the plugin settings screen raised a fatal error in the package distributed through the plugin directory, where the self-hosted update module is absent.
 * Styles and scripts of the preview screen now go through the WordPress enqueue API.
 * Compiled translation files are no longer shipped in the directory package; translations come from translate.wordpress.org.
+* The migration copies rows instead of renaming tables, so it also works on the official SQLite integration.
 
 = 2.5.0 =
 * The plugin is now fully translatable. Source strings are in English and a complete French translation ships with the plugin (550 strings).

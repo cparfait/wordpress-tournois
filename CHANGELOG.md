@@ -10,6 +10,8 @@ Le format suit celui du fichier `readme.txt` de l'extension.
 * Correction : l'écran de réglages provoquait une erreur fatale dans le paquet distribué par le répertoire officiel, d'où le module de mise à jour auto-hébergée est retiré.
 * Les styles et scripts de l'écran d'aperçu passent par l'API d'enregistrement de WordPress.
 * Les catalogues de traduction compilés ne sont plus inclus dans le paquet destiné au répertoire : les traductions y sont fournies par translate.wordpress.org.
+* Le type de contenu s'appelle `brackethive_tourney` : WordPress limite ce nom à vingt caractères. Le permalien public reste `/tournoi/`.
+* La reprise des données recopie les lignes au lieu de renommer les tables. `RENAME TABLE` est propre à MySQL et l'intégration SQLite officielle, celle de WordPress Playground, ne sait pas l'exécuter.
 
 
 ## 2.4.3

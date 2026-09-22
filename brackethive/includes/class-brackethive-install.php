@@ -40,16 +40,28 @@ class Brackethive_Install {
 	}
 
 	/**
+	 * La table existe-t-elle ?
+	 *
+	 * @param string $table Nom complet de la table.
+	 * @return bool
+	 */
+	protected static function table_exists( $table ) {
+		global $wpdb;
+		return $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $table ) ) === $table; // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Contrôle d'existence, sans mise en cache utile.
+	}
+
+	/**
 	 * Reprise des données d'avant le renommage de l'extension.
 	 *
 	 * Jusqu'à la version 2.5.0 l'extension stockait tout sous le préfixe
 	 * « wgt_ », trop court au regard des règles du répertoire officiel. Les
-	 * tables, options, métadonnées et le type de contenu sont donc renommés
-	 * une fois pour toutes, sans perte : un site mis à jour retrouve ses
-	 * tournois, ses équipes et ses réglages.
+	 * tables, options, métadonnées et le type de contenu passent donc au
+	 * nouveau préfixe, une fois pour toutes et sans perte : un site mis à
+	 * jour retrouve ses tournois, ses équipes et ses réglages.
 	 *
-	 * Appelée avant toute lecture de données, et avant create_tables() : une
-	 * table renommée ne doit pas être recréée vide à côté de l'ancienne.
+	 * Appelée avant toute lecture de données. Tant qu'une table de l'ancien
+	 * préfixe subsiste, la reprise est retentée au chargement suivant : mieux
+	 * vaut réessayer que déclarer terminée une migration incomplète.
 	 */
 	public static function migrate_legacy_prefix() {
 		if ( get_option( self::LEGACY_FLAG ) ) {
@@ -62,16 +74,40 @@ class Brackethive_Install {
 		// cache d'objets ni les règles de réécriture.
 		$moved = 0;
 
-		// Tables. Renommées seulement si l'ancienne existe et la nouvelle non.
+		/*
+		 * Tables. On recopie les lignes dans les nouvelles tables plutôt que
+		 * de renommer : « RENAME TABLE » est propre à MySQL et l'intégration
+		 * SQLite officielle, sur laquelle tournent Playground et une part des
+		 * sites, ne sait pas l'exécuter.
+		 */
+		$legacy = array();
 		foreach ( array( 'teams', 'matches', 'games' ) as $table ) {
-			$old = $wpdb->prefix . 'wgt_' . $table;
-			$new = $wpdb->prefix . 'brackethive_' . $table;
+			if ( self::table_exists( $wpdb->prefix . 'wgt_' . $table ) ) {
+				$legacy[] = $table;
+			}
+		}
 
-			$has_old = $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $old ) ) === $old; // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Migration ponctuelle sur les tables de l'extension.
-			$has_new = $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $new ) ) === $new; // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Migration ponctuelle sur les tables de l'extension.
+		if ( $legacy ) {
+			// Les tables préfixées doivent exister avant d'être remplies.
+			self::create_tables();
 
-			if ( $has_old && ! $has_new ) {
-				$moved += (int) $wpdb->query( "RENAME TABLE `{$old}` TO `{$new}`" ); // phpcs:ignore WordPress.DB.PreparedSQL, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.SchemaChange, PluginCheck.Security.DirectDB.UnescapedDBParameter -- Noms construits depuis $wpdb->prefix, sans donnée utilisateur ; migration ponctuelle non mise en cache.
+			foreach ( $legacy as $table ) {
+				$old = $wpdb->prefix . 'wgt_' . $table;
+				$new = $wpdb->prefix . 'brackethive_' . $table;
+
+				$expected = (int) $wpdb->get_var( "SELECT COUNT(*) FROM `{$old}`" ); // phpcs:ignore WordPress.DB.PreparedSQL, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter -- Nom construit depuis $wpdb->prefix ; migration ponctuelle.
+
+				// Une table déjà remplie n'est pas écrasée : la reprise a
+				// donc eu lieu, seule l'ancienne table reste à retirer.
+				if ( 0 === (int) $wpdb->get_var( "SELECT COUNT(*) FROM `{$new}`" ) ) { // phpcs:ignore WordPress.DB.PreparedSQL, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter -- Nom construit depuis $wpdb->prefix ; migration ponctuelle.
+					$wpdb->query( "INSERT INTO `{$new}` SELECT * FROM `{$old}`" ); // phpcs:ignore WordPress.DB.PreparedSQL, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter -- Schémas identiques ; noms construits depuis $wpdb->prefix ; migration ponctuelle.
+				}
+
+				// L'ancienne table ne part que si tout est bien arrivé.
+				if ( (int) $wpdb->get_var( "SELECT COUNT(*) FROM `{$new}`" ) >= $expected ) { // phpcs:ignore WordPress.DB.PreparedSQL, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter -- Nom construit depuis $wpdb->prefix ; migration ponctuelle.
+					$wpdb->query( "DROP TABLE `{$old}`" ); // phpcs:ignore WordPress.DB.PreparedSQL, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.SchemaChange, PluginCheck.Security.DirectDB.UnescapedDBParameter -- Ancienne table vidée de son contenu, repris à l'identique ; migration ponctuelle.
+					$moved++;
+				}
 			}
 		}
 
@@ -91,7 +127,7 @@ class Brackethive_Install {
 		}
 
 		// Type de contenu des tournois.
-		$moved += (int) $wpdb->update( $wpdb->posts, array( 'post_type' => 'brackethive_tournament' ), array( 'post_type' => 'wgt_tournament' ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Renommage en masse, sans équivalent dans l'API ; migration ponctuelle.
+		$moved += (int) $wpdb->update( $wpdb->posts, array( 'post_type' => 'brackethive_tourney' ), array( 'post_type' => 'wgt_tournament' ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Renommage en masse, sans équivalent dans l'API ; migration ponctuelle.
 
 		// Métadonnée de page d'inscription, et dernier tournoi choisi par
 		// chaque utilisateur de l'administration.
@@ -100,6 +136,14 @@ class Brackethive_Install {
 
 		// Les transients sont des caches : ils se régénèrent, on les jette.
 		$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE '\_transient\_wgt\_%' OR option_name LIKE '\_transient\_timeout\_wgt\_%'" ); // phpcs:ignore WordPress.DB.PreparedSQL, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Purge des caches de l'ancien préfixe ; migration ponctuelle.
+
+		foreach ( array( 'teams', 'matches', 'games' ) as $table ) {
+			if ( self::table_exists( $wpdb->prefix . 'wgt_' . $table ) ) {
+				// Reprise incomplète : on retentera au chargement suivant
+				// plutôt que de laisser des données orphelines.
+				return;
+			}
+		}
 
 		update_option( self::LEGACY_FLAG, 1 );
 
@@ -118,7 +162,7 @@ class Brackethive_Install {
 	 */
 	public static function activate() {
 		// Avant tout : reprendre les données d'une installation antérieure au
-		// renommage, sinon create_tables() créerait des tables vides à côté.
+		// renommage. La reprise crée elle-même les tables dont elle a besoin.
 		self::migrate_legacy_prefix();
 
 		// Invitation affichée une fois : choix de la langue, premier tournoi.

@@ -15,7 +15,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Brackethive_Tournament {
 
-	const POST_TYPE = 'brackethive_tournament';
+	/*
+	 * WordPress limite le nom d'un type de contenu à vingt caractères :
+	 * « brackethive_tournament » les dépasse, d'où la forme abrégée. Le
+	 * permalien public, lui, reste « /tournoi/ » (voir register()).
+	 */
+	const POST_TYPE = 'brackethive_tourney';
 	const META      = '_brackethive_settings';
 
 	/**
