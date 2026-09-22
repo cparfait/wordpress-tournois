@@ -93,9 +93,18 @@ function wgt_load_locale() {
 	}
 
 	$file = WGT_PATH . 'languages/wegame-tournoi-' . $locale . '.mo';
-	if ( file_exists( $file ) ) {
-		load_textdomain( 'wegame-tournoi', $file, $locale );
+	if ( ! file_exists( $file ) ) {
+		return;
 	}
+
+	/*
+	 * Le catalogue est enregistré sous la langue courante du site, et non
+	 * sous celle du fichier : WordPress range les traductions par langue et
+	 * ne consulte que celle en cours. C'est ce qui permet d'afficher
+	 * l'extension dans une autre langue que le reste du site.
+	 */
+	unload_textdomain( 'wegame-tournoi' );
+	load_textdomain( 'wegame-tournoi', $file );
 }
 add_action( 'init', 'wgt_load_locale', 0 );
 

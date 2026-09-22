@@ -41,7 +41,7 @@ Le tableau, le planning et les résultats s'affichent sur une page publique qui 
 
 ## Pourquoi cette extension
 
-Elle a été écrite pour **We Game 2026**, un tournoi Call of Duty à 16 équipes sur 8 postes de jeu. Le besoin était simple et mal couvert par les outils existants : afficher le tableau sur un écran et sur les téléphones des joueurs, saisir les scores sans se tromper, et ne pas dépendre d'un service en ligne.
+Elle a été écrite pour **We Game 2026**, un tournoi à 16 équipes sur 8 postes de jeu. Le besoin était simple et mal couvert par les outils existants : afficher le tableau sur un écran et sur les téléphones des joueurs, saisir les scores sans se tromper, et ne pas dépendre d'un service en ligne.
 
 Elle gère aujourd'hui plusieurs tournois par site, dans trois formats, avec ou sans inscriptions publiques.
 
@@ -332,6 +332,6 @@ Pensez à indiquer aux participants la finalité de la collecte et la durée de 
 
 Publié sous [licence GPL v2 ou ultérieure](LICENSE), comme WordPress.
 
-Développé pour **We Game 2026**, un tournoi Call of Duty à 16 équipes.
+Développé pour **We Game 2026**, un tournoi à 16 équipes sur 8 postes de jeu.
 
 Le [journal des versions](CHANGELOG.md) retrace l'évolution de l'extension depuis la version 1.0.0.

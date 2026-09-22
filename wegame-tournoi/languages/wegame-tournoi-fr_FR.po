@@ -27,7 +27,7 @@ msgstr "https://github.com/cparfait/wordpress-tournois"
 #. Description of the plugin
 #: wegame-tournoi.php
 msgid "Run an esports tournament from WordPress: 2 to 64 teams, single or double elimination, or a group stage, with a live public page."
-msgstr "Gestion et affichage de tournois e-sport (2 à 64 équipes) : élimination directe, double élimination ou phase de poules. Conçu pour We Game 2026, Tournoi Call of Duty."
+msgstr "Gérez un tournoi e-sport depuis WordPress : de 2 à 64 équipes, élimination directe, double élimination ou phase de poules, avec une page publique en direct."
 
 #. Author of the plugin
 #: wegame-tournoi.php
@@ -163,7 +163,7 @@ msgstr "Nom"
 #: includes/class-wgt-admin.php:239
 #: includes/class-wgt-admin.php:370
 msgid "Spring Esports Cup 2027"
-msgstr "We Game 2027 — Call of Duty"
+msgstr "Coupe e-sport du printemps 2027"
 
 #: includes/class-wgt-admin.php:240
 #: includes/class-wgt-admin.php:371
@@ -272,7 +272,7 @@ msgstr "Il devient aussi le titre et l’adresse de la page du tournoi."
 
 #: includes/class-wgt-admin.php:371
 msgid "Arena League"
-msgstr "Call of Duty"
+msgstr "Ligue Arena"
 
 #: includes/class-wgt-admin.php:372
 #: includes/class-wgt-admin.php:1945
