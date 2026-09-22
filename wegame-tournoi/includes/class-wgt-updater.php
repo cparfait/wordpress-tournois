@@ -319,10 +319,10 @@ class WGT_Updater {
 
 		$hash = hash_file( 'sha256', $tmp );
 		if ( ! is_string( $hash ) || ! hash_equals( $manifest['sha256'], strtolower( $hash ) ) ) {
-			@unlink( $tmp ); // phpcs:ignore WordPress.PHP.NoSilencedErrors
+			wp_delete_file( $tmp );
 			return new WP_Error(
 				'wgt_bad_checksum',
-				__( 'L’empreinte SHA-256 du paquet téléchargé ne correspond pas à celle annoncée par le manifeste : installation refusée.', 'wegame-tournoi' )
+				__( 'The SHA-256 hash of the downloaded package does not match the one declared in the manifest: installation refused.', 'wegame-tournoi' )
 			);
 		}
 

@@ -12,3 +12,6 @@ Thumbs.db
 
 # Maquettes de développement, antérieures au code actuel : hors distribution.
 wegame-tournoi/_preview/
+
+# Paquets construits pour WordPress.org
+build/

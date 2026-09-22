@@ -50,7 +50,7 @@ $wgt_tables = array(
 );
 
 foreach ( $wgt_tables as $wgt_table ) {
-	$wpdb->query( "DROP TABLE IF EXISTS {$wgt_table}" ); // phpcs:ignore WordPress.DB.PreparedSQL
+	$wpdb->query( "DROP TABLE IF EXISTS {$wgt_table}" ); // phpcs:ignore WordPress.DB.PreparedSQL, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.SchemaChange, PluginCheck.Security.DirectDB.UnescapedDBParameter -- Suppression volontaire des tables propres à l'extension à la désinstallation ; nom de table construit depuis $wpdb->prefix, sans donnée utilisateur ni mise en cache.
 }
 
 delete_option( 'wgt_settings' );
@@ -58,4 +58,5 @@ delete_option( 'wgt_db_version' );
 delete_option( 'wgt_default_tournament' );
 delete_option( 'wgt_migrated_multi' );
 delete_option( 'wgt_defaults_232' );
+delete_option( 'wgt_welcome' );
 delete_transient( 'wgt_update_manifest' );

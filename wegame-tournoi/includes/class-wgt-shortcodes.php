@@ -80,7 +80,7 @@ class WGT_Shortcodes {
 		$tid = '' !== $ref ? WGT_Tournament::resolve( $ref ) : 0;
 
 		if ( '' !== $ref && ! $tid ) {
-			return '<p class="wgt-empty">' . esc_html__( 'Tournoi introuvable.', 'wegame-tournoi' ) . '</p>';
+			return '<p class="wgt-empty">' . esc_html__( 'Tournament not found.', 'wegame-tournoi' ) . '</p>';
 		}
 
 		// Sur la page d'un tournoi, c'est ce tournoi qui prime.

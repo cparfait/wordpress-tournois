@@ -7,10 +7,11 @@
 De 2 à 64 équipes, en élimination directe, double élimination ou phase de poules.
 Le tableau, le planning et les résultats s'affichent sur une page publique qui se met à jour toute seule pendant la soirée.
 
-[![Version](https://img.shields.io/badge/version-2.4.3-d62839)](https://github.com/cparfait/wordpress-tournois/releases)
+[![Version](https://img.shields.io/badge/version-2.5.0-d62839)](https://github.com/cparfait/wordpress-tournois/releases)
 [![WordPress](https://img.shields.io/badge/WordPress-5.6%2B-21759b)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.0%2B-777bb3)](https://www.php.net/)
 [![Licence](https://img.shields.io/badge/licence-GPL--2.0-blue)](LICENSE)
+[![Langues](https://img.shields.io/badge/langues-fr%20%7C%20en-d62839)](wegame-tournoi/languages)
 
 [Documentation](https://cparfait.github.io/wordpress-tournois/) · [Téléchargement](https://github.com/cparfait/wordpress-tournois/releases/latest) · [Signaler un problème](https://github.com/cparfait/wordpress-tournois/issues)
 
@@ -93,7 +94,7 @@ Elle gère aujourd'hui plusieurs tournois par site, dans trois formats, avec ou 
 
 ### Depuis l'archive
 
-1. Téléchargez `wegame-tournoi-2.4.3.zip` depuis la [dernière version](https://github.com/cparfait/wordpress-tournois/releases/latest).
+1. Téléchargez `wegame-tournoi-2.5.0.zip` depuis la [dernière version](https://github.com/cparfait/wordpress-tournois/releases/latest).
 2. Dans WordPress : **Extensions → Ajouter → Téléverser une extension**.
 3. Activez. Un menu **Tournois** apparaît.
 
@@ -227,10 +228,10 @@ L'extension n'étant pas publiée sur l'annuaire WordPress.org, les mises à jou
 {
   "name": "We Game Tournoi",
   "slug": "wegame-tournoi",
-  "version": "2.4.3",
+  "version": "2.5.0",
   "requires": "5.6",
   "requires_php": "7.0",
-  "download_url": "https://exemple.fr/maj/wegame-tournoi-2.4.3.zip",
+  "download_url": "https://exemple.fr/maj/wegame-tournoi-2.5.0.zip",
   "sha256": "empreinte hexadécimale du fichier ZIP"
 }
 ```
@@ -244,6 +245,22 @@ Voir [`wegame-tournoi-manifest.json`](wegame-tournoi-manifest.json) pour un exem
 
 ---
 
+## Langues
+
+L'extension est **traduisible intégralement**. Les chaînes source sont en anglais et une traduction française complète est livrée avec elle.
+
+| | |
+|---|---|
+| Anglais | langue source, aucune traduction à charger |
+| Français | 550 chaînes, livrées dans `wegame-tournoi/languages/` |
+| Autre langue | déposez un fichier `wegame-tournoi-<code>.mo` dans ce dossier, il apparaît aussitôt dans la liste |
+
+Le réglage **Langue**, dans Tournois puis Extension, choisit la langue de l'extension indépendamment de celle du site : identique au site, anglais, ou l'une des traductions installées. Un message après l'activation y renvoie.
+
+Pour traduire, partez du catalogue `wegame-tournoi/languages/wegame-tournoi.pot`.
+
+---
+
 ## Compatibilité
 
 | | |
@@ -253,7 +270,7 @@ Voir [`wegame-tournoi-manifest.json`](wegame-tournoi-manifest.json) pour un exem
 | Base de données | MySQL ou MariaDB. Trois tables préfixées `wgt_`. |
 | Thèmes | Indépendant du thème. Le bandeau de titre est masqué sur les pages de tournoi, avec une liste de sélecteurs extensible. |
 | Dépendances | Aucune. Ni bibliothèque JavaScript externe, ni service en ligne, ni clé d'API. |
-| Langue | Français. Toutes les chaînes passent par les fonctions de traduction, domaine `wegame-tournoi`. |
+| Langues | Anglais et français livrés ; traduisible dans toute autre langue, domaine `wegame-tournoi`. |
 
 ---
 

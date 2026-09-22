@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="We Game Tournoi">
+	<defs>
+		<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+			<stop offset="0" stop-color="#241a1d"/>
+			<stop offset="1" stop-color="#110c0e"/>
+		</linearGradient>
+		<linearGradient id="accent" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0" stop-color="#ff6b78"/>
+			<stop offset="1" stop-color="#d62839"/>
+		</linearGradient>
+	</defs>
+
+	<!-- Fond sombre à coins coupés, repris de l'affichage public de l'extension. -->
+	<path d="M0 0h218l38 38v180l-38 38H38L0 218Z" fill="url(#bg)"/>
+
+	<!-- Trame discrète. -->
+	<g stroke="#ffffff" stroke-opacity="0.05" stroke-width="1">
+		<path d="M40 0v256M80 0v256M120 0v256M160 0v256M200 0v256"/>
+		<path d="M0 40h256M0 80h256M0 120h256M0 160h256M0 200h256"/>
+	</g>
+
+	<!-- Tableau à quatre équipes : deux demi-finales puis la finale. -->
+	<g fill="none" stroke="#efe9eb" stroke-width="8" stroke-linecap="butt" stroke-linejoin="miter">
+		<!-- Demi-finale haute -->
+		<path d="M34 66h34v40" />
+		<path d="M34 106h34" />
+		<!-- Demi-finale basse -->
+		<path d="M34 150h34v40" />
+		<path d="M34 190h34" />
+	</g>
+
+	<!-- Les deux qualifiés rejoignent la finale. -->
+	<g fill="none" stroke="url(#accent)" stroke-width="8" stroke-linecap="butt">
+		<path d="M68 106h30v22" />
+		<path d="M68 190h30v-22" />
+		<path d="M98 128h26" />
+	</g>
+
+	<!-- Trophée du vainqueur. -->
+	<g fill="url(#accent)">
+		<path d="M150 70h60v30a30 30 0 0 1-60 0Z" />
+		<path d="M144 74h6v26h-6a13 13 0 0 1 0-26Z" />
+		<path d="M210 74h6a13 13 0 0 1 0 26h-6Z" />
+		<rect x="173" y="130" width="14" height="30" rx="3" />
+		<path d="M152 166h56l8 18h-72Z" />
+	</g>
+
+	<!-- Étoile creusée dans la coupe. -->
+	<path d="m180 80 6.2 12.7 14 2-10.1 9.9 2.4 13.9-12.5-6.6-12.5 6.6 2.4-13.9-10.1-9.9 14-2Z" fill="#150f11" fill-opacity="0.6" />
+</svg>

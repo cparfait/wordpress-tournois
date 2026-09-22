@@ -38,6 +38,9 @@ class WGT_Install {
 	 * Activation du plugin.
 	 */
 	public static function activate() {
+		// Invitation affichée une fois : choix de la langue, premier tournoi.
+		add_option( 'wgt_welcome', 1 );
+
 		self::create_tables();
 		WGT_Settings::install_defaults();
 		self::migrate();
@@ -196,8 +199,8 @@ class WGT_Install {
 		$matches = wgt_table( 'matches' );
 		$games   = wgt_table( 'games' );
 
-		$orphans = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$matches} WHERE tournament_id = 0" ); // phpcs:ignore WordPress.DB.PreparedSQL
-		$orphans += (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$teams} WHERE tournament_id = 0" ); // phpcs:ignore WordPress.DB.PreparedSQL
+		$orphans = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$matches} WHERE tournament_id = 0" ); // phpcs:ignore WordPress.DB.PreparedSQL, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter -- Table propre à l'extension, nom issu de wgt_table() ; requête de migration sans donnée utilisateur ni mise en cache.
+		$orphans += (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$teams} WHERE tournament_id = 0" ); // phpcs:ignore WordPress.DB.PreparedSQL, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter -- Table propre à l'extension, nom issu de wgt_table() ; requête de migration sans donnée utilisateur ni mise en cache.
 
 		$legacy = get_option( 'wgt_settings' );
 		$legacy = is_array( $legacy ) ? $legacy : array();
@@ -211,7 +214,7 @@ class WGT_Install {
 		// Le type de contenu doit être déclaré avant d'insérer.
 		WGT_Tournament::register();
 
-		$title = ! empty( $legacy['tournament_name'] ) ? $legacy['tournament_name'] : __( 'Tournoi', 'wegame-tournoi' );
+		$title = ! empty( $legacy['tournament_name'] ) ? $legacy['tournament_name'] : __( 'Tournament', 'wegame-tournoi' );
 		if ( ! empty( $legacy['game_name'] ) ) {
 			$title .= ' — ' . $legacy['game_name'];
 		}
@@ -246,9 +249,9 @@ class WGT_Install {
 		update_post_meta( $post_id, WGT_Tournament::META, array_merge( WGT_Tournament::defaults(), $settings ) );
 
 		// Rattachement des données orphelines.
-		$wpdb->query( $wpdb->prepare( "UPDATE {$teams} SET tournament_id = %d WHERE tournament_id = 0", $post_id ) ); // phpcs:ignore WordPress.DB.PreparedSQL
-		$wpdb->query( $wpdb->prepare( "UPDATE {$matches} SET tournament_id = %d WHERE tournament_id = 0", $post_id ) ); // phpcs:ignore WordPress.DB.PreparedSQL
-		$wpdb->query( $wpdb->prepare( "UPDATE {$games} SET tournament_id = %d WHERE tournament_id = 0", $post_id ) ); // phpcs:ignore WordPress.DB.PreparedSQL
+		$wpdb->query( $wpdb->prepare( "UPDATE {$teams} SET tournament_id = %d WHERE tournament_id = 0", $post_id ) ); // phpcs:ignore WordPress.DB.PreparedSQL, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter -- Table propre à l'extension, nom issu de wgt_table() ; valeurs passées par $wpdb->prepare() ; migration non mise en cache.
+		$wpdb->query( $wpdb->prepare( "UPDATE {$matches} SET tournament_id = %d WHERE tournament_id = 0", $post_id ) ); // phpcs:ignore WordPress.DB.PreparedSQL, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter -- Table propre à l'extension, nom issu de wgt_table() ; valeurs passées par $wpdb->prepare() ; migration non mise en cache.
+		$wpdb->query( $wpdb->prepare( "UPDATE {$games} SET tournament_id = %d WHERE tournament_id = 0", $post_id ) ); // phpcs:ignore WordPress.DB.PreparedSQL, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter -- Table propre à l'extension, nom issu de wgt_table() ; valeurs passées par $wpdb->prepare() ; migration non mise en cache.
 
 		update_option( 'wgt_default_tournament', $post_id );
 		update_option( 'wgt_migrated_multi', 1 );
@@ -280,20 +283,20 @@ class WGT_Install {
 
 		$matches = wgt_table( 'matches' );
 
-		$total = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$matches} WHERE tournament_id = %d", $post_id ) ); // phpcs:ignore WordPress.DB.PreparedSQL
+		$total = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$matches} WHERE tournament_id = %d", $post_id ) ); // phpcs:ignore WordPress.DB.PreparedSQL, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter -- Table propre à l'extension, nom issu de wgt_table() ; valeurs passées par $wpdb->prepare() ; migration non mise en cache.
 		if ( ! $total ) {
 			// Aucun match : ensure_bracket ne fait que créer, sans risque.
 			WGT_Data::ensure_bracket( $post_id );
 			return;
 		}
 
-		$filled = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$matches} WHERE tournament_id = %d AND ( src1 <> '' OR src2 <> '' OR round_no <> 0 )", $post_id ) ); // phpcs:ignore WordPress.DB.PreparedSQL
+		$filled = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$matches} WHERE tournament_id = %d AND ( src1 <> '' OR src2 <> '' OR round_no <> 0 )", $post_id ) ); // phpcs:ignore WordPress.DB.PreparedSQL, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter -- Table propre à l'extension, nom issu de wgt_table() ; valeurs passées par $wpdb->prepare() ; migration non mise en cache.
 		if ( $filled > 0 ) {
 			// Structure déjà renseignée : on ne touche à rien.
 			return;
 		}
 
-		$existing = $wpdb->get_col( $wpdb->prepare( "SELECT code FROM {$matches} WHERE tournament_id = %d", $post_id ) ); // phpcs:ignore WordPress.DB.PreparedSQL
+		$existing = $wpdb->get_col( $wpdb->prepare( "SELECT code FROM {$matches} WHERE tournament_id = %d", $post_id ) ); // phpcs:ignore WordPress.DB.PreparedSQL, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter -- Table propre à l'extension, nom issu de wgt_table() ; valeurs passées par $wpdb->prepare() ; migration non mise en cache.
 		$existing = is_array( $existing ) ? $existing : array();
 
 		$wanted = array();

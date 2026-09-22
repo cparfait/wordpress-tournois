@@ -24,6 +24,7 @@ class WGT_Settings {
 	 */
 	public static function defaults() {
 		return array(
+			'plugin_locale'            => '',
 			'refresh_interval'         => 30,
 			'hide_page_title'          => 1,
 			'hide_title_selector'      => '',
@@ -80,6 +81,15 @@ class WGT_Settings {
 			if ( $out['refresh_interval'] > 0 && $out['refresh_interval'] < 10 ) {
 				$out['refresh_interval'] = 10;
 			}
+		}
+
+		if ( isset( $input['plugin_locale'] ) ) {
+			// Langue de l'extension : vide (celle du site) ou un code de
+			// langue réellement disponible.
+			$locale = sanitize_text_field( $input['plugin_locale'] );
+			$known  = array_keys( wgt_available_locales() );
+			$known[] = 'en_US';
+			$out['plugin_locale'] = in_array( $locale, $known, true ) ? $locale : '';
 		}
 
 		if ( isset( $input['update_manifest_url'] ) ) {

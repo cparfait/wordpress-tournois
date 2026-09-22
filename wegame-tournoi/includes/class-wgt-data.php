@@ -48,18 +48,18 @@ class WGT_Data {
 
 		if ( '' !== $args['status'] ) {
 			$sql = $wpdb->prepare(
-				"SELECT * FROM {$table} WHERE tournament_id = %d AND status = %s ORDER BY (seed = 0), {$order} ASC, name ASC", // phpcs:ignore WordPress.DB.PreparedSQL
+				"SELECT * FROM {$table} WHERE tournament_id = %d AND status = %s ORDER BY (seed = 0), {$order} ASC, name ASC", // phpcs:ignore WordPress.DB.PreparedSQL -- Nom de table issu de wgt_table() et clé de tri sur liste fermée ; les valeurs passent par $wpdb->prepare().
 				$tid,
 				$args['status']
 			);
 		} else {
 			$sql = $wpdb->prepare(
-				"SELECT * FROM {$table} WHERE tournament_id = %d ORDER BY (seed = 0), {$order} ASC, name ASC", // phpcs:ignore WordPress.DB.PreparedSQL
+				"SELECT * FROM {$table} WHERE tournament_id = %d ORDER BY (seed = 0), {$order} ASC, name ASC", // phpcs:ignore WordPress.DB.PreparedSQL -- Nom de table issu de wgt_table() et clé de tri sur liste fermée ; les valeurs passent par $wpdb->prepare().
 				$tid
 			);
 		}
 
-		$rows = $wpdb->get_results( $sql, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL
+		$rows = $wpdb->get_results( $sql, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter -- Table propre à l'extension, nom issu de wgt_table() ; valeurs passées par $wpdb->prepare() ; données transactionnelles non mises en cache.
 
 		return is_array( $rows ) ? $rows : array();
 	}
@@ -87,7 +87,7 @@ class WGT_Data {
 	public static function get_team( $id ) {
 		global $wpdb;
 		$table = wgt_table( 'teams' );
-		$row   = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$table} WHERE id = %d", (int) $id ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL
+		$row   = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$table} WHERE id = %d", (int) $id ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter -- Table propre à l'extension, nom issu de wgt_table() ; valeurs passées par $wpdb->prepare() ; données transactionnelles non mises en cache.
 		return $row ? $row : null;
 	}
 
@@ -101,9 +101,9 @@ class WGT_Data {
 	public static function get_team_by_seed( $tournament_id, $seed ) {
 		global $wpdb;
 		$table = wgt_table( 'teams' );
-		$row   = $wpdb->get_row(
+		$row   = $wpdb->get_row( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter -- Table propre à l'extension, nom issu de wgt_table() ; valeurs passées par $wpdb->prepare() ; données transactionnelles non mises en cache.
 			$wpdb->prepare(
-				"SELECT * FROM {$table} WHERE tournament_id = %d AND seed = %d AND status = 'active' LIMIT 1", // phpcs:ignore WordPress.DB.PreparedSQL
+				"SELECT * FROM {$table} WHERE tournament_id = %d AND seed = %d AND status = 'active' LIMIT 1", // phpcs:ignore WordPress.DB.PreparedSQL -- Nom de table issu de wgt_table(), sans donnée utilisateur ; les valeurs passent par $wpdb->prepare().
 				(int) $tournament_id,
 				(int) $seed
 			),
@@ -132,11 +132,11 @@ class WGT_Data {
 		}
 
 		if ( ! $tid ) {
-			return new WP_Error( 'wgt_no_tournament', __( 'Aucun tournoi sélectionné.', 'wegame-tournoi' ) );
+			return new WP_Error( 'wgt_no_tournament', __( 'No tournament selected.', 'wegame-tournoi' ) );
 		}
 
 		if ( '' === $name ) {
-			return new WP_Error( 'wgt_no_name', __( 'Le nom de l’équipe est obligatoire.', 'wegame-tournoi' ) );
+			return new WP_Error( 'wgt_no_name', __( 'The team name is required.', 'wegame-tournoi' ) );
 		}
 
 		$max  = (int) WGT_Tournament::get( $tid, 'team_count' );
@@ -148,7 +148,7 @@ class WGT_Data {
 				'wgt_bad_seed',
 				sprintf(
 					/* translators: %d: nombre d'équipes du tournoi */
-					__( 'La position doit être comprise entre 1 et %d (0 = non placée).', 'wegame-tournoi' ),
+					__( 'The seed must be between 1 and %d (0 = unseeded).', 'wegame-tournoi' ),
 					$max
 				)
 			);
@@ -156,9 +156,9 @@ class WGT_Data {
 
 		// Une seule équipe par position, au sein du même tournoi.
 		if ( $seed > 0 ) {
-			$taken = $wpdb->get_var(
+			$taken = $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter -- Table propre à l'extension, nom issu de wgt_table() ; valeurs passées par $wpdb->prepare() ; données transactionnelles non mises en cache.
 				$wpdb->prepare(
-					"SELECT id FROM {$table} WHERE tournament_id = %d AND seed = %d AND id <> %d", // phpcs:ignore WordPress.DB.PreparedSQL
+					"SELECT id FROM {$table} WHERE tournament_id = %d AND seed = %d AND id <> %d", // phpcs:ignore WordPress.DB.PreparedSQL -- Nom de table issu de wgt_table(), sans donnée utilisateur ; les valeurs passent par $wpdb->prepare().
 					$tid,
 					$seed,
 					$id
@@ -169,7 +169,7 @@ class WGT_Data {
 					'wgt_seed_taken',
 					sprintf(
 						/* translators: %d: numéro de position */
-						__( 'La position n°%d est déjà occupée par une autre équipe.', 'wegame-tournoi' ),
+						__( 'Seed #%d is already taken by another team.', 'wegame-tournoi' ),
 						$seed
 					)
 				);
@@ -196,10 +196,10 @@ class WGT_Data {
 		);
 
 		if ( $id > 0 ) {
-			$wpdb->update( $table, $row, array( 'id' => $id ) );
+			$wpdb->update( $table, $row, array( 'id' => $id ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Table propre à l'extension ; données transactionnelles non mises en cache.
 		} else {
 			$row['created_at'] = current_time( 'mysql' );
-			$wpdb->insert( $table, $row );
+			$wpdb->insert( $table, $row ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Table propre à l'extension ; données transactionnelles non mises en cache.
 			$id = (int) $wpdb->insert_id;
 		}
 
@@ -227,7 +227,7 @@ class WGT_Data {
 			return;
 		}
 
-		$wpdb->delete( wgt_table( 'teams' ), array( 'id' => (int) $id ) );
+		$wpdb->delete( wgt_table( 'teams' ), array( 'id' => (int) $id ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Table propre à l'extension ; données transactionnelles non mises en cache.
 
 		$tid = (int) $team['tournament_id'];
 		if ( self::structure_follows_teams( $tid ) ) {
@@ -253,8 +253,8 @@ class WGT_Data {
 
 		$table = wgt_table( 'teams' );
 
-		return (int) $wpdb->get_var(
-			$wpdb->prepare( "SELECT COUNT(*) FROM {$table} WHERE tournament_id = %d AND status <> 'rejected'", $tid ) // phpcs:ignore WordPress.DB.PreparedSQL
+		return (int) $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter -- Table propre à l'extension, nom issu de wgt_table() ; valeurs passées par $wpdb->prepare() ; données transactionnelles non mises en cache.
+			$wpdb->prepare( "SELECT COUNT(*) FROM {$table} WHERE tournament_id = %d AND status <> 'rejected'", $tid ) // phpcs:ignore WordPress.DB.PreparedSQL -- Nom de table issu de wgt_table(), sans donnée utilisateur ; les valeurs passent par $wpdb->prepare().
 		);
 	}
 
@@ -285,8 +285,8 @@ class WGT_Data {
 		foreach ( WGT_Bracket::structure( $settings ) as $def ) {
 			$wanted[] = $def['code'];
 
-			$exists = $wpdb->get_var(
-				$wpdb->prepare( "SELECT id FROM {$table} WHERE tournament_id = %d AND code = %s", $tid, $def['code'] ) // phpcs:ignore WordPress.DB.PreparedSQL
+			$exists = $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter -- Table propre à l'extension, nom issu de wgt_table() ; valeurs passées par $wpdb->prepare() ; données transactionnelles non mises en cache.
+				$wpdb->prepare( "SELECT id FROM {$table} WHERE tournament_id = %d AND code = %s", $tid, $def['code'] ) // phpcs:ignore WordPress.DB.PreparedSQL -- Nom de table issu de wgt_table(), sans donnée utilisateur ; les valeurs passent par $wpdb->prepare().
 			);
 
 			$row = array(
@@ -310,14 +310,14 @@ class WGT_Data {
 				 * du dossier d'origine. Ils sont posés à la création, ou par
 				 * l'outil « Recalculer le planning ».
 				 */
-				$wpdb->update( $table, $row, array( 'id' => (int) $exists ) );
+				$wpdb->update( $table, $row, array( 'id' => (int) $exists ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Table propre à l'extension ; données transactionnelles non mises en cache.
 			} else {
 				$row['stations']   = isset( $def['stations'] ) ? $def['stations'] : '';
 				$row['start_time'] = isset( $def['start'] ) ? $def['start'] : '';
 				$row['end_time']   = isset( $def['end'] ) ? $def['end'] : '';
 				$row['status']     = 'pending';
 				$row['updated_at'] = current_time( 'mysql' );
-				$wpdb->insert( $table, $row );
+				$wpdb->insert( $table, $row ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Table propre à l'extension ; données transactionnelles non mises en cache.
 			}
 		}
 
@@ -326,8 +326,8 @@ class WGT_Data {
 			if ( in_array( $match['code'], $wanted, true ) ) {
 				continue;
 			}
-			$wpdb->delete( wgt_table( 'games' ), array( 'match_id' => (int) $match['id'] ) );
-			$wpdb->delete( $table, array( 'id' => (int) $match['id'] ) );
+			$wpdb->delete( wgt_table( 'games' ), array( 'match_id' => (int) $match['id'] ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Table propre à l'extension ; données transactionnelles non mises en cache.
+			$wpdb->delete( $table, array( 'id' => (int) $match['id'] ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Table propre à l'extension ; données transactionnelles non mises en cache.
 		}
 	}
 
@@ -347,7 +347,7 @@ class WGT_Data {
 		$settings = self::structure_settings( $tid );
 
 		foreach ( WGT_Bracket::structure( $settings ) as $def ) {
-			$wpdb->update(
+			$wpdb->update( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Table propre à l'extension ; données transactionnelles non mises en cache.
 				wgt_table( 'matches' ),
 				array(
 					'stations'   => isset( $def['stations'] ) ? $def['stations'] : '',
@@ -377,9 +377,9 @@ class WGT_Data {
 		}
 
 		$table = wgt_table( 'matches' );
-		$rows  = $wpdb->get_results(
+		$rows  = $wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter -- Table propre à l'extension, nom issu de wgt_table() ; valeurs passées par $wpdb->prepare() ; données transactionnelles non mises en cache.
 			$wpdb->prepare(
-				"SELECT * FROM {$table} WHERE tournament_id = %d ORDER BY round_no ASC, position ASC", // phpcs:ignore WordPress.DB.PreparedSQL
+				"SELECT * FROM {$table} WHERE tournament_id = %d ORDER BY round_no ASC, position ASC", // phpcs:ignore WordPress.DB.PreparedSQL -- Nom de table issu de wgt_table(), sans donnée utilisateur ; les valeurs passent par $wpdb->prepare().
 				$tid
 			),
 			ARRAY_A
@@ -425,7 +425,7 @@ class WGT_Data {
 	public static function get_match( $id ) {
 		global $wpdb;
 		$table = wgt_table( 'matches' );
-		$row   = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$table} WHERE id = %d", (int) $id ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL
+		$row   = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$table} WHERE id = %d", (int) $id ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter -- Table propre à l'extension, nom issu de wgt_table() ; valeurs passées par $wpdb->prepare() ; données transactionnelles non mises en cache.
 		return $row ? $row : null;
 	}
 
@@ -438,7 +438,7 @@ class WGT_Data {
 	public static function get_games( $match_id ) {
 		global $wpdb;
 		$table = wgt_table( 'games' );
-		$rows  = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$table} WHERE match_id = %d ORDER BY game_no ASC", (int) $match_id ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL
+		$rows  = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$table} WHERE match_id = %d ORDER BY game_no ASC", (int) $match_id ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter -- Table propre à l'extension, nom issu de wgt_table() ; valeurs passées par $wpdb->prepare() ; données transactionnelles non mises en cache.
 		return is_array( $rows ) ? $rows : array();
 	}
 
@@ -452,8 +452,8 @@ class WGT_Data {
 		global $wpdb;
 
 		$table = wgt_table( 'games' );
-		$rows  = $wpdb->get_results(
-			$wpdb->prepare( "SELECT * FROM {$table} WHERE tournament_id = %d ORDER BY match_id ASC, game_no ASC", (int) $tournament_id ), // phpcs:ignore WordPress.DB.PreparedSQL
+		$rows  = $wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter -- Table propre à l'extension, nom issu de wgt_table() ; valeurs passées par $wpdb->prepare() ; données transactionnelles non mises en cache.
+			$wpdb->prepare( "SELECT * FROM {$table} WHERE tournament_id = %d ORDER BY match_id ASC, game_no ASC", (int) $tournament_id ), // phpcs:ignore WordPress.DB.PreparedSQL -- Nom de table issu de wgt_table(), sans donnée utilisateur ; les valeurs passent par $wpdb->prepare().
 			ARRAY_A
 		);
 
@@ -482,7 +482,7 @@ class WGT_Data {
 
 		$match = self::get_match( $match_id );
 		if ( ! $match ) {
-			return new WP_Error( 'wgt_no_match', __( 'Match introuvable.', 'wegame-tournoi' ) );
+			return new WP_Error( 'wgt_no_match', __( 'Match not found.', 'wegame-tournoi' ) );
 		}
 
 		$tid    = (int) $match['tournament_id'];
@@ -517,7 +517,7 @@ class WGT_Data {
 						'wgt_bo_extra',
 						sprintf(
 							/* translators: 1: format BO, 2: nombre de manches à gagner */
-							__( 'En BO%1$d, le match s’arrête dès que %2$d manches sont remportées : supprimez les manches en trop.', 'wegame-tournoi' ),
+							__( 'In BO%1$d, the match ends as soon as %2$d games are won: remove the extra games.', 'wegame-tournoi' ),
 							$bo,
 							$needed
 						)
@@ -533,7 +533,7 @@ class WGT_Data {
 						'wgt_game_draw',
 						sprintf(
 							/* translators: %d: numéro de manche */
-							__( 'La manche %d est à égalité : une manche doit avoir un vainqueur.', 'wegame-tournoi' ),
+							__( 'Game %d is tied: a game must have a winner.', 'wegame-tournoi' ),
 							$game_no
 						)
 					);
@@ -568,17 +568,17 @@ class WGT_Data {
 		$winner = 0;
 		if ( 'done' === $status ) {
 			if ( ! $team1 || ! $team2 ) {
-				return new WP_Error( 'wgt_incomplete', __( 'Les deux équipes doivent être connues avant de valider le match.', 'wegame-tournoi' ) );
+				return new WP_Error( 'wgt_incomplete', __( 'Both teams must be known before the match can be approved.', 'wegame-tournoi' ) );
 			}
 			if ( $score1 === $score2 ) {
-				return new WP_Error( 'wgt_draw', __( 'Un match à élimination directe ne peut pas se terminer sur une égalité.', 'wegame-tournoi' ) );
+				return new WP_Error( 'wgt_draw', __( 'A single-elimination match cannot end in a tie.', 'wegame-tournoi' ) );
 			}
 			if ( $bo > 1 && max( $score1, $score2 ) < $needed ) {
 				return new WP_Error(
 					'wgt_bo',
 					sprintf(
 						/* translators: 1: format BO, 2: nombre de manches à gagner */
-						__( 'En BO%1$d, le vainqueur doit remporter %2$d manches.', 'wegame-tournoi' ),
+						__( 'In BO%1$d, the winner must win %2$d games.', 'wegame-tournoi' ),
 						$bo,
 						$needed
 					)
@@ -588,13 +588,13 @@ class WGT_Data {
 		}
 
 		if ( $bo > 1 ) {
-			$wpdb->delete( wgt_table( 'games' ), array( 'match_id' => (int) $match['id'] ) );
+			$wpdb->delete( wgt_table( 'games' ), array( 'match_id' => (int) $match['id'] ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Table propre à l'extension ; données transactionnelles non mises en cache.
 			foreach ( $rows as $row ) {
-				$wpdb->insert( wgt_table( 'games' ), $row );
+				$wpdb->insert( wgt_table( 'games' ), $row ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Table propre à l'extension ; données transactionnelles non mises en cache.
 			}
 		}
 
-		$wpdb->update(
+		$wpdb->update( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Table propre à l'extension ; données transactionnelles non mises en cache.
 			wgt_table( 'matches' ),
 			array(
 				'score1'     => $score1,
@@ -711,7 +711,7 @@ class WGT_Data {
 		}
 
 		foreach ( $matches as $match ) {
-			$wpdb->update(
+			$wpdb->update( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Table propre à l'extension ; données transactionnelles non mises en cache.
 				$table,
 				array(
 					'team1_id'  => (int) $match['team1_id'],
@@ -740,7 +740,7 @@ class WGT_Data {
 		$target['score2']    = 0;
 
 		if ( 'pending' !== $stored['status'] || (int) $stored['score1'] || (int) $stored['score2'] || (int) $stored['winner_id'] ) {
-			$wpdb->delete( wgt_table( 'games' ), array( 'match_id' => (int) $stored['id'] ) );
+			$wpdb->delete( wgt_table( 'games' ), array( 'match_id' => (int) $stored['id'] ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Table propre à l'extension ; données transactionnelles non mises en cache.
 		}
 	}
 
@@ -882,18 +882,18 @@ class WGT_Data {
 	public static function source_label( $src ) {
 		if ( 'W:' === substr( $src, 0, 2 ) ) {
 			/* translators: %s: code du match */
-			return sprintf( __( 'Vainqueur %s', 'wegame-tournoi' ), substr( $src, 2 ) );
+			return sprintf( __( 'Winner of %s', 'wegame-tournoi' ), substr( $src, 2 ) );
 		}
 		if ( 'L:' === substr( $src, 0, 2 ) ) {
 			/* translators: %s: code du match */
-			return sprintf( __( 'Perdant %s', 'wegame-tournoi' ), substr( $src, 2 ) );
+			return sprintf( __( 'Loser of %s', 'wegame-tournoi' ), substr( $src, 2 ) );
 		}
 		if ( 'GS:' === substr( $src, 0, 3 ) ) {
 			$parts = explode( ':', $src );
 			if ( 3 === count( $parts ) ) {
 				return sprintf(
 					/* translators: 1: numéro d'équipe, 2: lettre de poule */
-					__( 'Équipe %1$d de la poule %2$s', 'wegame-tournoi' ),
+					__( 'Team %1$d of group %2$s', 'wegame-tournoi' ),
 					(int) $parts[2],
 					self::group_name( (int) $parts[1] )
 				);
@@ -904,21 +904,21 @@ class WGT_Data {
 			if ( 3 === count( $parts ) ) {
 				return sprintf(
 					/* translators: 1: rang, 2: numéro de poule */
-					__( '%1$d%2$s de la poule %3$s', 'wegame-tournoi' ),
+					__( '%1$d%2$s in group %3$s', 'wegame-tournoi' ),
 					(int) $parts[2],
-					1 === (int) $parts[2] ? __( 'er', 'wegame-tournoi' ) : __( 'e', 'wegame-tournoi' ),
+					1 === (int) $parts[2] ? __( 'st', 'wegame-tournoi' ) : __( 'th', 'wegame-tournoi' ),
 					self::group_name( (int) $parts[1] )
 				);
 			}
 		}
 		if ( 'BYE' === $src ) {
-			return __( 'Exempt', 'wegame-tournoi' );
+			return __( 'Bye', 'wegame-tournoi' );
 		}
 		if ( 'S' === substr( $src, 0, 1 ) ) {
 			/* translators: %d: numéro de position */
-			return sprintf( __( 'Équipe n°%d', 'wegame-tournoi' ), (int) substr( $src, 1 ) );
+			return sprintf( __( 'Team #%d', 'wegame-tournoi' ), (int) substr( $src, 1 ) );
 		}
-		return __( 'À déterminer', 'wegame-tournoi' );
+		return __( 'To be determined', 'wegame-tournoi' );
 	}
 
 	/**
@@ -1079,7 +1079,7 @@ class WGT_Data {
 			if ( ! $team ) {
 				break;
 			}
-			$wpdb->update( wgt_table( 'teams' ), array( 'seed' => $seed ), array( 'id' => (int) $team['id'] ) );
+			$wpdb->update( wgt_table( 'teams' ), array( 'seed' => $seed ), array( 'id' => (int) $team['id'] ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Table propre à l'extension ; données transactionnelles non mises en cache.
 			$placed++;
 		}
 
@@ -1101,10 +1101,10 @@ class WGT_Data {
 			return;
 		}
 
-		$wpdb->delete( wgt_table( 'games' ), array( 'tournament_id' => $tid ) );
-		$wpdb->query(
+		$wpdb->delete( wgt_table( 'games' ), array( 'tournament_id' => $tid ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Table propre à l'extension ; données transactionnelles non mises en cache.
+		$wpdb->query( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter -- Table propre à l'extension, nom issu de wgt_table() ; valeurs passées par $wpdb->prepare() ; données transactionnelles non mises en cache.
 			$wpdb->prepare(
-				'UPDATE ' . wgt_table( 'matches' ) . " SET score1 = 0, score2 = 0, winner_id = 0, status = 'pending' WHERE tournament_id = %d", // phpcs:ignore WordPress.DB.PreparedSQL
+				'UPDATE ' . wgt_table( 'matches' ) . " SET score1 = 0, score2 = 0, winner_id = 0, status = 'pending' WHERE tournament_id = %d", // phpcs:ignore WordPress.DB.PreparedSQL -- Nom de table issu de wgt_table(), sans donnée utilisateur ; les valeurs passent par $wpdb->prepare().
 				$tid
 			)
 		);
@@ -1126,9 +1126,9 @@ class WGT_Data {
 			return;
 		}
 
-		$wpdb->delete( wgt_table( 'games' ), array( 'tournament_id' => $tid ) );
-		$wpdb->delete( wgt_table( 'teams' ), array( 'tournament_id' => $tid ) );
-		$wpdb->delete( wgt_table( 'matches' ), array( 'tournament_id' => $tid ) );
+		$wpdb->delete( wgt_table( 'games' ), array( 'tournament_id' => $tid ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Table propre à l'extension ; données transactionnelles non mises en cache.
+		$wpdb->delete( wgt_table( 'teams' ), array( 'tournament_id' => $tid ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Table propre à l'extension ; données transactionnelles non mises en cache.
+		$wpdb->delete( wgt_table( 'matches' ), array( 'tournament_id' => $tid ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Table propre à l'extension ; données transactionnelles non mises en cache.
 
 		self::ensure_bracket( $tid );
 		self::recalculate( $tid );
@@ -1231,7 +1231,7 @@ class WGT_Data {
 		$team_id = (int) $team_id;
 
 		if ( ! $team_id ) {
-			return '' !== $fallback ? $fallback : __( 'À déterminer', 'wegame-tournoi' );
+			return '' !== $fallback ? $fallback : __( 'To be determined', 'wegame-tournoi' );
 		}
 
 		if ( is_array( $map ) && isset( $map[ $team_id ] ) ) {
@@ -1240,6 +1240,6 @@ class WGT_Data {
 
 		$team = self::get_team( $team_id );
 
-		return $team ? $team['name'] : ( '' !== $fallback ? $fallback : __( 'À déterminer', 'wegame-tournoi' ) );
+		return $team ? $team['name'] : ( '' !== $fallback ? $fallback : __( 'To be determined', 'wegame-tournoi' ) );
 	}
 }

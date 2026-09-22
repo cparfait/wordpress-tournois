@@ -122,22 +122,22 @@ class WGT_Bracket {
 	 */
 	public static function round_label( $key, $bo = 0 ) {
 		$labels = array(
-			'final' => __( 'Finale', 'wegame-tournoi' ),
-			'sf'    => __( 'Demi-finales', 'wegame-tournoi' ),
-			'qf'    => __( 'Quarts de finale', 'wegame-tournoi' ),
-			'r16'   => __( 'Huitièmes de finale', 'wegame-tournoi' ),
-			'r32'   => __( 'Seizièmes de finale', 'wegame-tournoi' ),
-			'r64'   => __( 'Trente-deuxièmes de finale', 'wegame-tournoi' ),
-			'third' => __( 'Match pour la 3e place', 'wegame-tournoi' ),
-			'group' => __( 'Phase de poules', 'wegame-tournoi' ),
-			'gf'    => __( 'Grande finale', 'wegame-tournoi' ),
+			'final' => __( 'Final', 'wegame-tournoi' ),
+			'sf'    => __( 'Semi-finals', 'wegame-tournoi' ),
+			'qf'    => __( 'Quarter-finals', 'wegame-tournoi' ),
+			'r16'   => __( 'Round of 16', 'wegame-tournoi' ),
+			'r32'   => __( 'Round of 32', 'wegame-tournoi' ),
+			'r64'   => __( 'Round of 64', 'wegame-tournoi' ),
+			'third' => __( 'Third place match', 'wegame-tournoi' ),
+			'group' => __( 'Group stage', 'wegame-tournoi' ),
+			'gf'    => __( 'Grand final', 'wegame-tournoi' ),
 		);
 
 		if ( isset( $labels[ $key ] ) ) {
 			$label = $labels[ $key ];
 		} elseif ( 0 === strpos( $key, 'lb' ) ) {
 			/* translators: %d: numéro de tour de repêchage */
-			$label = sprintf( __( 'Repêchage — tour %d', 'wegame-tournoi' ), (int) substr( $key, 2 ) );
+			$label = sprintf( __( 'Losers bracket — round %d', 'wegame-tournoi' ), (int) substr( $key, 2 ) );
 		} else {
 			$label = $key;
 		}
@@ -153,15 +153,15 @@ class WGT_Bracket {
 	 */
 	public static function round_short( $key ) {
 		$labels = array(
-			'final' => __( 'Finale', 'wegame-tournoi' ),
-			'sf'    => __( 'Demies', 'wegame-tournoi' ),
-			'qf'    => __( 'Quarts', 'wegame-tournoi' ),
-			'r16'   => __( 'Huitièmes', 'wegame-tournoi' ),
-			'r32'   => __( 'Seizièmes', 'wegame-tournoi' ),
-			'r64'   => __( '32es', 'wegame-tournoi' ),
-			'third' => __( '3e place', 'wegame-tournoi' ),
-			'group' => __( 'Poules', 'wegame-tournoi' ),
-			'gf'    => __( 'Grande finale', 'wegame-tournoi' ),
+			'final' => __( 'Final', 'wegame-tournoi' ),
+			'sf'    => __( 'Semis', 'wegame-tournoi' ),
+			'qf'    => __( 'Quarters', 'wegame-tournoi' ),
+			'r16'   => __( 'R16', 'wegame-tournoi' ),
+			'r32'   => __( 'R32', 'wegame-tournoi' ),
+			'r64'   => __( 'R64', 'wegame-tournoi' ),
+			'third' => __( 'Third place', 'wegame-tournoi' ),
+			'group' => __( 'Groups', 'wegame-tournoi' ),
+			'gf'    => __( 'Grand final', 'wegame-tournoi' ),
 		);
 
 		if ( isset( $labels[ $key ] ) ) {
@@ -169,7 +169,7 @@ class WGT_Bracket {
 		}
 		if ( 0 === strpos( $key, 'lb' ) ) {
 			/* translators: %d: numéro de tour de repêchage */
-			return sprintf( __( 'Repêchage %d', 'wegame-tournoi' ), (int) substr( $key, 2 ) );
+			return sprintf( __( 'Losers round %d', 'wegame-tournoi' ), (int) substr( $key, 2 ) );
 		}
 		return $key;
 	}
@@ -1187,11 +1187,11 @@ class WGT_Bracket {
 	 */
 	public static function staff() {
 		return array(
-			array( __( 'Responsable tournoi', 'wegame-tournoi' ), 1, __( 'Supervision, règlement, décisions et coordination', 'wegame-tournoi' ) ),
-			array( __( 'Accueil / gestion', 'wegame-tournoi' ), 1, __( 'Inscriptions, résultats, tableau et horaires', 'wegame-tournoi' ) ),
-			array( __( 'Arbitres', 'wegame-tournoi' ), 2, __( 'Suivi des matchs, validation des scores, litiges', 'wegame-tournoi' ) ),
-			array( __( 'Techniciens', 'wegame-tournoi' ), 2, __( 'Postes, réseau, comptes, périphériques, incidents', 'wegame-tournoi' ) ),
-			array( __( 'Animateur / communication', 'wegame-tournoi' ), 1, __( 'Annonces, ambiance, présentation, remise des prix', 'wegame-tournoi' ) ),
+			array( __( 'Tournament manager', 'wegame-tournoi' ), 1, __( 'Supervision, rules, decisions and coordination', 'wegame-tournoi' ) ),
+			array( __( 'Front desk / management', 'wegame-tournoi' ), 1, __( 'Sign-ups, results, bracket and times', 'wegame-tournoi' ) ),
+			array( __( 'Referees', 'wegame-tournoi' ), 2, __( 'Match follow-up, score approval, disputes', 'wegame-tournoi' ) ),
+			array( __( 'Technicians', 'wegame-tournoi' ), 2, __( 'Stations, network, accounts, peripherals, incidents', 'wegame-tournoi' ) ),
+			array( __( 'Host / communication', 'wegame-tournoi' ), 1, __( 'Announcements, atmosphere, hosting, prize ceremony', 'wegame-tournoi' ) ),
 		);
 	}
 
@@ -1211,19 +1211,19 @@ class WGT_Bracket {
 			sprintf(
 				/* translators: %d: nombre de joueurs titulaires */
 				_n(
-					'Chaque équipe est composée de %d joueur titulaire ; un remplaçant est recommandé.',
-					'Chaque équipe est composée de %d joueurs titulaires ; un remplaçant est recommandé.',
+					'Each team is made up of %d starting player; a substitute is recommended.',
+					'Each team is made up of %d starting players; a substitute is recommended.',
 					$players,
 					'wegame-tournoi'
 				),
 				$players
 			),
-			__( 'Le capitaine est le contact officiel de l’équipe.', 'wegame-tournoi' ),
-			__( 'Les joueurs doivent respecter les consignes des arbitres et de l’organisation.', 'wegame-tournoi' ),
-			__( 'Tout cheat, exploit volontaire ou comportement antisportif peut entraîner une sanction ou une disqualification.', 'wegame-tournoi' ),
-			__( 'Les problèmes techniques doivent être signalés immédiatement à l’arbitre.', 'wegame-tournoi' ),
-			__( 'Les résultats sont validés par l’arbitre avant passage au tour suivant.', 'wegame-tournoi' ),
-			__( 'L’organisation peut adapter le planning en cas de problème technique ou de retard important.', 'wegame-tournoi' ),
+			__( 'The captain is the team\'s official contact.', 'wegame-tournoi' ),
+			__( 'Players must follow the instructions of the referees and the organizers.', 'wegame-tournoi' ),
+			__( 'Any cheat, deliberate exploit or unsportsmanlike behavior may lead to a penalty or a disqualification.', 'wegame-tournoi' ),
+			__( 'Technical problems must be reported to the referee immediately.', 'wegame-tournoi' ),
+			__( 'Results are approved by the referee before moving on to the next round.', 'wegame-tournoi' ),
+			__( 'The organizers may adjust the schedule in the event of a technical problem or a significant delay.', 'wegame-tournoi' ),
 		);
 	}
 
@@ -1234,14 +1234,14 @@ class WGT_Bracket {
 	 */
 	public static function checklist() {
 		return array(
-			__( 'Vérifier les postes et périphériques', 'wegame-tournoi' ),
-			__( 'Tester réseau et connexion aux services de jeu', 'wegame-tournoi' ),
-			__( 'Vérifier les comptes / profils utilisés', 'wegame-tournoi' ),
-			__( 'Préparer le tableau du tournoi et les feuilles de scores', 'wegame-tournoi' ),
-			__( 'Identifier les capitaines des équipes', 'wegame-tournoi' ),
-			__( 'Faire le briefing joueurs et arbitres', 'wegame-tournoi' ),
-			__( 'Préparer lots / trophée / récompenses', 'wegame-tournoi' ),
-			__( 'Prévoir eau, pauses et espace d’attente', 'wegame-tournoi' ),
+			__( 'Check the stations and peripherals', 'wegame-tournoi' ),
+			__( 'Test the network and the connection to game services', 'wegame-tournoi' ),
+			__( 'Check the accounts / profiles used', 'wegame-tournoi' ),
+			__( 'Prepare the tournament bracket and the score sheets', 'wegame-tournoi' ),
+			__( 'Identify the team captains', 'wegame-tournoi' ),
+			__( 'Brief the players and referees', 'wegame-tournoi' ),
+			__( 'Prepare prizes / trophy / rewards', 'wegame-tournoi' ),
+			__( 'Plan for water, breaks and a waiting area', 'wegame-tournoi' ),
 		);
 	}
 }

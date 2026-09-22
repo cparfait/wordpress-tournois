@@ -44,7 +44,7 @@ class WGT_Render {
 				$atts['tournament_id'] = $tid;
 			}
 			if ( ! $tid ) {
-				return self::wrap( $view, '<p class="wgt-empty">' . esc_html__( 'Aucun tournoi n’a encore été créé.', 'wegame-tournoi' ) . '</p>', false, 0 );
+				return self::wrap( $view, '<p class="wgt-empty">' . esc_html__( 'No tournament has been created yet.', 'wegame-tournoi' ) . '</p>', false, 0 );
 			}
 		}
 
@@ -142,14 +142,14 @@ class WGT_Render {
 		}
 		if ( '' !== $s['start_time'] ) {
 			/* translators: %s: heure de début */
-			$meta[] = sprintf( __( 'Début %s', 'wegame-tournoi' ), str_replace( ':', 'h', $s['start_time'] ) );
+			$meta[] = sprintf( __( 'Starts at %s', 'wegame-tournoi' ), str_replace( ':', 'h', $s['start_time'] ) );
 		}
 		if ( '' !== $s['venue'] ) {
 			$meta[] = $s['venue'];
 		}
 		$meta[] = sprintf(
 			/* translators: %d: nombre de postes */
-			__( '%d postes de jeu', 'wegame-tournoi' ),
+			__( '%d gaming stations', 'wegame-tournoi' ),
 			(int) $s['stations']
 		);
 
@@ -185,12 +185,12 @@ class WGT_Render {
 		}
 
 		if ( $stats['champion_id'] ) {
-			$out .= '<p class="wgt-champion"><span class="wgt-champion__label">' . esc_html__( 'Vainqueur du tournoi', 'wegame-tournoi' ) . '</span><strong>' . esc_html( WGT_Data::team_name( $stats['champion_id'], $teams ) ) . '</strong>';
+			$out .= '<p class="wgt-champion"><span class="wgt-champion__label">' . esc_html__( 'Tournament winner', 'wegame-tournoi' ) . '</span><strong>' . esc_html( WGT_Data::team_name( $stats['champion_id'], $teams ) ) . '</strong>';
 			if ( $stats['third_id'] ) {
 				$out .= '<span class="wgt-champion__third">' . esc_html(
 					sprintf(
 						/* translators: %s: nom de l'équipe */
-						__( '3e place : %s', 'wegame-tournoi' ),
+						__( 'Third place: %s', 'wegame-tournoi' ),
 						WGT_Data::team_name( $stats['third_id'], $teams )
 					)
 				) . '</span>';
@@ -206,7 +206,7 @@ class WGT_Render {
 		// Sections : tableau principal d'un côté, repêchage de l'autre.
 		$sections = array(
 			'main'   => array( 'title' => '', 'rounds' => array() ),
-			'losers' => array( 'title' => __( 'Repêchage', 'wegame-tournoi' ), 'rounds' => array() ),
+			'losers' => array( 'title' => __( 'Losers bracket', 'wegame-tournoi' ), 'rounds' => array() ),
 		);
 
 		foreach ( $labels as $key => $label ) {
@@ -265,7 +265,7 @@ class WGT_Render {
 		$html  = self::groups_html( $tid, $teams );
 
 		if ( '' === $html ) {
-			$html = '<p class="wgt-empty">' . esc_html__( 'Ce tournoi ne comporte pas de phase de poules.', 'wegame-tournoi' ) . '</p>';
+			$html = '<p class="wgt-empty">' . esc_html__( 'This tournament has no group stage.', 'wegame-tournoi' ) . '</p>';
 		}
 
 		return self::wrap( 'groups', $html, true, $tid );
@@ -288,7 +288,7 @@ class WGT_Render {
 
 		$qualifiers = (int) WGT_Tournament::get( $tid, 'qualifiers_per_group' );
 
-		$out  = '<h3 class="wgt-section-title">' . esc_html__( 'Phase de poules', 'wegame-tournoi' ) . '</h3>';
+		$out  = '<h3 class="wgt-section-title">' . esc_html__( 'Group stage', 'wegame-tournoi' ) . '</h3>';
 		$out .= '<div class="wgt-groups">';
 
 		foreach ( $groups as $group_id ) {
@@ -298,16 +298,16 @@ class WGT_Render {
 			$out .= '<h4 class="wgt-group__title">' . esc_html(
 				sprintf(
 					/* translators: %s: lettre de la poule */
-					__( 'Poule %s', 'wegame-tournoi' ),
+					__( 'Group %s', 'wegame-tournoi' ),
 					WGT_Data::group_name( $group_id )
 				)
 			) . '</h4>';
 
 			$out .= '<table class="wgt-table wgt-table--standings"><thead><tr>';
-			$out .= '<th>#</th><th>' . esc_html__( 'Équipe', 'wegame-tournoi' ) . '</th>';
-			$out .= '<th>' . esc_html__( 'J', 'wegame-tournoi' ) . '</th>';
-			$out .= '<th>' . esc_html__( 'V', 'wegame-tournoi' ) . '</th>';
-			$out .= '<th>' . esc_html__( 'D', 'wegame-tournoi' ) . '</th>';
+			$out .= '<th>#</th><th>' . esc_html__( 'Team', 'wegame-tournoi' ) . '</th>';
+			$out .= '<th>' . esc_html__( 'P', 'wegame-tournoi' ) . '</th>';
+			$out .= '<th>' . esc_html__( 'W', 'wegame-tournoi' ) . '</th>';
+			$out .= '<th>' . esc_html__( 'L', 'wegame-tournoi' ) . '</th>';
 			$out .= '<th>' . esc_html__( 'Diff.', 'wegame-tournoi' ) . '</th>';
 			$out .= '</tr></thead><tbody>';
 
@@ -339,9 +339,9 @@ class WGT_Render {
 	 */
 	protected static function format_legend( $settings ) {
 		$names = array(
-			'single' => __( 'Élimination directe', 'wegame-tournoi' ),
-			'double' => __( 'Double élimination', 'wegame-tournoi' ),
-			'groups' => __( 'Poules puis phase finale', 'wegame-tournoi' ),
+			'single' => __( 'Single elimination', 'wegame-tournoi' ),
+			'double' => __( 'Double elimination', 'wegame-tournoi' ),
+			'groups' => __( 'Group stage then playoffs', 'wegame-tournoi' ),
 		);
 
 		$format = isset( $settings['format'] ) ? $settings['format'] : 'single';
@@ -349,7 +349,7 @@ class WGT_Render {
 
 		$parts[] = sprintf(
 			/* translators: %d: nombre d'équipes */
-			__( '%d équipes', 'wegame-tournoi' ),
+			__( '%d teams', 'wegame-tournoi' ),
 			(int) $settings['team_count']
 		);
 
@@ -411,10 +411,10 @@ class WGT_Render {
 		}
 		if ( '' !== $match['stations'] ) {
 			/* translators: %s: numéros de postes */
-			$out .= '<span class="wgt-match__stations">' . esc_html( sprintf( __( 'Postes %s', 'wegame-tournoi' ), $match['stations'] ) ) . '</span>';
+			$out .= '<span class="wgt-match__stations">' . esc_html( sprintf( __( 'Stations %s', 'wegame-tournoi' ), $match['stations'] ) ) . '</span>';
 		}
 		if ( $live ) {
-			$out .= '<span class="wgt-badge wgt-badge--live">' . esc_html__( 'En cours', 'wegame-tournoi' ) . '</span>';
+			$out .= '<span class="wgt-badge wgt-badge--live">' . esc_html__( 'In progress', 'wegame-tournoi' ) . '</span>';
 		}
 		$out .= '</div>';
 
@@ -444,7 +444,7 @@ class WGT_Render {
 				foreach ( $games as $game ) {
 					$parts[] = (int) $game['score1'] . '-' . (int) $game['score2'];
 				}
-				$out .= '<div class="wgt-match__games">' . esc_html__( 'Manches :', 'wegame-tournoi' ) . ' ' . esc_html( implode( ' | ', $parts ) ) . '</div>';
+				$out .= '<div class="wgt-match__games">' . esc_html__( 'Games:', 'wegame-tournoi' ) . ' ' . esc_html( implode( ' | ', $parts ) ) . '</div>';
 			}
 		}
 
@@ -468,10 +468,10 @@ class WGT_Render {
 		$matches = WGT_Data::get_matches( $tid );
 		$teams   = WGT_Data::get_teams_map( $tid );
 
-		$out = '<h3 class="wgt-section-title">' . esc_html__( 'Planning horaire', 'wegame-tournoi' ) . '</h3>';
+		$out = '<h3 class="wgt-section-title">' . esc_html__( 'Time schedule', 'wegame-tournoi' ) . '</h3>';
 
 		if ( empty( $matches ) ) {
-			return self::wrap( 'planning', $out . '<p class="wgt-empty">' . esc_html__( 'Aucun match programmé.', 'wegame-tournoi' ) . '</p>', false, $tid );
+			return self::wrap( 'planning', $out . '<p class="wgt-empty">' . esc_html__( 'No match scheduled.', 'wegame-tournoi' ) . '</p>', false, $tid );
 		}
 
 		// Regroupement par créneau horaire.
@@ -494,7 +494,7 @@ class WGT_Render {
 			if ( count( $list ) === $columns ) {
 				foreach ( $list as $match ) {
 					$headers[] = '' !== $match['stations']
-						? sprintf( /* translators: %s: numéros de postes */ __( 'Postes %s', 'wegame-tournoi' ), $match['stations'] )
+						? sprintf( /* translators: %s: numéros de postes */ __( 'Stations %s', 'wegame-tournoi' ), $match['stations'] )
 						: '';
 				}
 				break;
@@ -502,7 +502,7 @@ class WGT_Render {
 		}
 
 		$out .= '<div class="wgt-table-scroll"><table class="wgt-table wgt-table--planning">';
-		$out .= '<thead><tr><th>' . esc_html__( 'Horaire', 'wegame-tournoi' ) . '</th>';
+		$out .= '<thead><tr><th>' . esc_html__( 'Time', 'wegame-tournoi' ) . '</th>';
 		for ( $i = 0; $i < $columns; $i++ ) {
 			$label = isset( $headers[ $i ] ) && '' !== $headers[ $i ]
 				? $headers[ $i ]
@@ -521,7 +521,7 @@ class WGT_Render {
 			}
 
 			$label = '~' === $time
-				? __( 'Non programmé', 'wegame-tournoi' )
+				? __( 'Not scheduled', 'wegame-tournoi' )
 				: str_replace( ':', 'h', $time ) . ( '' !== $end ? ' - ' . str_replace( ':', 'h', $end ) : '' );
 
 			$out .= '<tr><td class="wgt-table__slot">' . esc_html( $label ) . '</td>';
@@ -538,7 +538,7 @@ class WGT_Render {
 		}
 
 		$out .= '</tbody></table></div>';
-		$out .= '<p class="wgt-note">' . esc_html__( 'Les horaires sont indicatifs : ils supposent des matchs sans retard important. Un match en plusieurs manches peut décaler la suite du planning.', 'wegame-tournoi' ) . '</p>';
+		$out .= '<p class="wgt-note">' . esc_html__( 'Times are indicative: they assume matches without significant delay. A match played over several games may push back the rest of the schedule.', 'wegame-tournoi' ) . '</p>';
 
 		return self::wrap( 'planning', $out, true, $tid );
 	}
@@ -560,7 +560,7 @@ class WGT_Render {
 		if ( 'done' === $match['status'] ) {
 			$out .= ' <span class="wgt-cell__score">' . (int) $match['score1'] . ' - ' . (int) $match['score2'] . '</span>';
 		} elseif ( 'live' === $match['status'] ) {
-			$out .= ' <span class="wgt-badge wgt-badge--live">' . esc_html__( 'En cours', 'wegame-tournoi' ) . '</span>';
+			$out .= ' <span class="wgt-badge wgt-badge--live">' . esc_html__( 'In progress', 'wegame-tournoi' ) . '</span>';
 		}
 
 		return $out;
@@ -580,10 +580,10 @@ class WGT_Render {
 		$tid   = self::tid( $atts );
 		$teams = WGT_Data::get_teams( array( 'tournament_id' => $tid, 'status' => 'active' ) );
 
-		$out = '<h3 class="wgt-section-title">' . esc_html__( 'Équipes engagées', 'wegame-tournoi' ) . '</h3>';
+		$out = '<h3 class="wgt-section-title">' . esc_html__( 'Participating teams', 'wegame-tournoi' ) . '</h3>';
 
 		if ( empty( $teams ) ) {
-			return self::wrap( 'teams', $out . '<p class="wgt-empty">' . esc_html__( 'Aucune équipe validée pour le moment.', 'wegame-tournoi' ) . '</p>', false, $tid );
+			return self::wrap( 'teams', $out . '<p class="wgt-empty">' . esc_html__( 'No team approved yet.', 'wegame-tournoi' ) . '</p>', false, $tid );
 		}
 
 		$open = isset( $atts['players'] ) && 'yes' === $atts['players'];
@@ -601,7 +601,7 @@ class WGT_Render {
 			$head .= '</span>';
 			if ( '' !== $team['captain'] ) {
 				/* translators: %s: nom du capitaine */
-				$head .= '<span class="wgt-team__captain">' . esc_html( sprintf( __( 'Capitaine : %s', 'wegame-tournoi' ), $team['captain'] ) ) . '</span>';
+				$head .= '<span class="wgt-team__captain">' . esc_html( sprintf( __( 'Captain: %s', 'wegame-tournoi' ), $team['captain'] ) ) . '</span>';
 			}
 
 			if ( ! $has_detail ) {
@@ -617,7 +617,7 @@ class WGT_Render {
 			$out .= '<span class="wgt-team__count">' . esc_html(
 				sprintf(
 					/* translators: %d: nombre de joueurs */
-					_n( '%d joueur', '%d joueurs', $count, 'wegame-tournoi' ),
+					_n( '%d player', '%d players', $count, 'wegame-tournoi' ),
 					$count
 				)
 			) . '</span>';
@@ -675,16 +675,16 @@ class WGT_Render {
 		$teams    = WGT_Data::get_teams_map( $tid );
 		$labels   = WGT_Bracket::round_order( $settings );
 
-		$out  = '<h3 class="wgt-section-title">' . esc_html__( 'Résultats', 'wegame-tournoi' ) . '</h3>';
+		$out  = '<h3 class="wgt-section-title">' . esc_html__( 'Results', 'wegame-tournoi' ) . '</h3>';
 		$out .= '<div class="wgt-table-scroll"><table class="wgt-table wgt-table--results">';
 		$out .= '<thead><tr>';
 		$out .= '<th>' . esc_html__( 'Match', 'wegame-tournoi' ) . '</th>';
-		$out .= '<th>' . esc_html__( 'Tour', 'wegame-tournoi' ) . '</th>';
-		$out .= '<th>' . esc_html__( 'Équipe 1', 'wegame-tournoi' ) . '</th>';
+		$out .= '<th>' . esc_html__( 'Round', 'wegame-tournoi' ) . '</th>';
+		$out .= '<th>' . esc_html__( 'Team 1', 'wegame-tournoi' ) . '</th>';
 		$out .= '<th>' . esc_html__( 'Score', 'wegame-tournoi' ) . '</th>';
-		$out .= '<th>' . esc_html__( 'Équipe 2', 'wegame-tournoi' ) . '</th>';
-		$out .= '<th>' . esc_html__( 'Postes', 'wegame-tournoi' ) . '</th>';
-		$out .= '<th>' . esc_html__( 'Statut', 'wegame-tournoi' ) . '</th>';
+		$out .= '<th>' . esc_html__( 'Team 2', 'wegame-tournoi' ) . '</th>';
+		$out .= '<th>' . esc_html__( 'Stations', 'wegame-tournoi' ) . '</th>';
+		$out .= '<th>' . esc_html__( 'Status', 'wegame-tournoi' ) . '</th>';
 		$out .= '</tr></thead><tbody>';
 
 		$by_code = WGT_Data::get_matches_map( $tid );
@@ -732,9 +732,9 @@ class WGT_Render {
 	 */
 	public static function status_label( $status ) {
 		$map = array(
-			'pending' => __( 'À jouer', 'wegame-tournoi' ),
-			'live'    => __( 'En cours', 'wegame-tournoi' ),
-			'done'    => __( 'Terminé', 'wegame-tournoi' ),
+			'pending' => __( 'To play', 'wegame-tournoi' ),
+			'live'    => __( 'In progress', 'wegame-tournoi' ),
+			'done'    => __( 'Finished', 'wegame-tournoi' ),
 		);
 		return isset( $map[ $status ] ) ? $map[ $status ] : $status;
 	}
@@ -753,7 +753,7 @@ class WGT_Render {
 		$tid = self::tid( $atts );
 		$s   = WGT_Tournament::settings( $tid );
 
-		$out  = '<h3 class="wgt-section-title">' . esc_html__( 'Règlement', 'wegame-tournoi' ) . '</h3>';
+		$out  = '<h3 class="wgt-section-title">' . esc_html__( 'Rules', 'wegame-tournoi' ) . '</h3>';
 		$out .= '<ul class="wgt-list">';
 		// Les réglages sont transmis pour que le règlement reflète l'effectif
 		// réel des équipes (players_per_team) plutôt qu'une valeur figée.
@@ -762,20 +762,20 @@ class WGT_Render {
 		}
 		$out .= '</ul>';
 
-		$out .= '<h4 class="wgt-subsection-title">' . esc_html__( 'Format des matchs', 'wegame-tournoi' ) . '</h4>';
+		$out .= '<h4 class="wgt-subsection-title">' . esc_html__( 'Match format', 'wegame-tournoi' ) . '</h4>';
 		$out .= '<ul class="wgt-list">';
-		$out .= '<li>' . esc_html__( 'BO1 : une seule partie, l’équipe qui la remporte se qualifie.', 'wegame-tournoi' ) . '</li>';
-		$out .= '<li>' . esc_html__( 'BO3 : jusqu’à trois parties, la première équipe à en gagner deux remporte le match.', 'wegame-tournoi' ) . '</li>';
+		$out .= '<li>' . esc_html__( 'BO1: a single game, the team that wins it qualifies.', 'wegame-tournoi' ) . '</li>';
+		$out .= '<li>' . esc_html__( 'BO3: up to three games, the first team to win two takes the match.', 'wegame-tournoi' ) . '</li>';
 		$out .= '<li>' . esc_html( self::format_legend( $s ) ) . '</li>';
 		$out .= '<li>' . esc_html(
 			sprintf(
 				/* translators: %d: nombre de joueurs */
-				__( 'Équipes de %d joueurs titulaires, un remplaçant recommandé.', 'wegame-tournoi' ),
+				__( 'Teams of %d starting players, one substitute recommended.', 'wegame-tournoi' ),
 				(int) $s['players_per_team']
 			)
 		) . '</li>';
 		if ( ! empty( $s['third_place'] ) ) {
-			$out .= '<li>' . esc_html__( 'Un match pour la 3e place oppose les deux perdants des demi-finales.', 'wegame-tournoi' ) . '</li>';
+			$out .= '<li>' . esc_html__( 'A third place match pits the two semi-final losers against each other.', 'wegame-tournoi' ) . '</li>';
 		}
 		$out .= '</ul>';
 
@@ -791,9 +791,9 @@ class WGT_Render {
 	public static function render_staff( $atts = array() ) {
 		$tid = self::tid( $atts );
 
-		$out  = '<h3 class="wgt-section-title">' . esc_html__( 'Personnel nécessaire', 'wegame-tournoi' ) . '</h3>';
+		$out  = '<h3 class="wgt-section-title">' . esc_html__( 'Staff needed', 'wegame-tournoi' ) . '</h3>';
 		$out .= '<div class="wgt-table-scroll"><table class="wgt-table">';
-		$out .= '<thead><tr><th>' . esc_html__( 'Fonction', 'wegame-tournoi' ) . '</th><th>' . esc_html__( 'Nb.', 'wegame-tournoi' ) . '</th><th>' . esc_html__( 'Missions principales', 'wegame-tournoi' ) . '</th></tr></thead><tbody>';
+		$out .= '<thead><tr><th>' . esc_html__( 'Role', 'wegame-tournoi' ) . '</th><th>' . esc_html__( 'Qty.', 'wegame-tournoi' ) . '</th><th>' . esc_html__( 'Main duties', 'wegame-tournoi' ) . '</th></tr></thead><tbody>';
 		foreach ( WGT_Bracket::staff() as $line ) {
 			$out .= '<tr><td>' . esc_html( $line[0] ) . '</td><td>' . (int) $line[1] . '</td><td>' . esc_html( $line[2] ) . '</td></tr>';
 		}
@@ -811,7 +811,7 @@ class WGT_Render {
 	public static function render_checklist( $atts = array() ) {
 		$tid = self::tid( $atts );
 
-		$out  = '<h3 class="wgt-section-title">' . esc_html__( 'Checklist avant ouverture', 'wegame-tournoi' ) . '</h3>';
+		$out  = '<h3 class="wgt-section-title">' . esc_html__( 'Pre-opening checklist', 'wegame-tournoi' ) . '</h3>';
 		$out .= '<ul class="wgt-list wgt-list--check">';
 		foreach ( WGT_Bracket::checklist() as $item ) {
 			$out .= '<li>' . esc_html( $item ) . '</li>';
@@ -834,10 +834,10 @@ class WGT_Render {
 	public static function render_list( $atts = array() ) {
 		$posts = WGT_Tournament::all( array( 'post_status' => 'publish' ) );
 
-		$out = '<h3 class="wgt-section-title">' . esc_html__( 'Tournois', 'wegame-tournoi' ) . '</h3>';
+		$out = '<h3 class="wgt-section-title">' . esc_html__( 'Tournaments', 'wegame-tournoi' ) . '</h3>';
 
 		if ( empty( $posts ) ) {
-			return self::wrap( 'list', $out . '<p class="wgt-empty">' . esc_html__( 'Aucun tournoi publié.', 'wegame-tournoi' ) . '</p>', false, 0 );
+			return self::wrap( 'list', $out . '<p class="wgt-empty">' . esc_html__( 'No published tournament.', 'wegame-tournoi' ) . '</p>', false, 0 );
 		}
 
 		$out .= '<ul class="wgt-tournaments">';
@@ -868,7 +868,7 @@ class WGT_Render {
 				$out .= '<span class="wgt-tournament__winner">' . esc_html(
 					sprintf(
 						/* translators: %s: nom de l'équipe */
-						__( 'Vainqueur : %s', 'wegame-tournoi' ),
+						__( 'Winner: %s', 'wegame-tournoi' ),
 						WGT_Data::team_name( $stats['champion_id'], WGT_Data::get_teams_map( $post->ID ) )
 					)
 				) . '</span>';
@@ -891,16 +891,16 @@ class WGT_Render {
 		$tid  = self::tid( $atts );
 		$rows = WGT_Standings::final_ranking( $tid );
 
-		$out = '<h3 class="wgt-section-title">' . esc_html__( 'Classement général', 'wegame-tournoi' ) . '</h3>';
+		$out = '<h3 class="wgt-section-title">' . esc_html__( 'Overall ranking', 'wegame-tournoi' ) . '</h3>';
 
 		if ( empty( $rows ) ) {
-			return self::wrap( 'ranking', $out . '<p class="wgt-empty">' . esc_html__( 'Le classement apparaîtra au fil des matchs.', 'wegame-tournoi' ) . '</p>', true, $tid );
+			return self::wrap( 'ranking', $out . '<p class="wgt-empty">' . esc_html__( 'The ranking will build up as matches are played.', 'wegame-tournoi' ) . '</p>', true, $tid );
 		}
 
 		$out .= '<div class="wgt-table-scroll"><table class="wgt-table wgt-table--ranking"><thead><tr>';
-		$out .= '<th>' . esc_html__( 'Rang', 'wegame-tournoi' ) . '</th>';
-		$out .= '<th>' . esc_html__( 'Équipe', 'wegame-tournoi' ) . '</th>';
-		$out .= '<th>' . esc_html__( 'Position de départ', 'wegame-tournoi' ) . '</th>';
+		$out .= '<th>' . esc_html__( 'Rank', 'wegame-tournoi' ) . '</th>';
+		$out .= '<th>' . esc_html__( 'Team', 'wegame-tournoi' ) . '</th>';
+		$out .= '<th>' . esc_html__( 'Starting seed', 'wegame-tournoi' ) . '</th>';
 		$out .= '</tr></thead><tbody>';
 
 		foreach ( $rows as $row ) {
@@ -913,7 +913,7 @@ class WGT_Render {
 		}
 
 		$out .= '</tbody></table></div>';
-		$out .= '<p class="wgt-note">' . esc_html__( 'Les équipes éliminées au même tour partagent le même rang, signalé par un « + ». Le classement se précise à mesure que les matchs sont validés.', 'wegame-tournoi' ) . '</p>';
+		$out .= '<p class="wgt-note">' . esc_html__( 'Teams eliminated in the same round share the same rank, marked with a "+". The ranking becomes more precise as matches are approved.', 'wegame-tournoi' ) . '</p>';
 
 		return self::wrap( 'ranking', $out, true, $tid );
 	}
@@ -933,7 +933,7 @@ class WGT_Render {
 		$s   = WGT_Tournament::settings( $tid );
 
 		$out  = '<div id="wgt-registration" class="wgt-anchor"></div>';
-		$out .= '<h3 class="wgt-section-title">' . esc_html__( 'Inscription d’une équipe', 'wegame-tournoi' ) . '</h3>';
+		$out .= '<h3 class="wgt-section-title">' . esc_html__( 'Team sign-up', 'wegame-tournoi' ) . '</h3>';
 
 		$feedback = WGT_Registration::get_feedback();
 		if ( $feedback ) {
@@ -941,13 +941,13 @@ class WGT_Render {
 		}
 
 		if ( empty( $s['registration_open'] ) ) {
-			$out .= '<p class="wgt-empty">' . esc_html__( 'Les inscriptions sont actuellement fermées.', 'wegame-tournoi' ) . '</p>';
+			$out .= '<p class="wgt-empty">' . esc_html__( 'Sign-ups are currently closed.', 'wegame-tournoi' ) . '</p>';
 			return self::wrap( 'registration', $out, false, $tid );
 		}
 
 		$count = WGT_Data::count_registered( $tid );
 		if ( (int) $s['registration_max'] > 0 && $count >= (int) $s['registration_max'] ) {
-			$out .= '<p class="wgt-empty">' . esc_html__( 'Le nombre maximum d’équipes est atteint.', 'wegame-tournoi' ) . '</p>';
+			$out .= '<p class="wgt-empty">' . esc_html__( 'The maximum number of teams has been reached.', 'wegame-tournoi' ) . '</p>';
 			return self::wrap( 'registration', $out, false, $tid );
 		}
 
@@ -956,7 +956,7 @@ class WGT_Render {
 		$out .= '<input type="hidden" name="tournament_id" value="' . (int) $tid . '" />';
 		$out .= '<input type="hidden" name="wgt_redirect" value="' . esc_url( WGT_Registration::current_url() ) . '" />';
 		$out .= wp_nonce_field( 'wgt_register_team', 'wgt_nonce', true, false );
-		$out .= '<p class="wgt-hp"><label>' . esc_html__( 'Ne pas remplir', 'wegame-tournoi' ) . ' <input type="text" name="wgt_website" value="" tabindex="-1" autocomplete="off" /></label></p>';
+		$out .= '<p class="wgt-hp"><label>' . esc_html__( 'Do not fill in', 'wegame-tournoi' ) . ' <input type="text" name="wgt_website" value="" tabindex="-1" autocomplete="off" /></label></p>';
 
 		/*
 		 * Formulaire simplifié (attribut simple="yes") : équipe, pseudo,
@@ -965,24 +965,24 @@ class WGT_Render {
 		 */
 		$simple = isset( $atts['simple'] ) && in_array( strtolower( (string) $atts['simple'] ), array( 'yes', '1', 'true', 'oui' ), true );
 
-		$out .= '<p class="wgt-field"><label for="wgt-name">' . esc_html( $simple ? __( 'Team', 'wegame-tournoi' ) : __( 'Nom de l’équipe', 'wegame-tournoi' ) ) . ' *</label><input type="text" id="wgt-name" name="name" required maxlength="120" /></p>';
+		$out .= '<p class="wgt-field"><label for="wgt-name">' . esc_html( $simple ? _x( 'Team', 'short sign-up form label', 'wegame-tournoi' ) : __( 'Team name', 'wegame-tournoi' ) ) . ' *</label><input type="text" id="wgt-name" name="name" required maxlength="120" /></p>';
 		if ( ! $simple ) {
-			$out .= '<p class="wgt-field"><label for="wgt-tag">' . esc_html__( 'Tag (facultatif)', 'wegame-tournoi' ) . '</label><input type="text" id="wgt-tag" name="tag" maxlength="20" /></p>';
+			$out .= '<p class="wgt-field"><label for="wgt-tag">' . esc_html__( 'Tag (optional)', 'wegame-tournoi' ) . '</label><input type="text" id="wgt-tag" name="tag" maxlength="20" /></p>';
 		}
-		$out .= '<p class="wgt-field"><label for="wgt-captain">' . esc_html( $simple ? __( 'Pseudo', 'wegame-tournoi' ) : __( 'Capitaine', 'wegame-tournoi' ) ) . ' *</label><input type="text" id="wgt-captain" name="captain" required maxlength="120" /></p>';
-		$out .= '<p class="wgt-field"><label for="wgt-email">' . esc_html( $simple ? __( 'Mail', 'wegame-tournoi' ) : __( 'E-mail du capitaine', 'wegame-tournoi' ) ) . ' *</label><input type="email" id="wgt-email" name="email" required maxlength="190" /></p>';
-		$out .= '<p class="wgt-field"><label for="wgt-phone">' . esc_html__( 'Téléphone', 'wegame-tournoi' ) . ( $simple ? ' *' : '' ) . '</label><input type="tel" id="wgt-phone" name="phone" maxlength="40"' . ( $simple ? ' required' : '' ) . ' /></p>';
+		$out .= '<p class="wgt-field"><label for="wgt-captain">' . esc_html( $simple ? __( 'Nickname', 'wegame-tournoi' ) : __( 'Captain', 'wegame-tournoi' ) ) . ' *</label><input type="text" id="wgt-captain" name="captain" required maxlength="120" /></p>';
+		$out .= '<p class="wgt-field"><label for="wgt-email">' . esc_html( $simple ? __( 'Mail', 'wegame-tournoi' ) : __( 'Captain\'s email', 'wegame-tournoi' ) ) . ' *</label><input type="email" id="wgt-email" name="email" required maxlength="190" /></p>';
+		$out .= '<p class="wgt-field"><label for="wgt-phone">' . esc_html__( 'Phone', 'wegame-tournoi' ) . ( $simple ? ' *' : '' ) . '</label><input type="tel" id="wgt-phone" name="phone" maxlength="40"' . ( $simple ? ' required' : '' ) . ' /></p>';
 		if ( ! $simple ) {
 			$out .= '<p class="wgt-field"><label for="wgt-players">' . esc_html(
 				sprintf(
 					/* translators: %d: nombre de joueurs */
-					__( 'Joueurs (%d titulaires + remplaçant, un par ligne)', 'wegame-tournoi' ),
+					__( 'Players (%d starters + substitute, one per line)', 'wegame-tournoi' ),
 					(int) $s['players_per_team']
 				)
 			) . '</label><textarea id="wgt-players" name="players" rows="5"></textarea></p>';
 		}
-		$out .= '<p class="wgt-field wgt-field--consent"><label><input type="checkbox" name="consent" value="1" required /> ' . esc_html__( 'J’accepte le règlement du tournoi.', 'wegame-tournoi' ) . '</label></p>';
-		$out .= '<p class="wgt-submit"><button type="submit" class="wgt-button">' . esc_html__( 'Envoyer l’inscription', 'wegame-tournoi' ) . '</button></p>';
+		$out .= '<p class="wgt-field wgt-field--consent"><label><input type="checkbox" name="consent" value="1" required /> ' . esc_html__( 'I accept the tournament rules.', 'wegame-tournoi' ) . '</label></p>';
+		$out .= '<p class="wgt-submit"><button type="submit" class="wgt-button">' . esc_html__( 'Send sign-up', 'wegame-tournoi' ) . '</button></p>';
 		$out .= '</form>';
 
 		return self::wrap( 'registration', $out, false, $tid );
@@ -1004,23 +1004,23 @@ class WGT_Render {
 
 		$tabs = array();
 		if ( 'groups' === $s['format'] ) {
-			$tabs['groups'] = __( 'Poules', 'wegame-tournoi' );
+			$tabs['groups'] = __( 'Groups', 'wegame-tournoi' );
 		}
 		$tabs += array(
-			'bracket'  => __( 'Tableau', 'wegame-tournoi' ),
-			'planning' => __( 'Planning', 'wegame-tournoi' ),
-			'results'  => __( 'Résultats', 'wegame-tournoi' ),
-			'ranking'  => __( 'Classement', 'wegame-tournoi' ),
-			'teams'    => __( 'Équipes', 'wegame-tournoi' ),
+			'bracket'  => __( 'Bracket', 'wegame-tournoi' ),
+			'planning' => __( 'Schedule', 'wegame-tournoi' ),
+			'results'  => __( 'Results', 'wegame-tournoi' ),
+			'ranking'  => __( 'Ranking', 'wegame-tournoi' ),
+			'teams'    => __( 'Teams', 'wegame-tournoi' ),
 		);
 		if ( ! empty( $s['show_rules'] ) ) {
-			$tabs['rules'] = __( 'Règlement', 'wegame-tournoi' );
+			$tabs['rules'] = __( 'Rules', 'wegame-tournoi' );
 		}
 		if ( ! empty( $s['show_staff'] ) ) {
-			$tabs['staff'] = __( 'Organisation', 'wegame-tournoi' );
+			$tabs['staff'] = __( 'Organizers', 'wegame-tournoi' );
 		}
 		if ( ! empty( $s['registration_open'] ) ) {
-			$tabs['registration'] = __( 'Inscription', 'wegame-tournoi' );
+			$tabs['registration'] = __( 'Sign-up', 'wegame-tournoi' );
 		}
 
 		$out  = self::header_html( $tid );

@@ -36,26 +36,26 @@ class WGT_Registration {
 		$redirect = isset( $_POST['wgt_redirect'] ) ? esc_url_raw( wp_unslash( $_POST['wgt_redirect'] ) ) : home_url( '/' );
 
 		if ( ! isset( $_POST['wgt_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['wgt_nonce'] ) ), 'wgt_register_team' ) ) {
-			self::redirect( $redirect, 'error', __( 'Session expirée, merci de renvoyer le formulaire.', 'wegame-tournoi' ) );
+			self::redirect( $redirect, 'error', __( 'Session expired, please submit the form again.', 'wegame-tournoi' ) );
 		}
 
 		// Pot de miel anti-robot.
 		if ( ! empty( $_POST['wgt_website'] ) ) {
-			self::redirect( $redirect, 'success', __( 'Merci, votre inscription a bien été enregistrée.', 'wegame-tournoi' ) );
+			self::redirect( $redirect, 'success', __( 'Thank you, your sign-up has been recorded.', 'wegame-tournoi' ) );
 		}
 
 		$tid = isset( $_POST['tournament_id'] ) ? (int) $_POST['tournament_id'] : 0;
 		if ( ! $tid || ! WGT_Tournament::is_visible( $tid ) ) {
-			self::redirect( $redirect, 'error', __( 'Tournoi introuvable.', 'wegame-tournoi' ) );
+			self::redirect( $redirect, 'error', __( 'Tournament not found.', 'wegame-tournoi' ) );
 		}
 
 		if ( ! WGT_Tournament::get( $tid, 'registration_open' ) ) {
-			self::redirect( $redirect, 'error', __( 'Les inscriptions sont fermées.', 'wegame-tournoi' ) );
+			self::redirect( $redirect, 'error', __( 'Sign-ups are closed.', 'wegame-tournoi' ) );
 		}
 
 		// L'attribut « required » du navigateur ne suffit pas : contrôle serveur.
 		if ( empty( $_POST['consent'] ) ) {
-			self::redirect( $redirect, 'error', __( 'Vous devez accepter le règlement.', 'wegame-tournoi' ) );
+			self::redirect( $redirect, 'error', __( 'You must accept the rules.', 'wegame-tournoi' ) );
 		}
 
 		/*
@@ -65,17 +65,17 @@ class WGT_Registration {
 		 * par heure et par adresse IP.
 		 */
 		if ( ! self::rate_limit_ok() ) {
-			self::redirect( $redirect, 'error', __( 'Trop de demandes envoyées depuis cette connexion. Merci de réessayer dans une heure.', 'wegame-tournoi' ) );
+			self::redirect( $redirect, 'error', __( 'Too many requests sent from this connection. Please try again in an hour.', 'wegame-tournoi' ) );
 		}
 
 		$max = (int) WGT_Tournament::get( $tid, 'registration_max' );
 		if ( $max > 0 && WGT_Data::count_registered( $tid ) >= $max ) {
-			self::redirect( $redirect, 'error', __( 'Le nombre maximum d’équipes est atteint.', 'wegame-tournoi' ) );
+			self::redirect( $redirect, 'error', __( 'The maximum number of teams has been reached.', 'wegame-tournoi' ) );
 		}
 
 		$name = isset( $_POST['name'] ) ? sanitize_text_field( wp_unslash( $_POST['name'] ) ) : '';
 		if ( '' === $name ) {
-			self::redirect( $redirect, 'error', __( 'Le nom de l’équipe est obligatoire.', 'wegame-tournoi' ) );
+			self::redirect( $redirect, 'error', __( 'The team name is required.', 'wegame-tournoi' ) );
 		}
 
 		$result = WGT_Data::save_team(
@@ -151,17 +151,17 @@ class WGT_Registration {
 
 		$subject = sprintf(
 			/* translators: 1: nom du tournoi, 2: nom de l'équipe */
-			__( '[%1$s] Nouvelle inscription : %2$s', 'wegame-tournoi' ),
+			__( '[%1$s] New sign-up: %2$s', 'wegame-tournoi' ),
 			get_the_title( $tid ),
 			$team['name']
 		);
 
-		$body  = __( 'Nouvelle demande d’inscription reçue.', 'wegame-tournoi' ) . "\n\n";
-		$body .= __( 'Équipe :', 'wegame-tournoi' ) . ' ' . $team['name'] . "\n";
-		$body .= __( 'Capitaine :', 'wegame-tournoi' ) . ' ' . $team['captain'] . "\n";
-		$body .= __( 'E-mail :', 'wegame-tournoi' ) . ' ' . $team['email'] . "\n";
-		$body .= __( 'Téléphone :', 'wegame-tournoi' ) . ' ' . $team['phone'] . "\n\n";
-		$body .= __( 'Joueurs :', 'wegame-tournoi' ) . "\n" . $team['players'] . "\n\n";
+		$body  = __( 'New sign-up request received.', 'wegame-tournoi' ) . "\n\n";
+		$body .= __( 'Team:', 'wegame-tournoi' ) . ' ' . $team['name'] . "\n";
+		$body .= __( 'Captain:', 'wegame-tournoi' ) . ' ' . $team['captain'] . "\n";
+		$body .= __( 'Email:', 'wegame-tournoi' ) . ' ' . $team['email'] . "\n";
+		$body .= __( 'Phone:', 'wegame-tournoi' ) . ' ' . $team['phone'] . "\n\n";
+		$body .= __( 'Players:', 'wegame-tournoi' ) . "\n" . $team['players'] . "\n\n";
 		$body .= add_query_arg( array( 'page' => 'wgt-teams', 'tournament' => (int) $tid ), admin_url( 'admin.php' ) ) . "\n";
 
 		wp_mail( $to, $subject, $body );
@@ -182,18 +182,18 @@ class WGT_Registration {
 		$title   = get_the_title( $tid );
 		$subject = sprintf(
 			/* translators: 1: nom du tournoi, 2: nom de l'équipe */
-			__( '[%1$s] Inscription reçue : %2$s', 'wegame-tournoi' ),
+			__( '[%1$s] Sign-up received: %2$s', 'wegame-tournoi' ),
 			$title,
 			$team['name']
 		);
 
 		$body  = sprintf(
 			/* translators: %s: nom de l'équipe */
-			__( 'Bonjour, la demande d’inscription de l’équipe « %s » a bien été reçue.', 'wegame-tournoi' ),
+			__( 'Hello, the sign-up request for team "%s" has been received.', 'wegame-tournoi' ),
 			$team['name']
 		) . "\n\n";
-		$body .= __( 'Elle sera validée par l’organisation, qui vous recontactera si nécessaire.', 'wegame-tournoi' ) . "\n\n";
-		$body .= __( 'Suivre le tournoi :', 'wegame-tournoi' ) . ' ' . get_permalink( $tid ) . "\n";
+		$body .= __( 'It will be reviewed by the organizers, who will get back to you if needed.', 'wegame-tournoi' ) . "\n\n";
+		$body .= __( 'Follow the tournament:', 'wegame-tournoi' ) . ' ' . get_permalink( $tid ) . "\n";
 
 		wp_mail( $email, $subject, $body );
 	}
@@ -288,11 +288,12 @@ class WGT_Registration {
 	 * @return array|null Tableau avec « type » et « message », ou null.
 	 */
 	public static function get_feedback() {
-		if ( empty( $_GET['wgt_fb'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( empty( $_GET['wgt_fb'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Simple jeton d'affichage du message de retour, sans effet de bord.
 			return null;
 		}
 
-		$token = preg_replace( '/[^A-Za-z0-9]/', '', (string) wp_unslash( $_GET['wgt_fb'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		// Le jeton est alphanumérique : il est assaini puis réduit à [A-Za-z0-9].
+		$token = preg_replace( '/[^A-Za-z0-9]/', '', sanitize_text_field( wp_unslash( $_GET['wgt_fb'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Simple jeton d'affichage du message de retour, sans effet de bord.
 		if ( '' === $token || strlen( $token ) > 40 ) {
 			return null;
 		}

@@ -36,18 +36,18 @@ class WGT_Tournament {
 	 */
 	public static function register() {
 		$labels = array(
-			'name'               => __( 'Tournois', 'wegame-tournoi' ),
-			'singular_name'      => __( 'Tournoi', 'wegame-tournoi' ),
-			'add_new'            => __( 'Ajouter', 'wegame-tournoi' ),
-			'add_new_item'       => __( 'Ajouter un tournoi', 'wegame-tournoi' ),
-			'edit_item'          => __( 'Modifier le tournoi', 'wegame-tournoi' ),
-			'new_item'           => __( 'Nouveau tournoi', 'wegame-tournoi' ),
-			'view_item'          => __( 'Voir le tournoi', 'wegame-tournoi' ),
-			'search_items'       => __( 'Rechercher un tournoi', 'wegame-tournoi' ),
-			'not_found'          => __( 'Aucun tournoi', 'wegame-tournoi' ),
-			'not_found_in_trash' => __( 'Aucun tournoi dans la corbeille', 'wegame-tournoi' ),
-			'all_items'          => __( 'Tous les tournois', 'wegame-tournoi' ),
-			'menu_name'          => __( 'Tournois', 'wegame-tournoi' ),
+			'name'               => __( 'Tournaments', 'wegame-tournoi' ),
+			'singular_name'      => __( 'Tournament', 'wegame-tournoi' ),
+			'add_new'            => __( 'Add', 'wegame-tournoi' ),
+			'add_new_item'       => __( 'Add a tournament', 'wegame-tournoi' ),
+			'edit_item'          => __( 'Edit tournament', 'wegame-tournoi' ),
+			'new_item'           => __( 'New tournament', 'wegame-tournoi' ),
+			'view_item'          => __( 'View tournament', 'wegame-tournoi' ),
+			'search_items'       => __( 'Search a tournament', 'wegame-tournoi' ),
+			'not_found'          => __( 'No tournament', 'wegame-tournoi' ),
+			'not_found_in_trash' => __( 'No tournament in the trash', 'wegame-tournoi' ),
+			'all_items'          => __( 'All tournaments', 'wegame-tournoi' ),
+			'menu_name'          => __( 'Tournaments', 'wegame-tournoi' ),
 		);
 
 		register_post_type(
@@ -270,8 +270,8 @@ class WGT_Tournament {
 	public static function current_admin() {
 		$user_id = get_current_user_id();
 
-		if ( isset( $_GET['tournament'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			$id = (int) $_GET['tournament']; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( isset( $_GET['tournament'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Simple sélection d'affichage dans l'administration, sans effet de bord.
+			$id = (int) $_GET['tournament']; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Simple sélection d'affichage dans l'administration, sans effet de bord ; valeur transtypée en entier.
 			if ( self::exists( $id ) ) {
 				if ( $user_id ) {
 					update_user_meta( $user_id, 'wgt_current_tournament', $id );
@@ -411,7 +411,7 @@ class WGT_Tournament {
 		$title = sanitize_text_field( $title );
 
 		if ( '' === $title ) {
-			return new WP_Error( 'wgt_no_title', __( 'Le nom du tournoi est obligatoire.', 'wegame-tournoi' ) );
+			return new WP_Error( 'wgt_no_title', __( 'The tournament name is required.', 'wegame-tournoi' ) );
 		}
 
 		$id = wp_insert_post(
@@ -443,7 +443,7 @@ class WGT_Tournament {
 	 */
 	public static function duplicate( $source_id, $title, $with_teams = false ) {
 		if ( ! self::exists( $source_id ) ) {
-			return new WP_Error( 'wgt_no_source', __( 'Tournoi source introuvable.', 'wegame-tournoi' ) );
+			return new WP_Error( 'wgt_no_source', __( 'Source tournament not found.', 'wegame-tournoi' ) );
 		}
 
 		$settings = self::settings( $source_id );
@@ -532,9 +532,9 @@ class WGT_Tournament {
 			return;
 		}
 
-		$wpdb->delete( wgt_table( 'games' ), array( 'tournament_id' => $id ) );
-		$wpdb->delete( wgt_table( 'matches' ), array( 'tournament_id' => $id ) );
-		$wpdb->delete( wgt_table( 'teams' ), array( 'tournament_id' => $id ) );
+		$wpdb->delete( wgt_table( 'games' ), array( 'tournament_id' => $id ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Table propre à l'extension ; données transactionnelles non mises en cache.
+		$wpdb->delete( wgt_table( 'matches' ), array( 'tournament_id' => $id ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Table propre à l'extension ; données transactionnelles non mises en cache.
+		$wpdb->delete( wgt_table( 'teams' ), array( 'tournament_id' => $id ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Table propre à l'extension ; données transactionnelles non mises en cache.
 
 		// Références : tournoi par défaut et dernier choix des utilisateurs.
 		if ( (int) get_option( 'wgt_default_tournament' ) === $id ) {
@@ -607,7 +607,7 @@ class WGT_Tournament {
 	public static function create_registration_page( $id, $status = 'publish' ) {
 		$id = (int) $id;
 		if ( ! $id || ! get_post( $id ) ) {
-			return new WP_Error( 'wgt_no_tournament', __( 'Tournoi introuvable.', 'wegame-tournoi' ) );
+			return new WP_Error( 'wgt_no_tournament', __( 'Tournament not found.', 'wegame-tournoi' ) );
 		}
 
 		$existing = self::registration_page( $id );
@@ -622,7 +622,7 @@ class WGT_Tournament {
 				'post_status'  => 'draft' === $status ? 'draft' : 'publish',
 				'post_title'   => sprintf(
 					/* translators: %s: nom du tournoi */
-					__( 'Inscription — %s', 'wegame-tournoi' ),
+					__( 'Sign-up — %s', 'wegame-tournoi' ),
 					get_the_title( $id )
 				),
 				'post_name'    => 'inscription-' . $slug,

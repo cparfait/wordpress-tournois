@@ -103,14 +103,14 @@ class WGT_Rest {
 		$view = $request->get_param( 'view' );
 
 		if ( ! in_array( $view, WGT_Render::views(), true ) || 'registration' === $view ) {
-			return new WP_Error( 'wgt_bad_view', __( 'Vue inconnue.', 'wegame-tournoi' ), array( 'status' => 400 ) );
+			return new WP_Error( 'wgt_bad_view', __( 'Unknown view.', 'wegame-tournoi' ), array( 'status' => 400 ) );
 		}
 
 		$ref = (string) $request->get_param( 'tournament' );
 		$tid = '' !== $ref ? WGT_Tournament::resolve( $ref ) : WGT_Tournament::current_public();
 
 		if ( ! $tid && 'list' !== $view ) {
-			return new WP_Error( 'wgt_no_tournament', __( 'Tournoi introuvable.', 'wegame-tournoi' ), array( 'status' => 404 ) );
+			return new WP_Error( 'wgt_no_tournament', __( 'Tournament not found.', 'wegame-tournoi' ), array( 'status' => 404 ) );
 		}
 
 		// Liste blanche stricte, même si la validation REST est déjà passée.
@@ -145,7 +145,7 @@ class WGT_Rest {
 		$tid = '' !== $ref ? WGT_Tournament::resolve( $ref ) : WGT_Tournament::current_public();
 
 		if ( ! $tid ) {
-			return new WP_Error( 'wgt_no_tournament', __( 'Tournoi introuvable.', 'wegame-tournoi' ), array( 'status' => 404 ) );
+			return new WP_Error( 'wgt_no_tournament', __( 'Tournament not found.', 'wegame-tournoi' ), array( 'status' => 404 ) );
 		}
 
 		$teams   = WGT_Data::get_teams_map( $tid );

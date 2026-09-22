@@ -61,7 +61,7 @@ class WGT_IO {
 	public static function filename( $tournament_id = 0 ) {
 		$slug = $tournament_id ? get_post_field( 'post_name', (int) $tournament_id ) : '';
 		$slug = $slug ? $slug . '-' : '';
-		return 'wegame-' . $slug . gmdate( 'Y-m-d-Hi', (int) current_time( 'timestamp' ) ) . '.json'; // phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp
+		return 'wegame-' . $slug . gmdate( 'Y-m-d-Hi', (int) current_time( 'timestamp' ) ) . '.json'; // phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp -- Horodatage local volontaire : le nom de fichier doit refléter l'heure du site.
 	}
 
 	/**
@@ -76,25 +76,25 @@ class WGT_IO {
 
 		$tid = (int) $tournament_id;
 		if ( ! $tid || ! WGT_Tournament::exists( $tid ) ) {
-			return new WP_Error( 'wgt_no_tournament', __( 'Tournoi de destination introuvable.', 'wegame-tournoi' ) );
+			return new WP_Error( 'wgt_no_tournament', __( 'Target tournament not found.', 'wegame-tournoi' ) );
 		}
 
 		$data = json_decode( $json, true );
 
 		if ( ! is_array( $data ) ) {
-			return new WP_Error( 'wgt_bad_json', __( 'Fichier illisible : ce n’est pas du JSON valide.', 'wegame-tournoi' ) );
+			return new WP_Error( 'wgt_bad_json', __( 'Unreadable file: this is not valid JSON.', 'wegame-tournoi' ) );
 		}
 
 		if ( ! isset( $data['plugin'] ) || 'wegame-tournoi' !== $data['plugin'] ) {
-			return new WP_Error( 'wgt_bad_source', __( 'Ce fichier ne provient pas de l’extension We Game Tournoi.', 'wegame-tournoi' ) );
+			return new WP_Error( 'wgt_bad_source', __( 'This file does not come from the We Game Tournoi plugin.', 'wegame-tournoi' ) );
 		}
 
 		if ( ! isset( $data['format'] ) || (int) $data['format'] > self::FORMAT ) {
-			return new WP_Error( 'wgt_bad_format', __( 'Ce fichier a été produit par une version plus récente de l’extension.', 'wegame-tournoi' ) );
+			return new WP_Error( 'wgt_bad_format', __( 'This file was produced by a newer version of the plugin.', 'wegame-tournoi' ) );
 		}
 
 		if ( ! isset( $data['teams'], $data['matches'] ) || ! is_array( $data['teams'] ) || ! is_array( $data['matches'] ) ) {
-			return new WP_Error( 'wgt_incomplete', __( 'Sauvegarde incomplète : équipes ou matchs manquants.', 'wegame-tournoi' ) );
+			return new WP_Error( 'wgt_incomplete', __( 'Incomplete backup: teams or matches are missing.', 'wegame-tournoi' ) );
 		}
 
 		$games = isset( $data['games'] ) && is_array( $data['games'] ) ? $data['games'] : array();
@@ -119,12 +119,12 @@ class WGT_IO {
 		 * validation précède la suppression, et qu'un échec est signalé par
 		 * un WP_Error explicite plutôt qu'un faux « Sauvegarde restaurée ».
 		 */
-		$wpdb->query( 'START TRANSACTION' ); // phpcs:ignore WordPress.DB
+		$wpdb->query( 'START TRANSACTION' ); // phpcs:ignore WordPress.DB -- Ordre transactionnel littéral sur les tables propres à l'extension ; rien à préparer ni à mettre en cache.
 
 		// Table rase, pour ce tournoi uniquement.
-		$wpdb->delete( $games_table, array( 'tournament_id' => $tid ) );
-		$wpdb->delete( $teams_table, array( 'tournament_id' => $tid ) );
-		$wpdb->delete( $matches_table, array( 'tournament_id' => $tid ) );
+		$wpdb->delete( $games_table, array( 'tournament_id' => $tid ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Table propre à l'extension ; données transactionnelles non mises en cache.
+		$wpdb->delete( $teams_table, array( 'tournament_id' => $tid ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Table propre à l'extension ; données transactionnelles non mises en cache.
+		$wpdb->delete( $matches_table, array( 'tournament_id' => $tid ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Table propre à l'extension ; données transactionnelles non mises en cache.
 
 		/*
 		 * Les identifiants du fichier ne sont jamais réutilisés (ils peuvent
@@ -137,8 +137,8 @@ class WGT_IO {
 
 		foreach ( $data['teams'] as $team ) {
 			$old_id = isset( $team['id'] ) ? (int) $team['id'] : 0;
-			if ( false === $wpdb->insert( $teams_table, self::clean_team( $team, $tid ) ) ) {
-				return self::fail( $wpdb, __( 'Restauration interrompue : une équipe n’a pas pu être enregistrée. Aucune donnée n’a été conservée.', 'wegame-tournoi' ) );
+			if ( false === $wpdb->insert( $teams_table, self::clean_team( $team, $tid ) ) ) { // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Table propre à l'extension ; données transactionnelles non mises en cache.
+				return self::fail( $wpdb, __( 'Restore aborted: a team could not be saved. No data was kept.', 'wegame-tournoi' ) );
 			}
 			if ( $old_id > 0 ) {
 				$team_map[ $old_id ] = (int) $wpdb->insert_id;
@@ -147,8 +147,8 @@ class WGT_IO {
 
 		foreach ( $data['matches'] as $match ) {
 			$old_id = isset( $match['id'] ) ? (int) $match['id'] : 0;
-			if ( false === $wpdb->insert( $matches_table, self::clean_match( $match, $tid, $team_map ) ) ) {
-				return self::fail( $wpdb, __( 'Restauration interrompue : un match n’a pas pu être enregistré. Aucune donnée n’a été conservée.', 'wegame-tournoi' ) );
+			if ( false === $wpdb->insert( $matches_table, self::clean_match( $match, $tid, $team_map ) ) ) { // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Table propre à l'extension ; données transactionnelles non mises en cache.
+				return self::fail( $wpdb, __( 'Restore aborted: a match could not be saved. No data was kept.', 'wegame-tournoi' ) );
 			}
 			if ( $old_id > 0 ) {
 				$match_map[ $old_id ] = (int) $wpdb->insert_id;
@@ -161,12 +161,12 @@ class WGT_IO {
 				// Manche orpheline (match inconnu) : ignorée.
 				continue;
 			}
-			if ( false === $wpdb->insert( $games_table, $row ) ) {
-				return self::fail( $wpdb, __( 'Restauration interrompue : une manche n’a pas pu être enregistrée. Aucune donnée n’a été conservée.', 'wegame-tournoi' ) );
+			if ( false === $wpdb->insert( $games_table, $row ) ) { // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Table propre à l'extension ; données transactionnelles non mises en cache.
+				return self::fail( $wpdb, __( 'Restore aborted: a game could not be saved. No data was kept.', 'wegame-tournoi' ) );
 			}
 		}
 
-		$wpdb->query( 'COMMIT' ); // phpcs:ignore WordPress.DB
+		$wpdb->query( 'COMMIT' ); // phpcs:ignore WordPress.DB -- Ordre transactionnel littéral sur les tables propres à l'extension ; rien à préparer ni à mettre en cache.
 
 		if ( $with_settings && isset( $data['tournament']['settings'] ) && is_array( $data['tournament']['settings'] ) ) {
 			WGT_Tournament::save_settings( $tid, $data['tournament']['settings'] );
@@ -187,7 +187,7 @@ class WGT_IO {
 	 * @return WP_Error
 	 */
 	protected static function fail( $wpdb, $message ) {
-		$wpdb->query( 'ROLLBACK' ); // phpcs:ignore WordPress.DB
+		$wpdb->query( 'ROLLBACK' ); // phpcs:ignore WordPress.DB -- Ordre transactionnel littéral sur les tables propres à l'extension ; rien à préparer ni à mettre en cache.
 		$detail = ! empty( $wpdb->last_error ) ? ' (' . $wpdb->last_error . ')' : '';
 		return new WP_Error( 'wgt_import_failed', $message . $detail );
 	}
@@ -203,31 +203,31 @@ class WGT_IO {
 	protected static function validate_rows( $teams, $matches, $games ) {
 		foreach ( $teams as $i => $team ) {
 			if ( ! is_array( $team ) ) {
-				return new WP_Error( 'wgt_bad_team', sprintf( /* translators: %d: index */ __( 'Équipe n° %d illisible.', 'wegame-tournoi' ), (int) $i + 1 ) );
+				return new WP_Error( 'wgt_bad_team', sprintf( /* translators: %d: index */ __( 'Team no. %d is unreadable.', 'wegame-tournoi' ), (int) $i + 1 ) );
 			}
 			if ( ! isset( $team['name'] ) || ! is_scalar( $team['name'] ) || '' === trim( (string) $team['name'] ) ) {
-				return new WP_Error( 'wgt_bad_team', sprintf( /* translators: %d: index */ __( 'Équipe n° %d sans nom.', 'wegame-tournoi' ), (int) $i + 1 ) );
+				return new WP_Error( 'wgt_bad_team', sprintf( /* translators: %d: index */ __( 'Team no. %d has no name.', 'wegame-tournoi' ), (int) $i + 1 ) );
 			}
 		}
 
 		$codes = array();
 		foreach ( $matches as $i => $match ) {
 			if ( ! is_array( $match ) ) {
-				return new WP_Error( 'wgt_bad_match', sprintf( /* translators: %d: index */ __( 'Match n° %d illisible.', 'wegame-tournoi' ), (int) $i + 1 ) );
+				return new WP_Error( 'wgt_bad_match', sprintf( /* translators: %d: index */ __( 'Match no. %d is unreadable.', 'wegame-tournoi' ), (int) $i + 1 ) );
 			}
 			$code = isset( $match['code'] ) && is_scalar( $match['code'] ) ? sanitize_text_field( (string) $match['code'] ) : '';
 			if ( '' === $code ) {
-				return new WP_Error( 'wgt_bad_match', sprintf( /* translators: %d: index */ __( 'Match n° %d sans code.', 'wegame-tournoi' ), (int) $i + 1 ) );
+				return new WP_Error( 'wgt_bad_match', sprintf( /* translators: %d: index */ __( 'Match no. %d has no code.', 'wegame-tournoi' ), (int) $i + 1 ) );
 			}
 			if ( isset( $codes[ $code ] ) ) {
-				return new WP_Error( 'wgt_bad_match', sprintf( /* translators: %s: code du match */ __( 'Code de match « %s » en double.', 'wegame-tournoi' ), $code ) );
+				return new WP_Error( 'wgt_bad_match', sprintf( /* translators: %s: code du match */ __( 'Duplicate match code "%s".', 'wegame-tournoi' ), $code ) );
 			}
 			$codes[ $code ] = true;
 		}
 
 		foreach ( $games as $i => $game ) {
 			if ( ! is_array( $game ) ) {
-				return new WP_Error( 'wgt_bad_game', sprintf( /* translators: %d: index */ __( 'Manche n° %d illisible.', 'wegame-tournoi' ), (int) $i + 1 ) );
+				return new WP_Error( 'wgt_bad_game', sprintf( /* translators: %d: index */ __( 'Game no. %d is unreadable.', 'wegame-tournoi' ), (int) $i + 1 ) );
 			}
 		}
 
