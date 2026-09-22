@@ -26,6 +26,7 @@ Le tableau, le planning et les résultats s'affichent sur une page publique qui 
 - [Pourquoi cette extension](#pourquoi-cette-extension)
 - [Fonctionnalités](#fonctionnalités)
 - [Installation](#installation)
+- [Mise à jour depuis une version antérieure à 2.6.0](#mise-à-jour-depuis-une-version-antérieure-à-260)
 - [Démarrage rapide](#démarrage-rapide)
 - [Les trois formats](#les-trois-formats)
 - [Partager le tournoi](#partager-le-tournoi)
@@ -41,7 +42,7 @@ Le tableau, le planning et les résultats s'affichent sur une page publique qui 
 
 ## Pourquoi cette extension
 
-Elle a été écrite pour **Brackethive 2026**, un tournoi à 16 équipes sur 8 postes de jeu. Le besoin était simple et mal couvert par les outils existants : afficher le tableau sur un écran et sur les téléphones des joueurs, saisir les scores sans se tromper, et ne pas dépendre d'un service en ligne.
+Elle a été écrite pour un tournoi local à 16 équipes sur 8 postes de jeu. Le besoin était simple et mal couvert par les outils existants : afficher le tableau sur un écran et sur les téléphones des joueurs, saisir les scores sans se tromper, et ne pas dépendre d'un service en ligne.
 
 Elle gère aujourd'hui plusieurs tournois par site, dans trois formats, avec ou sans inscriptions publiques.
 
@@ -111,9 +112,9 @@ Elle gère aujourd'hui plusieurs tournois par site, dans trois formats, avec ou 
 > [!WARNING]
 > **Le dossier de l'extension doit s'appeler exactement `brackethive`.**
 >
-> WordPress.org déduit le domaine de traduction du nom du dossier. Un dossier renommé, par exemple `brackethive-main`, fait échouer l'analyse avec des centaines d'erreurs `TextDomainMismatch`, alors que le code est correct. Les archives publiées créent le bon dossier : ne le renommez pas.
-
-
+> *Plugin Check* déduit le domaine de traduction attendu du nom du dossier. Dans un dossier nommé autrement — `brackethive-main` après un téléchargement GitHub, ou le nom d'une version précédente — l'analyse signale une erreur `TextDomainMismatch` **par chaîne traduisible**, soit près de sept cents, alors que le code est correct. Les archives publiées créent le bon dossier : ne le renommez pas.
+>
+> Dans le dossier `brackethive`, Plugin Check 2.1.0 ne relève **aucune erreur ni avertissement**, y compris au niveau de sévérité le plus bas et contrôles expérimentaux compris.
 
 ### Depuis les sources
 
@@ -129,6 +130,42 @@ Puis activez l'extension dans WordPress.
 
 > [!NOTE]
 > Si les pages de tournoi renvoient une erreur 404, ouvrez **Réglages → Permaliens** et cliquez sur Enregistrer sans rien changer.
+
+---
+
+## Mise à jour depuis une version antérieure à 2.6.0
+
+La version 2.6.0 renomme l'extension. Le nom précédent reprenait une marque déposée, ce que le répertoire WordPress.org n'autorise pas, et le préfixe de code `wgt_` n'avait que trois caractères là où le règlement en exige quatre. Tout ce que l'extension déclare ou enregistre porte désormais le préfixe `brackethive_`.
+
+**Vos données sont reprises automatiquement.** Au premier chargement qui suit la mise à jour, l'extension déplace ses tables, ses options, son type de contenu et ses métadonnées vers le nouveau préfixe, puis supprime les anciennes tables. Tournois, équipes, matchs, résultats, réglages et pages d'inscription sont conservés. Tant qu'une table de l'ancien préfixe subsiste, la reprise est retentée au chargement suivant plutôt que d'être déclarée terminée.
+
+**Les pages déjà publiées continuent de fonctionner.** Les anciens codes courts `[wegame_*]` restent enregistrés comme alias des nouveaux `[brackethive_*]` et rendent exactement le même HTML. Vous n'avez rien à modifier dans vos pages.
+
+> [!WARNING]
+> **La mise à jour se fait à la main, pas par le manifeste.**
+>
+> Le dossier de l'extension change de nom, et le mécanisme de mise à jour de WordPress ne gère pas ce cas : il installerait le nouveau dossier à côté de l'ancien, laissant l'extension désactivée. Procédez ainsi :
+>
+> 1. **Extensions** → Désactiver l'ancienne version.
+> 2. Supprimer son dossier dans `wp-content/plugins/`.
+> 3. **Extensions → Ajouter → Téléverser** l'archive `brackethive-2.6.0.zip`.
+> 4. Activer.
+>
+> Désactiver et supprimer l'extension n'efface aucune donnée : tout est en base, et c'est la reprise décrite ci-dessus qui la retrouve.
+
+Ce qui change sous le capot, si vous avez du code qui s'y appuyait :
+
+| Avant | Après |
+|---|---|
+| Tables `{prefixe}wgt_teams`, `_matches`, `_games` | `{prefixe}brackethive_teams`, `_matches`, `_games` |
+| Options `wgt_settings`, `wgt_default_tournament`… | `brackethive_settings`, `brackethive_default_tournament`… |
+| Type de contenu `wgt_tournament` | `brackethive_tourney` — WordPress limite ce nom à vingt caractères |
+| Post meta `_wgt_registration_page` | `_brackethive_registration_page` |
+| Actions `admin_post_wgt_*` | `admin_post_brackethive_*` |
+| Espace REST `wegame/v1` | `brackethive/v1` |
+| Domaine de traduction `wegame-tournoi` | `brackethive` |
+
+Le permalien public des tournois ne change pas : il reste `/tournoi/<identifiant>/`.
 
 ---
 
@@ -215,7 +252,7 @@ Créez une page dans **Pages → Ajouter**, collez-y le code court, puis **Publi
 | `players="yes"` | `[brackethive_equipes]` | Affiche la composition des équipes |
 
 ```
-[brackethive_tableau tournoi="we-game-2026" header="no" fit="width"]
+[brackethive_tableau tournoi="spring-esports-cup" header="no" fit="width"]
 ```
 
 ---
@@ -232,14 +269,14 @@ Deux routes publiques, en lecture seule.
 Les deux acceptent un paramètre `tournament` (identifiant ou slug). Les tournois en brouillon, privés ou sans page dédiée ne sont jamais exposés aux visiteurs.
 
 ```bash
-curl https://exemple.fr/wp-json/brackethive/v1/state?tournament=we-game-2026
+curl https://exemple.fr/wp-json/brackethive/v1/state?tournament=spring-esports-cup
 ```
 
 ---
 
 ## Mises à jour automatiques
 
-L'extension n'étant pas publiée sur l'annuaire WordPress.org, les mises à jour passent par un **manifeste auto-hébergé** dont vous indiquez l'adresse dans **Tournois → Extension**. WordPress propose ensuite la mise à jour comme pour n'importe quelle autre extension.
+Tant que l'extension n'est pas publiée sur le répertoire WordPress.org — la soumission est en cours de relecture — les mises à jour passent par un **manifeste auto-hébergé** dont vous indiquez l'adresse dans **Tournois → Extension**. WordPress propose ensuite la mise à jour comme pour n'importe quelle autre extension.
 
 ```json
 {
@@ -292,7 +329,7 @@ Pour traduire, partez du catalogue `brackethive/languages/brackethive.pot`.
 |---|---|
 | WordPress | 5.6 minimum, testé jusqu'à 7.1 |
 | PHP | 7.0 minimum, testé jusqu'à 8.3 |
-| Base de données | MySQL ou MariaDB. Trois tables préfixées `brackethive_`. |
+| Base de données | MySQL, MariaDB, ou SQLite via l'intégration officielle. Trois tables préfixées `brackethive_`. |
 | Thèmes | Indépendant du thème. Le bandeau de titre est masqué sur les pages de tournoi, avec une liste de sélecteurs extensible. |
 | Dépendances | Aucune. Ni bibliothèque JavaScript externe, ni service en ligne, ni clé d'API. |
 | Langues | Anglais et français livrés ; traduisible dans toute autre langue, domaine `brackethive`. |
@@ -303,25 +340,25 @@ Pour traduire, partez du catalogue `brackethive/languages/brackethive.pot`.
 
 ```
 brackethive/
-├── brackethive.php          Amorçage, constantes, chargement des assets
-├── uninstall.php               Désinstallation (ne supprime rien par défaut)
+├── brackethive.php                         Amorçage, constantes, chargement des assets
+├── uninstall.php                           Désinstallation (ne supprime rien par défaut)
 ├── includes/
-│   ├── class-brackethive-tournament.php  Type de contenu, réglages par tournoi
-│   ├── class-brackethive-install.php     Tables, migrations, permaliens
-│   ├── class-brackethive-bracket.php     Génération de la structure et du planning
-│   ├── class-brackethive-data.php        Accès aux données, propagation des résultats
-│   ├── class-brackethive-standings.php   Classements de poules et classement général
-│   ├── class-brackethive-qr.php          Générateur de QR code (mode octets, niveau M)
-│   ├── class-brackethive-render.php      Rendu HTML des vues publiques
-│   ├── class-brackethive-shortcodes.php  Codes courts
-│   ├── class-brackethive-rest.php        Routes REST
-│   ├── class-brackethive-registration.php Formulaire public, anti-abus, e-mails
-│   ├── class-brackethive-io.php          Export et import JSON
-│   ├── class-brackethive-updater.php     Mises à jour par manifeste
-│   ├── class-brackethive-theme.php       Intégration au thème
-│   ├── class-brackethive-settings.php    Réglages communs au site
-│   └── class-brackethive-admin.php       Écrans d'administration
-└── assets/                      CSS et JavaScript, front et admin
+│   ├── class-brackethive-tournament.php    Type de contenu, réglages par tournoi
+│   ├── class-brackethive-install.php       Tables, migrations, reprise de l'ancien préfixe
+│   ├── class-brackethive-bracket.php       Génération de la structure et du planning
+│   ├── class-brackethive-data.php          Accès aux données, propagation des résultats
+│   ├── class-brackethive-standings.php     Classements de poules et classement général
+│   ├── class-brackethive-qr.php            Générateur de QR code (mode octets, niveau M)
+│   ├── class-brackethive-render.php        Rendu HTML des vues publiques
+│   ├── class-brackethive-shortcodes.php    Codes courts, alias des anciens inclus
+│   ├── class-brackethive-rest.php          Routes REST
+│   ├── class-brackethive-registration.php  Formulaire public, anti-abus, e-mails
+│   ├── class-brackethive-io.php            Export et import JSON
+│   ├── class-brackethive-updater.php       Mises à jour par manifeste
+│   ├── class-brackethive-theme.php         Intégration au thème
+│   ├── class-brackethive-settings.php      Réglages communs au site
+│   └── class-brackethive-admin.php         Écrans d'administration
+└── assets/                                 CSS et JavaScript, front et admin
 ```
 
 **Quelques points d'implémentation :**
@@ -349,6 +386,6 @@ Pensez à indiquer aux participants la finalité de la collecte et la durée de 
 
 Publié sous [licence GPL v2 ou ultérieure](LICENSE), comme WordPress.
 
-Développé pour **Brackethive 2026**, un tournoi à 16 équipes sur 8 postes de jeu.
+Développé pour un tournoi local à 16 équipes sur 8 postes de jeu.
 
 Le [journal des versions](CHANGELOG.md) retrace l'évolution de l'extension depuis la version 1.0.0.
