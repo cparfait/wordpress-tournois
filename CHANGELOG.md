@@ -3,6 +3,9 @@
 Toutes les versions notables de Brackethive.
 Le format suit celui du fichier `readme.txt` de l'extension.
 
+## 2.6.1
+* La page Règlement n'explique plus que les formats de match réellement choisis pour les tours du tournoi : un tournoi tout en BO1 n'affiche plus la ligne consacrée au BO3.
+
 ## 2.6.0
 * L'extension est renommée **Brackethive Tournament Manager**. L'ancien nom reprenait une marque déposée, ce que le répertoire officiel n'autorise pas.
 * Tout ce que l'extension déclare ou enregistre porte désormais le préfixe `brackethive_` : classes, constantes, options, tables, métadonnées, codes courts et identifiants de scripts. Le règlement exige au moins quatre caractères ; `wgt_` n'en avait que trois.

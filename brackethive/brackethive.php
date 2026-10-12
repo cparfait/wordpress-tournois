@@ -3,7 +3,7 @@
  * Plugin Name:       Brackethive Tournament Manager
  * Plugin URI:        https://github.com/cparfait/wordpress-tournois
  * Description:       Run an esports tournament from WordPress: 2 to 64 teams, single or double elimination, or a group stage, with a live public page.
- * Version:           2.6.0
+ * Version:           2.6.1
  * Requires at least: 5.6
  * Requires PHP:      7.0
  * Author:            cparfait
@@ -17,8 +17,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'BRACKETHIVE_VERSION', '2.6.0' );
-define( 'BRACKETHIVE_DB_VERSION', '2.6.0' );
+define( 'BRACKETHIVE_VERSION', '2.6.1' );
+define( 'BRACKETHIVE_DB_VERSION', '2.6.1' );
 define( 'BRACKETHIVE_FILE', __FILE__ );
 define( 'BRACKETHIVE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'BRACKETHIVE_URL', plugin_dir_url( __FILE__ ) );

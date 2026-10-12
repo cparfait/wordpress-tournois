@@ -7,7 +7,7 @@
 De 2 à 64 équipes, en élimination directe, double élimination ou phase de poules.
 Le tableau, le planning et les résultats s'affichent sur une page publique qui se met à jour toute seule pendant la soirée.
 
-[![Version](https://img.shields.io/badge/version-2.6.0-d62839)](https://github.com/cparfait/wordpress-tournois/releases)
+[![Version](https://img.shields.io/badge/version-2.6.1-d62839)](https://github.com/cparfait/wordpress-tournois/releases)
 [![WordPress](https://img.shields.io/badge/WordPress-5.6%2B-21759b)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.0%2B-777bb3)](https://www.php.net/)
 [![Licence](https://img.shields.io/badge/licence-GPL--2.0-blue)](LICENSE)
@@ -95,7 +95,7 @@ Elle gère aujourd'hui plusieurs tournois par site, dans trois formats, avec ou 
 
 ### Depuis l'archive
 
-1. Téléchargez `brackethive-2.6.0.zip` depuis la [dernière version](https://github.com/cparfait/wordpress-tournois/releases/latest).
+1. Téléchargez `brackethive-2.6.1.zip` depuis la [dernière version](https://github.com/cparfait/wordpress-tournois/releases/latest).
 2. Dans WordPress : **Extensions → Ajouter → Téléverser une extension**.
 3. Activez. Un menu **Tournois** apparaît.
 
@@ -104,8 +104,8 @@ Elle gère aujourd'hui plusieurs tournois par site, dans trois formats, avec ou 
 >
 > | Archive | Pour quoi |
 > |---|---|
-> | `brackethive-2.6.0.zip` | **Installation sur un site.** Contient les mises à jour automatiques par manifeste. |
-> | `brackethive-2.6.0-POUR-WORDPRESS-ORG.zip` | **Uniquement pour soumettre au répertoire WordPress.org.** Le module de mise à jour en est retiré, car le règlement l'interdit. |
+> | `brackethive-2.6.1.zip` | **Installation sur un site.** Contient les mises à jour automatiques par manifeste. |
+> | `brackethive-2.6.1-POUR-WORDPRESS-ORG.zip` | **Uniquement pour soumettre au répertoire WordPress.org.** Le module de mise à jour en est retiré, car le règlement l'interdit. |
 >
 > L'outil *Plugin Check* signalera toujours un `plugin_updater_detected` sur la première : c'est normal et sans conséquence tant que vous ne soumettez pas au répertoire. C'est la seconde qu'il faut installer pour vérifier le paquet de soumission.
 >
@@ -156,7 +156,7 @@ La version 2.6.0 renomme l'extension. Le nom précédent reprenait une marque d�
 >
 > 1. **Extensions** → Désactiver l'ancienne version.
 > 2. Supprimer son dossier dans `wp-content/plugins/`.
-> 3. **Extensions → Ajouter → Téléverser** l'archive `brackethive-2.6.0.zip`.
+> 3. **Extensions → Ajouter → Téléverser** l'archive `brackethive-2.6.1.zip`.
 > 4. Activer.
 >
 > Désactiver et supprimer l'extension n'efface aucune donnée : tout est en base, et c'est la reprise décrite ci-dessus qui la retrouve.

@@ -4,7 +4,7 @@ Tags: tournament, esports, bracket, competition, leaderboard
 Requires at least: 5.6
 Tested up to: 7.1
 Requires PHP: 7.0
-Stable tag: 2.6.0
+Stable tag: 2.6.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -135,6 +135,9 @@ Uninstalling the plugin keeps all data by default. A setting under Tournaments >
 
 == Changelog ==
 
+= 2.6.1 =
+* The Rules page only explains the match formats actually chosen for the rounds of the tournament: a tournament played entirely in BO1 no longer shows the BO3 line.
+
 = 2.6.0 =
 * The plugin is renamed **Brackethive Tournament Manager**. The previous name borrowed a registered trademark, which the plugin directory does not allow.
 * Everything the plugin declares or stores is now prefixed `brackethive_`: classes, constants, options, database tables, post meta, shortcodes and script handles.
@@ -213,6 +216,9 @@ Uninstalling the plugin keeps all data by default. A setting under Tournaments >
 * First release: 16-team single elimination bracket, schedule, results, public page.
 
 == Upgrade Notice ==
+
+= 2.6.1 =
+The Rules page only explains the match formats the tournament actually uses.
 
 = 2.6.0 =
 The plugin changes name. Your tournaments, teams, results and settings are migrated automatically, and pages using the former shortcodes keep working.
