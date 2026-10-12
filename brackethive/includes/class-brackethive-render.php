@@ -764,8 +764,18 @@ class Brackethive_Render {
 
 		$out .= '<h4 class="brackethive-subsection-title">' . esc_html__( 'Match format', 'brackethive' ) . '</h4>';
 		$out .= '<ul class="brackethive-list">';
-		$out .= '<li>' . esc_html__( 'BO1: a single game, the team that wins it qualifies.', 'brackethive' ) . '</li>';
-		$out .= '<li>' . esc_html__( 'BO3: up to three games, the first team to win two takes the match.', 'brackethive' ) . '</li>';
+		// Seuls les formats réellement choisis pour les tours du tournoi
+		// sont expliqués : un tournoi tout en BO1 n'affiche pas la ligne BO3.
+		$used = array();
+		foreach ( array_keys( Brackethive_Bracket::round_order( $s ) ) as $key ) {
+			$used[ self::round_bo( $key, $s ) ] = true;
+		}
+		if ( isset( $used[1] ) ) {
+			$out .= '<li>' . esc_html__( 'BO1: a single game, the team that wins it qualifies.', 'brackethive' ) . '</li>';
+		}
+		if ( isset( $used[3] ) ) {
+			$out .= '<li>' . esc_html__( 'BO3: up to three games, the first team to win two takes the match.', 'brackethive' ) . '</li>';
+		}
 		$out .= '<li>' . esc_html( self::format_legend( $s ) ) . '</li>';
 		$out .= '<li>' . esc_html(
 			sprintf(
